@@ -32,7 +32,7 @@ export function FaqList({
               dark ? "text-white hover:text-blue-light" : "text-navy hover:text-blue",
             )}
           >
-            <h3 className={cn("font-serif text-[1.2rem] leading-snug md:text-[1.35rem]", dark && "text-white")}>
+            <h3 className={cn("h4", dark && "text-white")}>
               {item.question}
             </h3>
             <Plus

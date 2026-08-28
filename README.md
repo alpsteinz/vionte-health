@@ -38,11 +38,22 @@ Kod içinde metin **üretilmez**. Tüm gövde metni `src/content/` altındaki ve
 dosyalarından gelir ve `CONTENT.md`'de onaylanmış hâliyle kullanılır.
 Henüz onaylanmamış alanlar `[köşeli parantez]` içinde yer tutucudur.
 
-Yayına almadan önce yer tutucuları bulmak için:
+Yayına almadan önce:
 
 ```bash
-grep -rn "\[" src/content src/lib/site.ts | grep -v "\[\]"
+npm run icerik-denetim
 ```
+
+Üç şeyi kontrol eder — AGENTS.md'deki yasak ifadeler, doldurulmamış yer
+tutucular ve tıbbi inceleme bekleyen taslak sayfalar. Üçü de sıfırlanmadan
+site yayına alınmamalı.
+
+## Taslak tıbbi anlatım
+
+`CONTENT.md`'de karşılığı olmayan tıbbi anlatım taşıyan sayfalar
+`draftMedicalCopy: true` ile işaretli ve sayfanın üstünde görünür bir
+"Taslak içerik" uyarısı gösteriyor. Onay geldikçe bayrak kaldırılır,
+uyarı kendiliğinden kaybolur.
 
 ## Klinikten beklenen bilgiler
 
@@ -71,5 +82,7 @@ kullanılmaz (DESIGN.md).
       (`src/components/ui/norwood-figure.tsx` — şu an şematik yer tutucu)
 - [ ] Vektörel logo ve `src/app/icon.svg` değiştirildi
 - [ ] Lead'lerin gideceği sistem `src/app/api/lead/route.ts` içinde bağlandı
+- [ ] `npm run icerik-denetim` üç başlıkta da temiz
+- [ ] `draftMedicalCopy` bayrağı taşıyan 12 sayfa tıbbi incelemeden geçti
 - [ ] Deneyim yılı (12 mi 15 mi) tek rakamda netleştirildi
 - [ ] Google Business Profile, Search Console ve Analytics bağlandı

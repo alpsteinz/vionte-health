@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
+import { ContactLink } from "@/components/ui/contact-link";
 import { Logo } from "./logo";
 import { navigation } from "@/lib/navigation";
 import { site } from "@/lib/site";
@@ -188,9 +189,9 @@ export function Header() {
 
           <div className="mt-6 space-y-1 text-sm text-muted">
             <p>{site.contact.addressLine}</p>
-            <a href={site.contact.phoneHref} className="block text-blue">
+            <ContactLink href={site.contact.phoneHref} className="block text-blue">
               {site.contact.phoneLabel}
-            </a>
+            </ContactLink>
             <p>{site.contact.hours}</p>
           </div>
         </Container>

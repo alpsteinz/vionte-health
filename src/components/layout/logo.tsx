@@ -16,7 +16,7 @@ export function Logo({
     <Link
       href="/"
       aria-label="Vionte Hair Transplant — ana sayfa"
-      className={cn("group flex items-baseline gap-2.5", className)}
+      className={cn("group flex shrink-0 items-baseline gap-2.5 whitespace-nowrap", className)}
     >
       <span
         className={cn(

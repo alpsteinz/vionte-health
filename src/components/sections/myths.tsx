@@ -16,7 +16,7 @@ export function Myths({ limit }: { limit?: number }) {
       <div className="rule-grid reveal mt-12 md:grid-cols-2 lg:grid-cols-3">
         {items.map((myth) => (
           <article key={myth.slug} className="bg-white p-7">
-            <p className="flex items-start gap-3 font-serif text-[1.15rem] leading-snug text-navy">
+            <p className="flex items-start gap-3 font-serif text-[1.15rem] leading-[1.25] text-navy">
               <X className="mt-1 size-4 shrink-0 text-[#b3261e]" strokeWidth={2} aria-hidden />
               <span>“{myth.claim}”</span>
             </p>

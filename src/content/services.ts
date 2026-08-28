@@ -12,6 +12,13 @@ export type ComparisonRow = { label: string; a: string; b: string };
 
 export type Service = {
   slug: string;
+  /**
+   * CONTENT.md'de onaylanmış karşılığı olmayan, taslak olarak yazılmış tıbbi
+   * anlatım içeriyorsa true. Bu sayfalar yayına alınmadan önce tıbbi
+   * inceleyenin onayından geçmelidir (AGENTS.md — "AI taslak için kullanılır,
+   * yayın için değil").
+   */
+  draftMedicalCopy?: boolean;
   /** Menü/breadcrumb adı */
   name: string;
   /** H1 — arama sorusu biçiminde */
@@ -181,6 +188,7 @@ export const services: Service[] = [
   },
   {
     slug: "/sac-ekimi/tirassiz-sac-ekimi",
+    draftMedicalCopy: true,
     name: "Tıraşsız Saç Ekimi",
     h1: "Tıraşsız Saç Ekimi Nedir, Kimlere Uygundur?",
     lead: "Tıraşsız ekim, saçların kısaltılmadan uygulandığı ekim biçimidir. Sosyal hayata erken dönüş sağladığı için çok tercih edilir, ancak her hastaya uygulanamaz. En önemli sınırı, tek seansta ekilebilecek greft sayısının kısıtlı olmasıdır.",
@@ -219,6 +227,7 @@ export const services: Service[] = [
   },
   {
     slug: "/sac-ekimi/kadin-sac-ekimi",
+    draftMedicalCopy: true,
     name: "Kadınlarda Saç Ekimi",
     h1: "Kadınlarda Saç Ekimi Nasıl Yapılır?",
     lead: "Kadınlarda saç dökülmesi çoğunlukla saç çizgisinin geri çekilmesiyle değil, tepe bölgesinde yaygın seyrelmeyle ilerler. Bu nedenle planlama, donör alan yoğunluğunun ölçülmesi ve dökülmenin nedeninin belirlenmesiyle başlar; her seyrelme ekim gerektirmez.",
@@ -275,6 +284,7 @@ export const services: Service[] = [
   },
   {
     slug: "/sakal-ekimi",
+    draftMedicalCopy: true,
     name: "Sakal Ekimi",
     h1: "Sakal ve Bıyık Ekimi Nasıl Yapılır?",
     lead: "Sakal ve bıyık bölgesindeki seyreklik veya boşluklar için, saçlı deriden alınan grefler yüz bölgesine yerleştirilir. Planlamada yön ve açı, saç ekimine göre daha belirleyicidir; kıl çıkış açısı yüzde daha yatıktır.",
@@ -300,6 +310,7 @@ export const services: Service[] = [
   },
   {
     slug: "/kas-ekimi",
+    draftMedicalCopy: true,
     name: "Kaş Ekimi",
     h1: "Kaş Ekimi Nasıl Yapılır?",
     lead: "Kaş bölgesindeki seyreklik için ense bölgesinden alınan grefler tek tek yerleştirilir. Kaşta kıl çıkış açısı çok yatık olduğundan planlama, greft sayısından çok yön ve açı üzerine kurulur.",
@@ -324,6 +335,7 @@ export const services: Service[] = [
   },
   {
     slug: "/sac-tedavileri/prp",
+    draftMedicalCopy: true,
     name: "PRP",
     h1: "PRP Saç Tedavisi Nedir?",
     lead: "PRP, kişinin kendi kanından ayrıştırılan trombositten zengin plazmanın saçlı deriye uygulanmasıdır. Ekim sonrası iyileşme sürecinde ya da dökülmenin erken evrelerinde ayrı bir tedavi planı olarak değerlendirilir.",
@@ -359,6 +371,7 @@ export const services: Service[] = [
   },
   {
     slug: "/sac-tedavileri/mezoterapi",
+    draftMedicalCopy: true,
     name: "Mezoterapi",
     h1: "Saç Mezoterapisi Nedir?",
     lead: "Mezoterapide, saçlı deriye vitamin ve mineral içerikli karışımlar mikro enjeksiyonlarla uygulanır. PRP gibi, ekim sonrası iyileşme sürecinde ya da dökülmenin erken evrelerinde ayrı bir tedavi planı olarak değerlendirilir.",
@@ -387,6 +400,7 @@ export const services: Service[] = [
   },
   {
     slug: "/sac-tedavileri/eksozom",
+    draftMedicalCopy: true,
     name: "Eksozom",
     h1: "Eksozom Uygulaması Nedir?",
     lead: "[Eksozom uygulamasının tanımı — tıbbi inceleyen onayı sonrası yazılacak.]",
@@ -408,6 +422,7 @@ export const services: Service[] = [
   },
   {
     slug: "/sac-tedavileri/kok-hucre",
+    draftMedicalCopy: true,
     name: "Kök Hücre",
     h1: "Kök Hücre Uygulaması Nedir?",
     lead: "[Kök hücre uygulamasının tanımı — tıbbi inceleyen onayı sonrası yazılacak.]",
@@ -429,6 +444,7 @@ export const services: Service[] = [
   },
   {
     slug: "/sac-tedavileri/sac-analizi",
+    draftMedicalCopy: true,
     name: "Saç Analizi",
     h1: "Saç Analizi Nasıl Yapılır?",
     lead: "Saç analizinde donör alan yoğunluğunuz, dökülme tipiniz ve saç telinizin kalınlığı ölçülür. Greft planı bu ölçümler üzerine kurulur; ölçüm yapılmadan verilen greft sayıları yalnızca yaklaşık bir aralık gösterir.",

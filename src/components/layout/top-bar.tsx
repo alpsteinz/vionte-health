@@ -1,5 +1,6 @@
 import { MapPin, Phone } from "lucide-react";
 import { InstagramIcon } from "@/components/ui/instagram-icon";
+import { ContactLink } from "@/components/ui/contact-link";
 import { Container } from "@/components/ui/container";
 import { site } from "@/lib/site";
 
@@ -14,13 +15,13 @@ export function TopBar() {
             <span>{site.contact.addressLine}</span>
           </p>
           <div className="flex items-center gap-6">
-            <a
+            <ContactLink
               href={site.contact.phoneHref}
               className="flex items-center gap-2 transition-colors hover:text-blue-light"
             >
               <Phone className="size-3.5 shrink-0" strokeWidth={1.5} aria-hidden />
               <span>{site.contact.phoneLabel}</span>
-            </a>
+            </ContactLink>
             <a
               href={site.social.instagram}
               target="_blank"

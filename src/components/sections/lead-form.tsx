@@ -7,6 +7,7 @@ import { NorwoodFigure } from "@/components/ui/norwood-figure";
 import { Button } from "@/components/ui/button";
 import { form as formCopy, norwoodLevels } from "@/content/home";
 import { site } from "@/lib/site";
+import { ContactLink } from "@/components/ui/contact-link";
 import { cn } from "@/lib/utils";
 
 type Status = "bos" | "gonderiliyor" | "tamam" | "hata";
@@ -50,38 +51,36 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
           Uzmanımız sizi en kısa sürede arayacak. Daha hızlı yanıt için
           WhatsApp&apos;tan da yazabilirsiniz.
         </p>
-        <a
+        <ContactLink
           href={site.contact.whatsappHref}
-          target="_blank"
-          rel="noopener noreferrer"
+          external
           className="mt-6 inline-flex items-center gap-2 text-sm uppercase tracking-[0.1em] text-blue"
         >
           <MessageCircle className="size-4" strokeWidth={1.5} aria-hidden />
           {site.cta.whatsapp}
-        </a>
+        </ContactLink>
       </div>
     );
   }
 
   return (
-    <div className={cn("border border-line bg-white", compact ? "p-6" : "p-6 md:p-8")}>
-      <h2 className="font-serif text-[1.6rem] leading-tight text-navy">
+    <div className={cn("border border-line bg-white", compact ? "p-5" : "p-5 md:p-8")}>
+      <h2 className="h3 text-navy">
         {formCopy.title}
       </h2>
       <p className="mt-2 text-[0.9375rem] text-muted">{formCopy.subtitle}</p>
 
       {/* Reklam trafiği sabırsızdır — WhatsApp hızlı yolu formun üstünde */}
-      <a
+      <ContactLink
         href={site.contact.whatsappHref}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mt-6 flex items-center justify-center gap-2 border border-[#1f7a4d] px-5 py-3.5 text-[0.8125rem] uppercase tracking-[0.1em] text-[#1f7a4d] transition-colors duration-200 hover:bg-[#1f7a4d] hover:text-white"
+        external
+        className="mt-5 flex items-center justify-center gap-2 border border-[#1f7a4d] px-5 py-3.5 text-[0.8125rem] uppercase tracking-[0.1em] text-[#1f7a4d] transition-colors duration-200 hover:bg-[#1f7a4d] hover:text-white"
       >
         <MessageCircle className="size-4" strokeWidth={1.5} aria-hidden />
         {site.cta.whatsapp}
-      </a>
+      </ContactLink>
 
-      <div className="my-6 flex items-center gap-4 text-[0.75rem] uppercase tracking-[0.18em] text-muted">
+      <div className="my-5 flex items-center gap-4 text-[0.75rem] uppercase tracking-[0.18em] text-muted">
         <span className="h-px flex-1 bg-line" />
         veya
         <span className="h-px flex-1 bg-line" />
@@ -105,7 +104,7 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
                   aria-checked={active}
                   onClick={() => setLevel(lvl.id)}
                   className={cn(
-                    "flex flex-col items-center gap-2 px-1.5 py-3 transition-colors duration-200 sm:px-2",
+                    "flex flex-col items-center gap-1.5 px-1.5 py-2.5 transition-colors duration-200 sm:gap-2 sm:px-2 sm:py-3",
                     active
                       ? "bg-navy text-blue-light"
                       : "bg-white text-navy hover:bg-paper",
@@ -125,7 +124,7 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
             })}
           </div>
           <p
-            className="mt-4 min-h-[2.75rem] text-[0.875rem] text-muted"
+            className="mt-3 min-h-[2.5rem] text-[0.875rem] text-muted"
             aria-live="polite"
           >
             {selected ? selected.description : formCopy.norwoodEmpty}
@@ -133,7 +132,7 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
           <input type="hidden" name="norwood" value={level ?? ""} />
         </fieldset>
 
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 sm:gap-4">
           <div>
             <label htmlFor={`${uid}-ad`} className="block text-[0.8125rem] text-muted">
               Ad Soyad
@@ -166,7 +165,7 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
         </div>
 
         {/* Zorunlu: formda açık KVKK onay kutusu */}
-        <label className="mt-5 flex cursor-pointer items-start gap-3 text-[0.8125rem] leading-relaxed text-muted">
+        <label className="mt-4 flex cursor-pointer items-start gap-3 text-[0.8125rem] leading-relaxed text-muted">
           <input
             type="checkbox"
             name="kvkk"
@@ -187,7 +186,7 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
 
         <Button
           type="submit"
-          className="mt-6 w-full"
+          className="mt-5 w-full"
           disabled={status === "gonderiliyor"}
         >
           {status === "gonderiliyor" ? (

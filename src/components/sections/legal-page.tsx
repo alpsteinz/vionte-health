@@ -25,7 +25,7 @@ export function LegalPage({ doc }: { doc: LegalDoc }) {
               id={section.id}
               className="scroll-mt-28 border-b border-line pb-10 last:border-0 [&+&]:pt-10"
             >
-              <h2 className="font-serif text-[clamp(1.35rem,2.4vw,1.8rem)] leading-snug text-navy">
+              <h2 className="font-serif text-[clamp(1.35rem,2.4vw,1.8rem)] text-navy">
                 {section.heading}
               </h2>
               {section.body.map((paragraph) => (

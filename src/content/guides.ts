@@ -9,6 +9,8 @@ export type GuideSection = { id: string; heading: string; body: string[]; list?:
 
 export type Guide = {
   slug: string;
+  /** CONTENT.md'de karşılığı olmayan taslak tıbbi anlatım içeriyor mu */
+  draftMedicalCopy?: boolean;
   name: string;
   h1: string;
   lead: string;
@@ -24,6 +26,7 @@ export { parentTrail };
 export const guides: Guide[] = [
   {
     slug: "/hasta-rehberi/operasyon-oncesi",
+    draftMedicalCopy: true,
     name: "Operasyon Öncesi",
     h1: "Saç Ekimi Öncesi Nelere Dikkat Edilir?",
     lead: "Operasyon öncesi hazırlık, klinik muayene ve kan tahlilleriyle başlar. Bu aşamada donör alan yoğunluğu ölçülür, greft sayısı ve saç çizgisi birlikte planlanır; kullandığınız ilaçlar ve sistemik hastalıklarınız hekiminizle paylaşılır.",
@@ -160,6 +163,7 @@ export const guides: Guide[] = [
   },
   {
     slug: "/hasta-rehberi/sac-yikama",
+    draftMedicalCopy: true,
     name: "Saç Yıkama",
     h1: "Saç Ekimi Sonrası Saç Nasıl Yıkanır?",
     lead: "İlk yıkama klinikte yapılır ve size uygulamalı olarak gösterilir. Sonraki yıkamaları evde sürdürürsünüz; amaç kabukların zamanla ve ovalamadan kalkmasıdır.",
@@ -193,6 +197,7 @@ export const guides: Guide[] = [
   },
   {
     slug: "/hasta-rehberi/sterilizasyon-ve-hijyen",
+    draftMedicalCopy: true,
     name: "Sterilizasyon ve Hijyen",
     h1: "Saç Ekiminde Sterilizasyon Nasıl Sağlanır?",
     lead: "Saç ekimi küçük cerrahi işlemler grubundadır ve tüm cerrahi işlemler gibi komplikasyon riski taşır. En bilinenleri enfeksiyon ve nekrozdur. Bu risk, işlemin yapıldığı yerin sağlık kuruluşu olup olmamasına ve uygulayan ekibin sertifikasyon ve deneyimine göre değişir.",

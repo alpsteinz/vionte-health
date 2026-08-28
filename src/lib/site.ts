@@ -72,3 +72,15 @@ export const site = {
 export function isPlaceholder(value: string): boolean {
   return value.trim().startsWith("[") && value.trim().endsWith("]");
 }
+
+/**
+ * Yer tutucu bir adres için href üretmez.
+ *
+ * `[tel:+90...]` gibi bir değer href olarak verildiğinde bağlantı sessizce
+ * çalışmaz — kullanıcı dokunur, hiçbir şey olmaz. Bilgiler girilene kadar
+ * bu bağlantılar link olarak değil, devre dışı olarak görünsün diye
+ * undefined dönülüyor.
+ */
+export function safeHref(value: string): string | undefined {
+  return isPlaceholder(value) ? undefined : value;
+}

@@ -1,6 +1,7 @@
 import { MapPin, Phone, MessageCircle, Mail, Clock } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { PhotoPlaceholder } from "@/components/ui/photo-placeholder";
+import { ContactLink } from "@/components/ui/contact-link";
 import { site } from "@/lib/site";
 
 const rows = [
@@ -38,14 +39,13 @@ export function Contact() {
                   </dt>
                   <dd className="text-[0.9375rem] text-white">
                     {row.href ? (
-                      <a
+                      <ContactLink
                         href={row.href}
-                        target={row.href.startsWith("http") ? "_blank" : undefined}
-                        rel={row.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                        external={row.href.includes("wa.me")}
                         className="transition-colors hover:text-blue-light"
                       >
                         {row.value}
-                      </a>
+                      </ContactLink>
                     ) : (
                       row.value
                     )}

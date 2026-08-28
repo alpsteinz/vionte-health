@@ -106,11 +106,19 @@
   }
 
   .h3 {
-    font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+    font-size: clamp(1.25rem, 1.8vw, 1.45rem);
   }
 
+  /* Kart ve soru başlıkları — h3 ile aynı ailede, bir kademe altta */
+  .h4 {
+    font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+  }
+
+  /* DESIGN.md 75 karakter/satır istiyor. `ch` birimi Jost'un dar "0"
+     karakterine göre hesaplandığından 75ch gerçekte 87 karakter veriyordu;
+     ölçülen değere göre 62ch'ye çekildi (~72 görünen karakter). */
   .measure {
-    max-width: 75ch;
+    max-width: 62ch;
   }
 
   /* Izgara etkisi: kartlar arası 1px boşluk + arka plan rengi (gölge yerine çizgi) */

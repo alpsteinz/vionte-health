@@ -9,6 +9,7 @@ import { LeadForm } from "@/components/sections/lead-form";
 import { MedicalReview } from "@/components/ui/medical-review";
 import { JsonLd } from "@/components/ui/json-ld";
 import { breadcrumbSchema } from "@/lib/schema";
+import { ContactLink } from "@/components/ui/contact-link";
 import { site } from "@/lib/site";
 
 const title = "İletişim";
@@ -63,14 +64,13 @@ export default function Page() {
                     </dt>
                     <dd className="text-[0.9375rem] text-ink">
                       {row.href ? (
-                        <a
+                        <ContactLink
                           href={row.href}
-                          target={row.href.startsWith("http") ? "_blank" : undefined}
-                          rel={row.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                          external={row.href.includes("wa.me")}
                           className="transition-colors hover:text-blue"
                         >
                           {row.value}
-                        </a>
+                        </ContactLink>
                       ) : (
                         row.value
                       )}
