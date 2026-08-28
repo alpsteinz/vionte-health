@@ -14,6 +14,7 @@ export const staticRoutes = [
   { path: "/dogru-bilinen-yanlislar", priority: 0.8, title: "Doğru Bilinen Yanlışlar" },
   { path: "/ekibimiz", priority: 0.7, title: "Ekibimiz" },
   { path: "/galeri", priority: 0.6, title: "Klinik Galerisi" },
+  { path: "/vakalar", priority: 0.8, title: "Vakalar" },
   { path: "/sonuclarimiz", priority: 0.7, title: "Sonuçlarımız" },
   { path: "/yorumlar", priority: 0.7, title: "Hasta Yorumları" },
   { path: "/sss", priority: 0.7, title: "Sıkça Sorulan Sorular" },

@@ -6,6 +6,7 @@ import { Check, MessageCircle, Loader2 } from "lucide-react";
 import { NorwoodFigure } from "@/components/ui/norwood-figure";
 import { Button } from "@/components/ui/button";
 import { form as formCopy, norwoodLevels } from "@/content/home";
+import { Copy } from "@/components/ui/copy";
 import { site } from "@/lib/site";
 import { ContactLink } from "@/components/ui/contact-link";
 import { cn } from "@/lib/utils";
@@ -16,6 +17,16 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
   const uid = useId();
   const [level, setLevel] = useState<string | null>(null);
   const [status, setStatus] = useState<Status>("bos");
+  /**
+   * KVKK: iki ayrı onay.
+   *  1) İletişim bilgilerinin işlenmesi — formun gönderilebilmesi için zorunlu.
+   *  2) Sağlık verisi (dökülme seviyesi, fotoğraf) için ayrı AÇIK RIZA — zorunlu
+   *     değil. Rıza özgür iradeyle verilmelidir; bu yüzden gönderimin şartı
+   *     yapılmaz. İşaretlenmezse yalnızca Norwood seçici ve fotoğraf alanı
+   *     devre dışı kalır, form yine gönderilebilir.
+   */
+  const [saglikRizasi, setSaglikRizasi] = useState(false);
+  const [fotograflar, setFotograflar] = useState<File[]>([]);
 
   const selected = norwoodLevels.find((l) => l.id === level);
 
@@ -30,8 +41,11 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
         body: JSON.stringify({
           ad: data.get("ad"),
           telefon: data.get("telefon"),
-          norwood: level,
-          kvkk: data.get("kvkk") === "on",
+          kvkkIletisim: data.get("kvkkIletisim") === "on",
+          // Açık rıza yoksa sağlık verisi hiç gönderilmez
+          saglikVerisiRizasi: saglikRizasi,
+          norwood: saglikRizasi ? level : null,
+          fotografSayisi: saglikRizasi ? fotograflar.length : 0,
         }),
       });
       setStatus(res.ok ? "tamam" : "hata");
@@ -87,7 +101,8 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
       </div>
 
       <form onSubmit={onSubmit} noValidate={false}>
-        <fieldset>
+        {/* Sağlık verisi alanları — açık rıza verilmeden devre dışı */}
+        <fieldset disabled={!saglikRizasi} className="disabled:opacity-45">
           <legend className="eyebrow">{formCopy.norwoodLabel}</legend>
           <div
             role="radiogroup"
@@ -107,7 +122,7 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
                     "flex flex-col items-center gap-1.5 px-1.5 py-2.5 transition-colors duration-200 sm:gap-2 sm:px-2 sm:py-3",
                     active
                       ? "bg-navy text-blue-light"
-                      : "bg-white text-navy hover:bg-paper",
+                      : "bg-white text-navy enabled:hover:bg-paper",
                   )}
                 >
                   <NorwoodFigure level={lvl} />
@@ -123,13 +138,31 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
               );
             })}
           </div>
-          <p
-            className="mt-3 min-h-[2.5rem] text-[0.875rem] text-muted"
-            aria-live="polite"
-          >
-            {selected ? selected.description : formCopy.norwoodEmpty}
+          <p className="mt-3 min-h-[2.5rem] text-[0.875rem] text-muted" aria-live="polite">
+            {!saglikRizasi
+              ? "Dökülme seviyesi ve fotoğraf sağlık verisidir. Paylaşmak isterseniz aşağıdaki açık rıza kutusunu işaretleyin."
+              : selected
+                ? selected.description
+                : formCopy.norwoodEmpty}
           </p>
-          <input type="hidden" name="norwood" value={level ?? ""} />
+
+          <div className="mt-4">
+            <label htmlFor={`${uid}-foto`} className="block text-[0.8125rem] text-muted">
+              Fotoğraf (isteğe bağlı)
+            </label>
+            <input
+              id={`${uid}-foto`}
+              name="fotograf"
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={(e) => setFotograflar(Array.from(e.target.files ?? []))}
+              className="mt-1.5 w-full border border-line bg-white px-3.5 py-2.5 text-[0.875rem] text-muted file:mr-3 file:border-0 file:bg-navy file:px-3 file:py-1.5 file:text-[0.75rem] file:uppercase file:tracking-[0.1em] file:text-white"
+            />
+            <p className="mt-2 text-[0.8125rem] text-muted">
+              <Copy text="[Fotoğraflar için güvenli aktarım kanalı belirlenene kadar dosya gönderilmez; danışmanınız görüşmede talep eder.]" />
+            </p>
+          </div>
         </fieldset>
 
         <div className="mt-4 grid gap-3 sm:grid-cols-2 sm:gap-4">
@@ -164,11 +197,11 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
           </div>
         </div>
 
-        {/* Zorunlu: formda açık KVKK onay kutusu */}
-        <label className="mt-4 flex cursor-pointer items-start gap-3 text-[0.8125rem] leading-relaxed text-muted">
+        {/* 1) Zorunlu: iletişim bilgilerinin işlenmesi */}
+        <label className="mt-5 flex cursor-pointer items-start gap-3 text-[0.8125rem] leading-relaxed text-muted">
           <input
             type="checkbox"
-            name="kvkk"
+            name="kvkkIletisim"
             required
             className="mt-0.5 size-[1.15rem] shrink-0 accent-[#2e6da8]"
           />
@@ -179,8 +212,35 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
             >
               KVKK Aydınlatma Metni
             </Link>
-            &apos;ni okudum; iletişim bilgilerimin randevu talebim için işlenmesine
-            onay veriyorum.
+            &apos;ni okudum; iletişim bilgilerimin randevu talebim için
+            işlenmesine onay veriyorum.
+          </span>
+        </label>
+
+        {/* 2) İsteğe bağlı: sağlık verisi için ayrı açık rıza.
+            Gönderimin şartı değildir — rıza özgür iradeyle verilir. */}
+        <label className="mt-3.5 flex cursor-pointer items-start gap-3 border border-line bg-paper p-3.5 text-[0.8125rem] leading-relaxed text-muted">
+          <input
+            type="checkbox"
+            name="saglikVerisi"
+            checked={saglikRizasi}
+            onChange={(e) => {
+              setSaglikRizasi(e.target.checked);
+              if (!e.target.checked) {
+                setLevel(null);
+                setFotograflar([]);
+              }
+            }}
+            className="mt-0.5 size-[1.15rem] shrink-0 accent-[#2e6da8]"
+          />
+          <span>
+            Dökülme seviyem ve paylaşacağım fotoğraflar{" "}
+            <strong className="font-medium text-ink">sağlık verisidir</strong>.
+            Bu verilerin ön değerlendirme amacıyla işlenmesine açık rıza
+            veriyorum.{" "}
+            <span className="text-muted/80">
+              İsteğe bağlıdır; işaretlemeseniz de formu gönderebilirsiniz.
+            </span>
           </span>
         </label>
 

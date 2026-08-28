@@ -39,6 +39,16 @@ export const site = {
     applications: "1000+",
   },
 
+  /** KVKK veri sorumlusu */
+  kvkk: {
+    veriSorumlusu: "Mehtap Dizge",
+    /**
+     * VERBİS kaydı: şirket muafiyet kapsamında olduğu için yasal metinlerde
+     * VERBİS kayıt numarası alanı BULUNMAZ. Bu alan eklenmemelidir.
+     */
+    verbisMuafiyeti: true,
+  },
+
   editorial: {
     /** Zorunlu: içeriğin son güncelleme tarihi */
     lastUpdated: "[GG.AA.YYYY]",

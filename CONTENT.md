@@ -49,8 +49,19 @@ dökülme tipiniz ve saç telinizin kalınlığı ölçülür; greft planı bu �
 - Tip V — ön bölge ile tepe arasındaki bant incelmiş.
 - Tip VI — ön bölge ve tepe birleşmiş. Donör kapasitesi belirleyici.
 
-**KVKK onayı:** KVKK Aydınlatma Metni'ni okudum; iletişim bilgilerimin randevu
-talebim için işlenmesine onay veriyorum.
+**KVKK onayı 1 — zorunlu:** KVKK Aydınlatma Metni'ni okudum; iletişim
+bilgilerimin randevu talebim için işlenmesine onay veriyorum.
+
+**KVKK onayı 2 — isteğe bağlı açık rıza:** Dökülme seviyem ve paylaşacağım
+fotoğraflar sağlık verisidir. Bu verilerin ön değerlendirme amacıyla
+işlenmesine açık rıza veriyorum. İsteğe bağlıdır; işaretlemeseniz de formu
+gönderebilirsiniz.
+
+**Rıza verilmediğinde Norwood alanı metni:** Dökülme seviyesi ve fotoğraf
+sağlık verisidir. Paylaşmak isterseniz aşağıdaki açık rıza kutusunu işaretleyin.
+
+Not: İkinci onay form gönderiminin şartı değildir. İşaretlenmezse Norwood
+seçici ve fotoğraf alanı devre dışı kalır, form yine gönderilebilir.
 
 **Form notu:** Formunuz yalnızca ön bilgilendirme içindir, tanı yerine geçmez.
 
@@ -139,6 +150,66 @@ o greftlerin hangi açıyla ve hangi yoğunlukta yerleştirildiği.
 Saç ekimi sonuçları kişinin donör alan kapasitesine, saç yapısına ve iyileşme
 sürecine göre değişir; hiçbir görsel bireysel sonuç taahhüdü içermez.
 
+## Sonuç içeriği
+
+Üç ayrı tip. Her tipin kendi yayın kapısı var; kapı sağlanmazsa kart yayına
+çıkmaz. Ayrıntı ve kod karşılıkları AGENTS.md'de.
+
+### Tip 1 — Anlaşmalı merkez sonucu (görselli)
+
+**Kaynak etiketi (kart üzerinde zorunlu):** Uygulama: [merkez adı]
+**Veri satırı:** [0.000] greft · [00] yaş · [Tip III] · [Safir FUE/DHI] · [00]. ay
+
+Kaynak boşsa kart yayınlanmaz.
+
+### Tip 2 — Danışan hikayesi
+
+Yalnızca yazılı izin varsa yayınlanır. Görsel varsa kaynak etiketi de zorunlu.
+
+**Bölüm başlıkları:**
+- Başlangıç durumu
+- Neden bu teknik ve bu merkez
+- Süreç
+- Sonuç
+
+Metinler danışanın kendi anlatımından, izinli olarak alınır; uydurulmaz.
+
+### Tip 3 — Fotoğrafsız vaka
+
+Görsel yok, onam gerekmez. Şu an yayına girebilecek tek tip.
+
+**Alan etiketleri:** Yaş · Norwood · Donör durumu · Greft · Teknik · Sonuç ayı
+**Anlatı alanı:** Yönlendirme gerekçesi — neden bu teknik, neden bu merkez
+
+**Bölüm başlığı (ana sayfa):** Ölçümle anlatılan vakalar
+**Bölüm girişi:** Aşağıdaki kayıtlar fotoğraf içermez. Her vakada donör durumu,
+greft sayısı, uygulanan teknik ve o tekniğe neden yönlendirildiği yazılıdır.
+
+**/vakalar H1:** Fotoğrafsız Vaka Kayıtları
+**/vakalar açılış:** Bu sayfadaki kayıtlar fotoğraf içermez. Her vakada ölçülen
+donör durumu, planlanan greft sayısı, uygulanan teknik ve o tekniğe neden
+yönlendirildiği yazılıdır. Bir öncesi–sonrası görseli bu veriler olmadan tek
+başına bir şey anlatmaz.
+
+**/sonuclarimiz H1:** Görselli Sonuçlar ve Danışan Hikayeleri
+**/sonuclarimiz açılış:** Bir uygulama görseli, kimin yaptığı bilinmeden bir şey
+anlatmaz. Bu sayfadaki her görselin yanında uygulamayı yapan merkezin adı yer
+alır; danışan hikayeleri ise yalnızca yazılı izin alınmış kayıtlardan oluşur.
+
+**Boş durum başlığı:** Henüz yayınlanmış görsel yok
+**Boş durum metni:** Görselli sonuçlar iki koşul sağlanmadan yayınlanmıyor:
+uygulamayı yapan merkezin adı ve danışandan alınmış imzalı yazılı izin. Bu
+koşullar tamamlanana kadar sayfa boş kalır.
+
+## Temsili görseller
+
+Stok görsel kullanılan her yerde ibare zorunlu:
+
+**İbare:** Temsili görsel
+
+12–13px, yeterli kontrast. İbare olmadan stok görsel yerleştirilemez.
+
+
 ## Galeri
 
 **Etiket:** Klinikten
@@ -223,5 +294,8 @@ greftlerin hangi açıyla, hangi yönde ve hangi yoğunlukta yerleştirildiğidi
 tanı ve tedavi yerine geçmez. Sağlık durumunuza ilişkin kararlar için hekiminize
 başvurun.
 
+**Veri sorumlusu:** Mehtap Dizge
 **İçerik sorumlusu:** [Ad Soyad · e-posta]
+
+Not: VERBİS kayıt numarası yazılmaz — şirket muafiyet kapsamında.
 **Son güncelleme:** [GG.AA.YYYY]

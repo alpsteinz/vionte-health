@@ -48,6 +48,22 @@ npm run icerik-denetim
 tutucular ve tıbbi inceleme bekleyen taslak sayfalar. Üçü de sıfırlanmadan
 site yayına alınmamalı.
 
+## Sonuç içeriği
+
+Üç tip, üç bileşen, üç ayrı yayın kapısı — ayrıntısı `AGENTS.md`'de.
+
+| Tip | Dosya | Kapı |
+|---|---|---|
+| 1 · Anlaşmalı merkez sonucu | `anlasmaliMerkezSonuclari` | `kaynak` dolu olmalı |
+| 2 · Danışan hikayesi | `danisanHikayeleri` | `yaziliIzin: true`; görsel varsa `kaynak` da |
+| 3 · Fotoğrafsız vaka | `fotografsizVakalar` | yok — yayına hazır tek tip |
+
+Kapı sağlanmayan kayıt render **edilmez** ve build sırasında uyarı verir.
+Bileşenler: `src/components/sonuclar/`.
+
+Stok görsel yalnızca `StokGorsel` ile yerleştirilir; `ibare` zorunlu prop
+olduğu için "Temsili görsel" ibaresiz stok görsel derlenmez.
+
 ## Taslak tıbbi anlatım
 
 `CONTENT.md`'de karşılığı olmayan tıbbi anlatım taşıyan sayfalar
@@ -64,7 +80,7 @@ Yer tutucular tek noktadan yönetilir:
 | Adres, telefon, WhatsApp, e-posta, çalışma saatleri | `src/lib/site.ts` |
 | Ticari ünvan, içerik sorumlusu, son güncelleme, tıbbi inceleyen | `src/lib/site.ts` |
 | Teknik süreleri, tıraş ve işe dönüş verileri | `src/content/home.ts`, `src/content/services.ts` |
-| Öncesi–sonrası vaka verileri (onam formu şart) | `src/content/home.ts` |
+| Sonuç içeriği — üç tip ve yayın kapıları | `src/content/results.ts` |
 | Google puanı ve yorumlar | `src/content/home.ts` |
 | Rehber sayfalarındaki klinik yönergeleri | `src/content/guides.ts` |
 | KVKK aktarım ve saklama bilgileri | `src/content/legal.ts` |
@@ -82,6 +98,8 @@ kullanılmaz (DESIGN.md).
       (`src/components/ui/norwood-figure.tsx` — şu an şematik yer tutucu)
 - [ ] Vektörel logo ve `src/app/icon.svg` değiştirildi
 - [ ] Lead'lerin gideceği sistem `src/app/api/lead/route.ts` içinde bağlandı
+- [ ] Sağlık verisi fotoğrafları için güvenli aktarım/saklama kanalı belirlendi
+- [ ] Anlaşmalı merkez adları girildi (Tip 1 kartları kaynak olmadan yayınlanmaz)
 - [ ] `npm run icerik-denetim` üç başlıkta da temiz
 - [ ] `draftMedicalCopy` bayrağı taşıyan 12 sayfa tıbbi incelemeden geçti
 - [ ] Deneyim yılı (12 mi 15 mi) tek rakamda netleştirildi

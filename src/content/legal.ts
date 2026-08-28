@@ -21,7 +21,13 @@ export type LegalDoc = {
   sections: LegalSection[];
 };
 
-const veriSorumlusu = `Veri sorumlusu: ${site.legalName}, ${site.contact.addressLine}. İletişim: ${site.contact.email} · ${site.contact.phoneLabel}.`;
+/**
+ * Veri sorumlusu künyesi.
+ *
+ * VERBİS: şirket muafiyet kapsamında olduğu için yasal metinlerde VERBİS
+ * kayıt numarası alanı yer ALMAZ. Bu alan sonradan da eklenmemelidir.
+ */
+const veriSorumlusu = `Veri sorumlusu: ${site.kvkk.veriSorumlusu}. Ünvan: ${site.legalName}, ${site.contact.addressLine}. İletişim: ${site.contact.email} · ${site.contact.phoneLabel}.`;
 
 export const legalDocs: LegalDoc[] = [
   {
@@ -42,12 +48,12 @@ export const legalDocs: LegalDoc[] = [
         id: "islenen-veriler",
         heading: "İşlenen kişisel veriler",
         body: [
-          "Bu site üzerinden yalnızca ön değerlendirme talebi oluşturmak için gerekli veriler toplanır.",
+          "Bu site üzerinden yalnızca ön değerlendirme talebi oluşturmak için gerekli veriler toplanır. Formda iki ayrı onay alınır: iletişim bilgilerinin işlenmesi ve sağlık verisi için ayrı açık rıza.",
         ],
         list: [
-          "Ad ve soyad",
-          "Telefon numarası",
-          "Formda işaretlediğiniz dökülme seviyesi bilgisi",
+          "Ad ve soyad — iletişim onayı kapsamında",
+          "Telefon numarası — iletişim onayı kapsamında",
+          "Dökülme seviyesi ve paylaştığınız fotoğraflar — yalnızca ayrı açık rıza verdiyseniz",
           "Çerez kullanımına ilişkin tercih kaydınız",
         ],
       },
@@ -55,8 +61,9 @@ export const legalDocs: LegalDoc[] = [
         id: "amac",
         heading: "İşleme amacı ve hukuki sebep",
         body: [
-          "Verileriniz, randevu ve ön değerlendirme talebinizin karşılanması amacıyla, açık rızanıza dayanılarak işlenir. Form gönderiminde KVKK onay kutusunu işaretlemeniz bu rızanın alınma biçimidir.",
-          "Formda işaretlediğiniz dökülme seviyesi sağlık verisi niteliğindedir ve yalnızca ön değerlendirme amacıyla, açık rızanız kapsamında işlenir.",
+          "İletişim bilgileriniz, randevu ve ön değerlendirme talebinizin karşılanması amacıyla, açık rızanıza dayanılarak işlenir. Form gönderiminde ilk onay kutusunu işaretlemeniz bu rızanın alınma biçimidir.",
+          "Dökülme seviyesi ve fotoğraf, 6698 sayılı Kanun'un 6. maddesi anlamında özel nitelikli kişisel veri (sağlık verisi) sayılır. Bu veriler ancak formdaki ikinci kutuyu işaretleyerek ayrıca açık rıza vermeniz hâlinde işlenir.",
+          "Sağlık verisi için verilen açık rıza, form gönderiminin şartı değildir. İkinci kutuyu işaretlemeseniz de talebinizi iletebilirsiniz; bu durumda dökülme seviyesi ve fotoğraf hiç toplanmaz. Rızanızı dilediğiniz zaman geri alabilirsiniz.",
         ],
       },
       {
@@ -121,6 +128,7 @@ export const legalDocs: LegalDoc[] = [
         heading: "Toplanan bilgiler",
         body: [
           "Site üzerinden yalnızca ön değerlendirme formunda paylaştığınız bilgiler ve çerezler aracılığıyla toplanan kullanım verileri işlenir. Tarayıcınızın yerel depolama alanına (localStorage/sessionStorage) veri yazılmaz.",
+          "Sağlık verisi niteliğindeki bilgiler (dökülme seviyesi, fotoğraf) yalnızca formda ayrıca açık rıza verdiyseniz işlenir; rıza verilmediğinde bu alanlar devre dışı kalır ve veri hiç toplanmaz.",
         ],
       },
       {

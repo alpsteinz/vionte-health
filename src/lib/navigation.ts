@@ -48,6 +48,7 @@ export const navigation: NavItem[] = [
     children: [
       { title: "Ekibimiz", href: "/ekibimiz" },
       { title: "Galeri", href: "/galeri" },
+      { title: "Vakalar", href: "/vakalar" },
       { title: "Sonuçlarımız", href: "/sonuclarimiz" },
       { title: "Yorumlar", href: "/yorumlar" },
       { title: "Doğru Bilinen Yanlışlar", href: "/dogru-bilinen-yanlislar" },
