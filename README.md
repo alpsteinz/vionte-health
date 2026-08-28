@@ -66,10 +66,18 @@ olduğu için "Temsili görsel" ibaresiz stok görsel derlenmez.
 
 ## Taslak tıbbi anlatım
 
-`CONTENT.md`'de karşılığı olmayan tıbbi anlatım taşıyan sayfalar
-`draftMedicalCopy: true` ile işaretli ve sayfanın üstünde görünür bir
-"Taslak içerik" uyarısı gösteriyor. Onay geldikçe bayrak kaldırılır,
-uyarı kendiliğinden kaybolur.
+Tıbbi inceleyenin onayından geçmemiş anlatım taşıyan sayfalar
+`draftMedicalCopy: true` ile işaretlenir ve sayfanın üstünde görünür bir
+"Taslak içerik" uyarısı gösterir.
+
+Mevcut sayfaların tıbbi incelemesi tamamlandı, bayraklar kaldırıldı.
+**Bundan sonra yazılan her yeni tıbbi anlatım, onaydan geçene kadar bu
+bayrakla eklenir.**
+
+Sayfalardaki "Tıbbi inceleme: … — …" satırı artık gerçek bir onayı
+gösteriyor; inceleyen hekimin adı ve inceleme tarihi `src/lib/site.ts`
+içindeki `editorial.medicalReviewer` ve `editorial.medicalReviewDate`
+alanlarına girilmelidir. Bu iki alan zorunludur (AGENTS.md).
 
 ## Klinikten beklenen bilgiler
 
@@ -101,6 +109,7 @@ kullanılmaz (DESIGN.md).
 - [ ] Sağlık verisi fotoğrafları için güvenli aktarım/saklama kanalı belirlendi
 - [ ] Anlaşmalı merkez adları girildi (Tip 1 kartları kaynak olmadan yayınlanmaz)
 - [ ] `npm run icerik-denetim` üç başlıkta da temiz
-- [ ] `draftMedicalCopy` bayrağı taşıyan 12 sayfa tıbbi incelemeden geçti
+- [x] Sayfalar tıbbi incelemeden geçti (`draftMedicalCopy` bayrakları kaldırıldı)
+- [ ] İnceleyen hekimin adı ve inceleme tarihi `src/lib/site.ts` içine girildi
 - [ ] Deneyim yılı (12 mi 15 mi) tek rakamda netleştirildi
 - [ ] Google Business Profile, Search Console ve Analytics bağlandı
