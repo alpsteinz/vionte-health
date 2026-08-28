@@ -1,4 +1,5 @@
 import { Container } from "./container";
+import { Copy } from "./copy";
 
 /** İç sayfa girişi: H1 = arama sorusu, ilk paragraf = doğrudan cevap */
 export function PageHero({
@@ -20,7 +21,7 @@ export function PageHero({
             {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
             <h1 className="h1 mt-5 text-[clamp(2.1rem,4.6vw,3.4rem)]">{title}</h1>
             <p className="measure mt-6 text-[1.0625rem] leading-relaxed text-muted md:text-[1.125rem]">
-              {lead}
+              <Copy text={lead} />
             </p>
           </div>
           {aside ? <div className="self-start">{aside}</div> : null}

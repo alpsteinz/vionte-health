@@ -70,6 +70,20 @@ export function Footer() {
                         </Link>
                       </li>
                     ))}
+                    {item.href === "/sac-ekimi" ? (
+                      <>
+                        <li>
+                          <Link href="/sakal-ekimi" className="text-[0.9375rem] text-blue-light transition-colors hover:text-white">
+                            Sakal Ekimi
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="/kas-ekimi" className="text-[0.9375rem] text-blue-light transition-colors hover:text-white">
+                            Kaş Ekimi
+                          </Link>
+                        </li>
+                      </>
+                    ) : null}
                   </ul>
                 </div>
               ))}
@@ -79,16 +93,6 @@ export function Footer() {
                 <li>
                   <Link href="/iletisim" className="text-[0.9375rem] text-blue-light transition-colors hover:text-white">
                     İletişim
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/sakal-ekimi" className="text-[0.9375rem] text-blue-light transition-colors hover:text-white">
-                    Sakal Ekimi
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/kas-ekimi" className="text-[0.9375rem] text-blue-light transition-colors hover:text-white">
-                    Kaş Ekimi
                   </Link>
                 </li>
                 {legalNavigation.map((item) => (

@@ -75,7 +75,7 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
         href={site.contact.whatsappHref}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-6 flex items-center justify-center gap-2 bg-[#1f7a4d] px-5 py-3.5 text-[0.8125rem] uppercase tracking-[0.1em] text-white transition-colors duration-200 hover:bg-[#186139]"
+        className="mt-6 flex items-center justify-center gap-2 border border-[#1f7a4d] px-5 py-3.5 text-[0.8125rem] uppercase tracking-[0.1em] text-[#1f7a4d] transition-colors duration-200 hover:bg-[#1f7a4d] hover:text-white"
       >
         <MessageCircle className="size-4" strokeWidth={1.5} aria-hidden />
         {site.cta.whatsapp}
@@ -125,7 +125,7 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
             })}
           </div>
           <p
-            className="mt-3 min-h-[2.75rem] text-[0.875rem] text-muted"
+            className="mt-4 min-h-[2.75rem] text-[0.875rem] text-muted"
             aria-live="polite"
           >
             {selected ? selected.description : formCopy.norwoodEmpty}
@@ -133,7 +133,7 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
           <input type="hidden" name="norwood" value={level ?? ""} />
         </fieldset>
 
-        <div className="mt-5 grid gap-4 sm:grid-cols-2">
+        <div className="mt-6 grid gap-4 sm:grid-cols-2">
           <div>
             <label htmlFor={`${uid}-ad`} className="block text-[0.8125rem] text-muted">
               Ad Soyad
@@ -171,7 +171,7 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
             type="checkbox"
             name="kvkk"
             required
-            className="mt-0.5 size-4 shrink-0 accent-[#2e6da8]"
+            className="mt-0.5 size-[1.15rem] shrink-0 accent-[#2e6da8]"
           />
           <span>
             <Link

@@ -8,6 +8,7 @@ import { MedicalReview } from "@/components/ui/medical-review";
 import { AiSummary } from "@/components/ui/ai-summary";
 import { PhotoPlaceholder } from "@/components/ui/photo-placeholder";
 import { JsonLd } from "@/components/ui/json-ld";
+import { Copy } from "@/components/ui/copy";
 import { LeadForm } from "./lead-form";
 import { breadcrumbSchema, faqSchema, procedureSchema } from "@/lib/schema";
 import { site } from "@/lib/site";
@@ -35,7 +36,9 @@ export function ServicePage({ service }: { service: Service }) {
             {service.facts.map((fact) => (
               <div key={fact.label} className="flex flex-wrap justify-between gap-x-4 gap-y-1 px-5 py-3.5">
                 <dt className="text-muted">{fact.label}</dt>
-                <dd className="text-right text-ink">{fact.value}</dd>
+                <dd className="text-right text-ink">
+                  <Copy text={fact.value} />
+                </dd>
               </div>
             ))}
           </dl>
@@ -56,7 +59,9 @@ export function ServicePage({ service }: { service: Service }) {
               {service.suitableFor.map((item) => (
                 <li key={item} className="flex items-start gap-3 text-[0.9375rem] leading-relaxed text-muted">
                   <Check className="mt-1 size-4 shrink-0 text-blue" strokeWidth={2} aria-hidden />
-                  <span>{item}</span>
+                  <span>
+                    <Copy text={item} />
+                  </span>
                 </li>
               ))}
             </ul>
@@ -67,7 +72,9 @@ export function ServicePage({ service }: { service: Service }) {
               {service.notSuitableFor.map((item) => (
                 <li key={item} className="flex items-start gap-3 text-[0.9375rem] leading-relaxed text-muted">
                   <X className="mt-1 size-4 shrink-0 text-[#b3261e]" strokeWidth={2} aria-hidden />
-                  <span>{item}</span>
+                  <span>
+                    <Copy text={item} />
+                  </span>
                 </li>
               ))}
             </ul>
@@ -84,8 +91,12 @@ export function ServicePage({ service }: { service: Service }) {
               <span className="font-serif text-[2.2rem] leading-none text-blue-light/50">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <h3 className="mt-5 font-serif text-[1.25rem] text-white">{step.title}</h3>
-              <p className="mt-3 text-[0.9375rem] leading-relaxed text-blue-light">{step.body}</p>
+              <h3 className="mt-5 font-serif text-[1.25rem] text-white">
+                <Copy text={step.title} />
+              </h3>
+              <p className="mt-3 text-[0.9375rem] leading-relaxed text-blue-light">
+                <Copy text={step.body} />
+              </p>
             </li>
           ))}
         </ol>
@@ -97,8 +108,12 @@ export function ServicePage({ service }: { service: Service }) {
         <dl className="reveal mt-12 divide-y divide-line border-y border-line">
           {service.timeline.map((row) => (
             <div key={row.when} className="grid gap-2 py-5 sm:grid-cols-[160px_1fr] sm:gap-8">
-              <dt className="text-[0.8125rem] uppercase tracking-[0.12em] text-blue">{row.when}</dt>
-              <dd className="text-[0.9375rem] leading-relaxed text-muted">{row.what}</dd>
+              <dt className="text-[0.8125rem] uppercase tracking-[0.12em] text-blue">
+                <Copy text={row.when} />
+              </dt>
+              <dd className="text-[0.9375rem] leading-relaxed text-muted">
+                <Copy text={row.what} />
+              </dd>
             </div>
           ))}
         </dl>
@@ -165,7 +180,8 @@ export function ServicePage({ service }: { service: Service }) {
                 </div>
               </div>
               <figcaption className="border-t border-line p-5 text-[0.8125rem] text-muted">
-                [0.000] greft · [00] yaş · {service.name} · [00]. ay · [Şehir]
+                <Copy text="[0.000] greft · [00] yaş" /> · {service.name} ·{" "}
+                <Copy text="[00]. ay · [Şehir]" />
               </figcaption>
             </figure>
           ))}

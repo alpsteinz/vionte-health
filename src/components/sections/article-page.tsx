@@ -7,6 +7,7 @@ import { FaqList } from "@/components/ui/accordion";
 import { MedicalReview } from "@/components/ui/medical-review";
 import { AiSummary } from "@/components/ui/ai-summary";
 import { JsonLd } from "@/components/ui/json-ld";
+import { Copy } from "@/components/ui/copy";
 import { ButtonLink } from "@/components/ui/button";
 import { articleSchema, breadcrumbSchema, faqSchema } from "@/lib/schema";
 import { site } from "@/lib/site";
@@ -23,10 +24,10 @@ export function ArticlePage({ guide, trail }: { guide: Guide; trail: Crumb[] }) 
       <PageHero title={guide.h1} lead={guide.lead} eyebrow="Hasta rehberi" />
 
       <Section tone="paper">
-        <div className="grid gap-12 lg:grid-cols-[260px_1fr] lg:gap-16">
+        <div className="grid gap-12 lg:grid-cols-[236px_minmax(0,68ch)] lg:justify-center lg:gap-20">
           {/* İçindekiler */}
           <nav aria-label="İçindekiler" className="lg:sticky lg:top-28 lg:self-start">
-            <p className="eyebrow">İçindekiler</p>
+            <p className="eyebrow border-t border-line pt-5">İçindekiler</p>
             <ol className="mt-5 space-y-2.5 border-l border-line">
               {guide.sections.map((section) => (
                 <li key={section.id}>
@@ -41,7 +42,7 @@ export function ArticlePage({ guide, trail }: { guide: Guide; trail: Crumb[] }) 
             </ol>
           </nav>
 
-          <article className="max-w-[75ch]">
+          <article>
             {guide.sections.map((section) => (
               <section key={section.id} id={section.id} className="scroll-mt-28 border-b border-line pb-10 last:border-0 [&+&]:pt-10">
                 <h2 className="font-serif text-[clamp(1.5rem,2.6vw,2rem)] leading-snug text-navy">
@@ -49,14 +50,14 @@ export function ArticlePage({ guide, trail }: { guide: Guide; trail: Crumb[] }) 
                 </h2>
                 {section.body.map((paragraph) => (
                   <p key={paragraph} className="mt-5 text-[1.0625rem] leading-relaxed text-muted">
-                    {paragraph}
+                    <Copy text={paragraph} />
                   </p>
                 ))}
                 {section.list ? (
                   <ul className="mt-6 space-y-2.5 border-l-2 border-line pl-6">
                     {section.list.map((item) => (
                       <li key={item} className="text-[0.9375rem] leading-relaxed text-muted">
-                        {item}
+                        <Copy text={item} />
                       </li>
                     ))}
                   </ul>
@@ -86,7 +87,7 @@ export function ArticlePage({ guide, trail }: { guide: Guide; trail: Crumb[] }) 
 
       {guide.faq.length > 0 ? (
         <Section tone="white">
-          <div className="grid gap-12 lg:grid-cols-[380px_1fr] lg:gap-16">
+          <div className="grid gap-12 lg:grid-cols-[300px_1fr] lg:gap-16">
             <SectionHead eyebrow="Sıkça sorulanlar" title="Bu konuda sorulanlar" />
             <FaqList items={guide.faq} className="reveal" />
           </div>

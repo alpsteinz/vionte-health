@@ -3,13 +3,14 @@ import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { LeadForm } from "./lead-form";
 import { hero } from "@/content/home";
+import { cn } from "@/lib/utils";
 
 export function Hero() {
   return (
     <section className="border-b border-line bg-white">
       <Container>
         <div className="grid gap-12 py-14 md:py-20 lg:grid-cols-[1fr_460px] lg:gap-16 lg:py-24">
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col">
             <p className="eyebrow">{hero.eyebrow}</p>
             <h1 className="h1 mt-6">
               {hero.titleLead}{" "}
@@ -20,15 +21,25 @@ export function Hero() {
               {hero.body}
             </p>
 
-            <dl className="mt-10 grid max-w-lg grid-cols-3 gap-px border border-line bg-line">
+            <div className="mt-12 lg:mt-auto lg:pt-16">
+            <dl className="grid max-w-lg grid-cols-3 gap-px border border-line bg-line">
               {hero.counters.map((counter) => (
-                <div key={counter.label} className="bg-white px-4 py-5">
+                <div key={counter.label} className="flex flex-col bg-white px-4 py-5">
                   <dt className="sr-only">{counter.label}</dt>
-                  <dd>
-                    <span className="block font-serif text-[1.5rem] leading-none text-navy">
+                  <dd className="flex flex-1 flex-col">
+                    <span
+                      className={cn(
+                        "block font-serif text-navy",
+                        // Rakam değil metin olan değer ("Safir FUE / DHI") daha küçük
+                        // punto ile dizilir; üç kartın etiketi aynı hizada kalır.
+                        counter.value.length > 8
+                          ? "text-[1.1rem] leading-snug"
+                          : "text-[1.5rem] leading-none",
+                      )}
+                    >
                       {counter.value}
                     </span>
-                    <span className="mt-2 block text-[0.75rem] uppercase tracking-[0.14em] text-muted">
+                    <span className="mt-auto pt-3 block text-[0.75rem] uppercase tracking-[0.14em] text-muted">
                       {counter.label}
                     </span>
                   </dd>
@@ -56,9 +67,10 @@ export function Hero() {
                 ))}
               </ul>
             </nav>
+            </div>
           </div>
 
-          <div id="form" className="scroll-mt-28 lg:pt-2">
+          <div id="form" className="scroll-mt-28">
             <LeadForm />
           </div>
         </div>
