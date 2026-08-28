@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------
+   Vionte tasarım sistemi — DESIGN.md
+   Renkler logodan türetildi (mavi-lacivert degrade "V").
+   --------------------------------------------------------------- */
+
+@theme {
+  --color-navy: #0d2138;
+  --color-navy-700: #163050;
+  --color-navy-600: #1d3d63;
+  --color-blue: #2e6da8;
+  --color-blue-light: #6fa0c8;
+  --color-paper: #f6f7f9;
+  --color-white: #ffffff;
+  --color-ink: #16202b;
+  --color-muted: #67788a;
+  --color-line: #dfe4ea;
+  --color-line-dark: #24405f;
+
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-jost), Jost, ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 2px;
+
+  --spacing-section: 6rem;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--color-navy);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 2px;
+  }
+
+  /* Ölçülü hareket — sağlık sitesinde abartılı animasyon güven kaybettirir */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Bölüm üstü etiket — DESIGN.md */
+  .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: var(--color-blue);
+  }
+
+  .eyebrow-light {
+    color: var(--color-blue-light);
+  }
+
+  .h1 {
+    font-size: clamp(2.6rem, 6vw, 4.4rem);
+  }
+
+  .h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+
+  .h3 {
+    font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+  }
+
+  .measure {
+    max-width: 75ch;
+  }
+
+  /* Izgara etkisi: kartlar arası 1px boşluk + arka plan rengi (gölge yerine çizgi) */
+  .rule-grid {
+    background-color: var(--color-line);
+    display: grid;
+    gap: 1px;
+    border: 1px solid var(--color-line);
+  }
+
+  .rule-grid-dark {
+    background-color: var(--color-line-dark);
+    border-color: var(--color-line-dark);
+  }
+}
+
+@layer utilities {
+  /*
+   * Ölçülü giriş animasyonu (DESIGN.md: hafif fade-in, max 20px).
+   *
+   * Varsayılan durum GÖRÜNÜR. Yalnızca JavaScript, öğenin ilk ekranın
+   * altında kaldığını doğruladığında .reveal-pending eklenir. Böylece
+   * JS kapalıyken, yazdırmada ve tarayıcı ekran görüntüsünde içerik
+   * hiçbir zaman kaybolmaz; ilk ekran da animasyon beklemez (LCP).
+   */
+  .reveal {
+    transition:
+      opacity 0.45s ease-out,
+      transform 0.45s ease-out;
+  }
+
+  .reveal-pending {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-pending {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
