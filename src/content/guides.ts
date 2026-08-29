@@ -28,22 +28,22 @@ export const guides: Guide[] = [
     slug: "/hasta-rehberi/operasyon-oncesi",
     name: "Operasyon Öncesi",
     h1: "Saç Ekimi Öncesi Nelere Dikkat Edilir?",
-    lead: "Operasyon öncesi hazırlık, klinik muayene ve kan tahlilleriyle başlar. Bu aşamada donör alan yoğunluğu ölçülür, greft sayısı ve saç çizgisi birlikte planlanır; kullandığınız ilaçlar ve sistemik hastalıklarınız hekiminizle paylaşılır.",
+    lead: "Operasyon öncesi hazırlık, anlaşmalı merkezde muayene ve kan tahlilleriyle başlar. Bu aşamada donör alan yoğunluğu ölçülür, greft sayısı ve saç çizgisi birlikte planlanır; kullandığınız ilaçlar ve sistemik hastalıklarınız anlaşmalı merkezdeki ekiple paylaşılır.",
     metaTitle: "Saç Ekimi Öncesi Hazırlık — Vionte Hair Transplant",
     metaDescription:
-      "Saç ekimi öncesi klinik muayene, kan tahlilleri ve greft planlaması. Hangi ilaçların bildirilmesi gerektiği ve operasyon öncesi hazırlık adımları.",
+      "Saç ekimi öncesi muayene, kan tahlilleri ve greft planlaması. Hangi ilaçların bildirilmesi gerektiği ve operasyon öncesi hazırlık adımları.",
     sections: [
       {
         id: "muayene",
-        heading: "Klinik muayenede ne yapılır?",
+        heading: "Anlaşmalı merkezde muayenede ne yapılır?",
         body: [
           "Donör alan yoğunluğu ölçülür, kan tahlilleri yapılır, greft sayısı ve saç çizgisi birlikte planlanır.",
         ],
       },
       {
         id: "bildirilmesi-gerekenler",
-        heading: "Hekiminize bildirmeniz gerekenler",
-        body: ["[Klinik uygulamasına göre doldurulacak — tıbbi inceleyen onayı sonrası.]"],
+        heading: "Merkeze bildirmeniz gerekenler",
+        body: ["[Anlaşmalı merkezin uygulamasına göre doldurulacak.]"],
         list: [
           "[Düzenli kullanılan ilaçlar]",
           "[Kan sulandırıcı kullanımı]",
@@ -54,19 +54,19 @@ export const guides: Guide[] = [
       {
         id: "operasyondan-once",
         heading: "Operasyondan önceki gün ve sabahı",
-        body: ["[Klinik uygulamasına göre doldurulacak — tıbbi inceleyen onayı sonrası.]"],
+        body: ["[Anlaşmalı merkezin uygulamasına göre doldurulacak.]"],
       },
     ],
     faq: [
       {
         question: "Herkese saç ekimi yapılabilir mi?",
         answer:
-          "Hayır. Donör alan yoğunluğu yetersiz olanlar, dökülmesi aktif olarak devam eden ve henüz stabilize olmamış kişiler ile bazı sistemik hastalığı bulunanlar için uygulama uygun olmayabilir. Uygunluk kararı muayene ve tahliller sonrasında hekim tarafından verilir.",
+          "Hayır. Donör alan yoğunluğu yetersiz olanlar, dökülmesi aktif olarak devam eden ve henüz stabilize olmamış kişiler ile bazı sistemik hastalığı bulunanlar için uygulama uygun olmayabilir. Uygunluk kararı, yönlendirildiğiniz merkezde muayene ve tahliller sonrasında verilir.",
       },
       {
         question: "Kaç greft gerekir?",
         answer:
-          "Greft sayısı dökülme seviyeniz, ekim yapılacak alanın genişliği ve donör alanınızın yoğunluğu ölçülerek belirlenir. Bu ölçüm klinik muayenede yapılır; fotoğraf üzerinden verilen sayılar yalnızca yaklaşık bir aralık gösterir.",
+          "Greft sayısı dökülme seviyeniz, ekim yapılacak alanın genişliği ve donör alanınızın yoğunluğu ölçülerek belirlenir. Bu ölçüm anlaşmalı merkezdeki muayenede yapılır; fotoğraf üzerinden verilen sayılar yalnızca yaklaşık bir aralık gösterir.",
       },
     ],
   },
@@ -74,7 +74,7 @@ export const guides: Guide[] = [
     slug: "/hasta-rehberi/operasyon-gunu",
     name: "Operasyon Günü",
     h1: "Saç Ekimi Operasyonu Günü Nasıl Geçer?",
-    lead: "Lokal anestezi altında greftler alınır ve yerleştirilir. Aynı gün taburcu olursunuz. Kanal açma aşamasını saç ekimi uygulayıcı sertifikasına sahip hekim yürütür; greft alımı ve yerleştirme, Sağlık Bakanlığı tescilli yardımcı uygulayıcı sertifikasına sahip sağlık personeli tarafından hekim sorumluluğunda yapılır.",
+    lead: "Operasyon anlaşmalı merkezde, lokal anestezi altında yapılır ve ortalama 6–8 saat sürer. Aynı gün taburcu olursunuz; 3 gün sonra normal hayatınıza dönersiniz. Anlaşmalı merkezde kanal açma aşamasını saç ekimi uygulayıcı sertifikasına sahip hekim yürütür; greft alımı ve yerleştirme, Sağlık Bakanlığı tescilli yardımcı uygulayıcı sertifikasına sahip sağlık personeli tarafından hekim sorumluluğunda yapılır. Vionte bu aşamada uygulama yapmaz, süreci takip eder.",
     metaTitle: "Saç Ekimi Operasyon Günü — Vionte Hair Transplant",
     metaDescription:
       "Saç ekimi operasyonu günü nasıl geçer: anestezi, greft alımı, kanal açma, yerleştirme ve aynı gün taburculuk.",
@@ -91,20 +91,20 @@ export const guides: Guide[] = [
         id: "ekip",
         heading: "Uygulamayı kim yapar?",
         body: [
-          "Saç ekimi bir ekip işidir. Kanal açma aşamasını saç ekimi uygulayıcı sertifikasına sahip hekim yürütür; greft alımı ve yerleştirme, Sağlık Bakanlığı tescilli yardımcı uygulayıcı sertifikasına sahip sağlık personeli tarafından hekim sorumluluğunda yapılır.",
+          "Saç ekimi bir ekip işidir. Anlaşmalı merkezde kanal açma aşamasını saç ekimi uygulayıcı sertifikasına sahip hekim yürütür; greft alımı ve yerleştirme, Sağlık Bakanlığı tescilli yardımcı uygulayıcı sertifikasına sahip sağlık personeli tarafından hekim sorumluluğunda yapılır. Vionte bu aşamada uygulama yapmaz, süreci takip eder.",
         ],
       },
       {
         id: "gun-akisi",
         heading: "Gün akışı",
-        body: ["[Saatlik akış — klinik uygulamasına göre doldurulacak.]"],
+        body: ["[Saatlik akış — anlaşmalı merkezin uygulamasına göre doldurulacak.]"],
       },
     ],
     faq: [
       {
         question: "Saç ekimi acı verir mi?",
         answer:
-          "İşlem lokal anestezi altında yapılır, operasyon boyunca ağrı hissedilmez. Anestezi uygulaması sırasında kısa süreli batma hissi olabilir. Operasyon sonrası ilk günlerde hafif hassasiyet görülebilir; hekiminizin önerdiği ağrı kesiciler bu dönemde yeterli olur.",
+          "İşlem lokal anestezi altında yapılır, operasyon boyunca ağrı hissedilmez. Anestezi uygulaması sırasında kısa süreli batma hissi olabilir. Operasyon sonrası ilk günlerde hafif hassasiyet görülebilir; size önerilen ağrı kesiciler bu dönemde yeterli olur.",
       },
     ],
   },
@@ -112,17 +112,17 @@ export const guides: Guide[] = [
     slug: "/hasta-rehberi/operasyon-sonrasi",
     name: "Operasyon Sonrası",
     h1: "Saç Ekimi Sonrası Süreç Nasıl İlerler?",
-    lead: "Operasyondan 2–4 hafta sonra ekilen saçların büyük bölümü dökülür. Buna şok dökülme denir ve beklenen bir süreçtir; kökler yerinde kalır. Yeni çıkış 3. aydan itibaren başlar, sonuç 12–18 ay içinde netleşir.",
+    lead: "Operasyondan 2–4 hafta sonra ekilen saçların büyük bölümü dökülür. Buna şok dökülme denir ve beklenen bir süreçtir; kökler yerinde kalır. İlk saçlar 3. ayda çıkar, sonuç 12. ayda tamamlanır.",
     metaTitle: "Saç Ekimi Sonrası Süreç — Vionte Hair Transplant",
     metaDescription:
-      "Saç ekimi sonrası şok dökülme, yeni çıkış ve 12–18 aylık sonuç süreci. İlk günler, kontroller ve dikkat edilmesi gerekenler.",
+      "Saç ekimi sonrası şok dökülme, yeni çıkış ve 12 aylık sonuç süreci. İlk günler, kontroller ve dikkat edilmesi gerekenler.",
     sections: [
       {
         id: "ilk-gunler",
         heading: "İlk günler",
         body: [
-          "Operasyon sonrası ilk günlerde hafif hassasiyet görülebilir; hekiminizin önerdiği ağrı kesiciler bu dönemde yeterli olur.",
-          "[Uyku pozisyonu, ödem ve pansuman ile ilgili yönergeler — klinik uygulamasına göre doldurulacak.]",
+          "Operasyon sonrası ilk günlerde hafif hassasiyet görülebilir; size önerilen ağrı kesiciler bu dönemde yeterli olur.",
+          "[Uyku pozisyonu, ödem ve pansuman yönergeleri — anlaşmalı merkezin uygulamasına göre doldurulacak.]",
         ],
       },
       {
@@ -136,14 +136,14 @@ export const guides: Guide[] = [
         id: "kontroller",
         heading: "Kontroller",
         body: [
-          "İlk yıkama klinikte yapılır. 3., 6. ve 12. ay kontrolleriyle süreç izlenir.",
+          "İlk yıkama anlaşmalı merkezde yapılır. Süreç 3., 6. ve 12. ay kontrolleriyle izlenir; Vionte bu takibi yürütür.",
         ],
       },
       {
         id: "ise-donus",
         heading: "Ne zaman işe dönebilirim?",
         body: [
-          "[Kliniğin uygulamasına göre doldurulacak — genel çerçeve: masa başı işlerde birkaç gün, fiziksel güç gerektiren işlerde daha uzun süre önerilir.]",
+          "3 gün sonra normal hayatınıza dönersiniz. Fiziksel güç gerektiren işlerde daha uzun süre önerilir.",
         ],
       },
     ],
@@ -151,7 +151,7 @@ export const guides: Guide[] = [
       {
         question: "Ekilen saçlar dökülür mü?",
         answer:
-          "Operasyondan 2–4 hafta sonra ekilen saçların büyük bölümü dökülür. Buna şok dökülme denir ve beklenen bir süreçtir; kökler yerinde kalır. Yeni çıkış 3. aydan itibaren başlar, sonuç 12–18 ay içinde netleşir.",
+          "Operasyondan 2–4 hafta sonra ekilen saçların büyük bölümü dökülür. Buna şok dökülme denir ve beklenen bir süreçtir; kökler yerinde kalır. İlk saçlar 3. ayda çıkar, sonuç 12. ayda tamamlanır.",
       },
       {
         question: "Saç ekimi kalıcı mıdır?",
@@ -164,7 +164,7 @@ export const guides: Guide[] = [
     slug: "/hasta-rehberi/sac-yikama",
     name: "Saç Yıkama",
     h1: "Saç Ekimi Sonrası Saç Nasıl Yıkanır?",
-    lead: "İlk yıkama klinikte yapılır ve size uygulamalı olarak gösterilir. Sonraki yıkamaları evde sürdürürsünüz; amaç kabukların zamanla ve ovalamadan kalkmasıdır.",
+    lead: "İlk yıkama anlaşmalı merkezde yapılır ve size uygulamalı olarak gösterilir. Sonraki yıkamaları evde sürdürürsünüz; amaç kabukların zamanla ve ovalamadan kalkmasıdır.",
     metaTitle: "Saç Ekimi Sonrası Saç Yıkama — Vionte Hair Transplant",
     metaDescription:
       "Saç ekimi sonrası ilk yıkama klinikte yapılır. Evde yıkama adımları, kabuklanma süreci ve dikkat edilmesi gerekenler.",
@@ -172,12 +172,12 @@ export const guides: Guide[] = [
       {
         id: "ilk-yikama",
         heading: "İlk yıkama",
-        body: ["İlk yıkama klinikte yapılır."],
+        body: ["İlk yıkama anlaşmalı merkezde yapılır."],
       },
       {
         id: "evde-yikama",
         heading: "Evde yıkama adımları",
-        body: ["[Adım adım yönerge — klinik uygulamasına göre doldurulacak.]"],
+        body: ["[Adım adım yönerge — anlaşmalı merkezin uygulamasına göre doldurulacak.]"],
         list: [
           "[Losyon uygulaması ve bekleme süresi]",
           "[Şampuan uygulaması]",
@@ -188,7 +188,7 @@ export const guides: Guide[] = [
       {
         id: "dikkat",
         heading: "Dikkat edilmesi gerekenler",
-        body: ["[Klinik uygulamasına göre doldurulacak.]"],
+        body: ["[Anlaşmalı merkezin uygulamasına göre doldurulacak.]"],
       },
     ],
     faq: [],
@@ -213,7 +213,7 @@ export const guides: Guide[] = [
       {
         id: "klinikte",
         heading: "Klinikte uygulanan süreç",
-        body: ["[Sterilizasyon süreci — klinik uygulamasına göre doldurulacak.]"],
+        body: ["[Sterilizasyon süreci — anlaşmalı merkezin uygulamasına göre doldurulacak.]"],
         list: [
           "[Alet sterilizasyon yöntemi ve döngüsü]",
           "[Tek kullanımlık malzemeler]",
@@ -257,7 +257,7 @@ export const guides: Guide[] = [
         id: "neden-rakam-yok",
         heading: "Neden sitede rakam yazmıyor?",
         body: [
-          "Greft sayısı ölçülmeden verilen bir rakam gerçekçi olmaz. Ölçüm klinik muayenede yapılır; fotoğraf üzerinden verilen sayılar yalnızca yaklaşık bir aralık gösterir. Bu nedenle fiyat, muayene sonrasında kişiye özel olarak paylaşılır.",
+          "Greft sayısı ölçülmeden verilen bir rakam gerçekçi olmaz. Ölçüm anlaşmalı merkezdeki muayenede yapılır; fotoğraf üzerinden verilen sayılar yalnızca yaklaşık bir aralık gösterir. Bu nedenle fiyat, muayene sonrasında kişiye özel olarak paylaşılır.",
         ],
       },
     ],
@@ -265,7 +265,7 @@ export const guides: Guide[] = [
       {
         question: "Kaç greft gerekir?",
         answer:
-          "Greft sayısı dökülme seviyeniz, ekim yapılacak alanın genişliği ve donör alanınızın yoğunluğu ölçülerek belirlenir. Bu ölçüm klinik muayenede yapılır; fotoğraf üzerinden verilen sayılar yalnızca yaklaşık bir aralık gösterir.",
+          "Greft sayısı dökülme seviyeniz, ekim yapılacak alanın genişliği ve donör alanınızın yoğunluğu ölçülerek belirlenir. Bu ölçüm anlaşmalı merkezdeki muayenede yapılır; fotoğraf üzerinden verilen sayılar yalnızca yaklaşık bir aralık gösterir.",
       },
     ],
   },

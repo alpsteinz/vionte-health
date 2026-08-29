@@ -5,7 +5,7 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { PageHero } from "@/components/ui/page-hero";
 import { Section, SectionHead } from "@/components/ui/section";
 import { Container } from "@/components/ui/container";
-import { MedicalReview } from "@/components/ui/medical-review";
+import { ContentInfo } from "@/components/ui/content-info";
 import { JsonLd } from "@/components/ui/json-ld";
 import { AnlasmaliMerkezKarti } from "@/components/sonuclar/anlasmali-merkez-karti";
 import { DanisanHikayesiKarti } from "@/components/sonuclar/danisan-hikayesi-karti";
@@ -107,7 +107,7 @@ export default function Page() {
       ) : null}
 
       <Container className="pb-20">
-        <MedicalReview />
+        <ContentInfo />
       </Container>
       <JsonLd data={breadcrumbSchema(trail)} />
     </>

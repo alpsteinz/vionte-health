@@ -24,7 +24,7 @@ export function Hero() {
          * Masaüstünde form sağ sütunda iki satır boyunca uzanır, veri bloğu
          * sol sütunun altına oturur.
          */}
-        <div className="grid gap-10 py-10 md:py-16 lg:grid-cols-[1fr_460px] lg:grid-rows-[auto_1fr] lg:gap-x-16 lg:gap-y-0 lg:py-24">
+        <div className="grid gap-10 py-10 md:py-16 lg:grid-cols-[1fr_460px] lg:grid-rows-[auto_1fr] lg:gap-x-16 lg:gap-y-0 lg:py-24 2xl:grid-cols-[1fr_520px] 2xl:gap-x-24 2xl:py-32">
           <div className="lg:col-start-1 lg:row-start-1">
             <p className="eyebrow">{hero.eyebrow}</p>
             <h1 className="h1 mt-5 md:mt-6">

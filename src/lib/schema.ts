@@ -3,19 +3,27 @@ import type { FaqItem } from "@/content/faq";
 
 const clean = (v: string) => (v.trim().startsWith("[") ? undefined : v);
 
-/** Ana sayfa: MedicalClinic + LocalBusiness */
+/**
+ * Ana sayfa şeması.
+ *
+ * MedicalClinic KULLANILMAZ — Vionte bir sağlık kuruluşu değil, aracılık
+ * hizmeti veren bir işletmedir. Yanlış tip, arama motorlarına ve AI
+ * sistemlerine klinik olduğu izlenimi verir.
+ */
 export function clinicSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": ["MedicalClinic", "LocalBusiness"],
-    "@id": `${site.url}/#klinik`,
+    "@type": ["ProfessionalService", "LocalBusiness"],
+    "@id": `${site.url}/#kurum`,
     name: site.name,
     legalName: clean(site.legalName),
+    description: site.disclaimers.rol,
     url: site.url,
     telephone: clean(site.contact.phoneLabel),
     email: clean(site.contact.email),
     inLanguage: "tr-TR",
-    medicalSpecialty: "Dermatology",
+    knowsAbout: site.faaliyet,
+    openingHours: "Mo-Su 09:00-17:00",
     address: {
       "@type": "PostalAddress",
       streetAddress: clean(site.contact.street),
@@ -25,13 +33,11 @@ export function clinicSchema() {
       addressCountry: site.contact.country,
     },
     sameAs: [site.social.instagram],
+    // Sunulan hizmet danışmanlık ve yönlendirmedir, uygulama değil
     availableService: [
-      { "@type": "MedicalProcedure", name: "Safir FUE saç ekimi" },
-      { "@type": "MedicalProcedure", name: "DHI saç ekimi" },
-      { "@type": "MedicalProcedure", name: "Tıraşsız saç ekimi" },
-      { "@type": "MedicalProcedure", name: "Kadınlarda saç ekimi" },
-      { "@type": "MedicalProcedure", name: "Sakal ekimi" },
-      { "@type": "MedicalProcedure", name: "Kaş ekimi" },
+      { "@type": "Service", name: "Ücretsiz saç analizi" },
+      { "@type": "Service", name: "Saç ekimi danışmanlığı ve yönlendirme" },
+      { "@type": "Service", name: "Operasyon sonrası süreç takibi" },
     ],
   };
 }
@@ -69,7 +75,7 @@ export function procedureSchema({
     url: `${site.url}${path}`,
     bodyLocation,
     procedureType: "https://schema.org/PercutaneousProcedure",
-    provider: { "@id": `${site.url}/#klinik` },
+    provider: { "@id": `${site.url}/#kurum` },
     inLanguage: "tr-TR",
   };
 }
@@ -94,10 +100,10 @@ export function articleSchema({
     inLanguage: "tr-TR",
     datePublished: clean(published ?? ""),
     dateModified: clean(site.editorial.lastUpdated),
-    publisher: { "@id": `${site.url}/#klinik` },
-    reviewedBy: clean(site.editorial.medicalReviewer)
-      ? { "@type": "Person", name: site.editorial.medicalReviewer }
-      : undefined,
+    publisher: { "@id": `${site.url}/#kurum` },
+    // reviewedBy kullanılmaz — içerik hekim incelemesinden geçmez;
+    // sorumlusu içerik sorumlusudur.
+    author: { "@type": "Person", name: site.kvkk.veriSorumlusu },
   };
 }
 
@@ -114,13 +120,3 @@ export function breadcrumbSchema(trail: { name: string; href: string }[]) {
   };
 }
 
-export function physicianSchema() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Physician",
-    name: clean(site.editorial.medicalReviewer) ?? site.name,
-    worksFor: { "@id": `${site.url}/#klinik` },
-    medicalSpecialty: "Dermatology",
-    url: `${site.url}/ekibimiz`,
-  };
-}

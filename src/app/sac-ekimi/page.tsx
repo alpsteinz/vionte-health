@@ -27,7 +27,7 @@ export default function Page() {
       ]}
       eyebrow="Teknikler"
       title="Saç Ekimi Teknikleri Nelerdir?"
-      lead="Saç ekiminde teknik seçimi tercih meselesi değildir; donör alanınızın yoğunluğuna, ekim yapılacak bölgenin genişliğine ve mevcut saçlarınızın durumuna göre belirlenir. Aşağıdaki sayfalarda her tekniğin kimlere uygun olduğu ve kimlere uygun olmadığı ayrı ayrı anlatılır."
+      lead="Saç ekiminde teknik seçimi tercih meselesi değildir; donör alanınızın yoğunluğuna, ekim yapılacak bölgenin genişliğine ve mevcut saçlarınızın durumuna göre belirlenir. Aşağıdaki sayfalarda her tekniğin ne olduğu, kimlere uygun olduğu ve kimlere uygun olmadığı anlatılır. Uygulamayı anlaşmalı merkezdeki sertifikalı ekip yapar."
       items={items}
     >
       <Myths limit={3} />

@@ -1,6 +1,11 @@
-# Vionte Hair Transplant — web sitesi
+# Vionte — web sitesi
 
 Next.js 16 (App Router) · TypeScript · Tailwind CSS 4 · Lucide Icons
+
+**Vionte bir klinik değil, saç ekimi danışmanlık ve yönlendirme şirketidir.**
+Kendi kliniği yoktur; operasyonlar anlaşmalı merkezde sertifikalı saç ekim
+uzmanları tarafından yapılır. Sitede hiçbir yerde uygulamayı Vionte'nin
+yaptığı izlenimi verilmez.
 
 Proje kuralları `AGENTS.md` / `CLAUDE.md`, tasarım sistemi `DESIGN.md`,
 onaylanmış metinler `CONTENT.md` dosyalarındadır. Kod yazmadan önce okunur.
@@ -105,11 +110,11 @@ kullanılmaz (DESIGN.md).
 - [ ] Norwood görselleri lisanslı set veya onamlı klinik fotoğraflarıyla değiştirildi
       (`src/components/ui/norwood-figure.tsx` — şu an şematik yer tutucu)
 - [ ] Vektörel logo ve `src/app/icon.svg` değiştirildi
-- [ ] Lead'lerin gideceği sistem `src/app/api/lead/route.ts` içinde bağlandı
-- [ ] Sağlık verisi fotoğrafları için güvenli aktarım/saklama kanalı belirlendi
 - [ ] Anlaşmalı merkez adları girildi (Tip 1 kartları kaynak olmadan yayınlanmaz)
 - [ ] `npm run icerik-denetim` üç başlıkta da temiz
 - [x] Sayfalar tıbbi incelemeden geçti (`draftMedicalCopy` bayrakları kaldırıldı)
-- [ ] İnceleyen hekimin adı ve inceleme tarihi `src/lib/site.ts` içine girildi
+- [x] İletişim bilgileri girildi (adres, telefon, WhatsApp, e-posta, saatler)
+- [ ] `editorial.lastUpdated` son güncelleme tarihi girildi
+- [ ] Yasal metinler hukuk danışmanı onayından geçti (`taslak` bayrakları kaldırıldı)
 - [ ] Deneyim yılı (12 mi 15 mi) tek rakamda netleştirildi
 - [ ] Google Business Profile, Search Console ve Analytics bağlandı

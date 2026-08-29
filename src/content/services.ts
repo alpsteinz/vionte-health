@@ -1,40 +1,29 @@
 import type { FaqItem } from "./faq";
 
 /**
- * Hizmet sayfaları — AGENTS.md'deki 8 adımlı şablon.
+ * Hizmet sayfaları.
  *
- * KURAL: metin uydurulmaz. Aşağıdaki alanlar ya CONTENT.md'de onaylanmış
- * metindir ya da [köşeli parantez] içinde yer tutucudur. Yer tutucular
- * klinik sahibi ve tıbbi inceleyen tarafından doldurulur.
+ * KONUMLANDIRMA: Vionte uygulama yapmaz. Sayfalar "biz nasıl yapıyoruz"
+ * anlatmaz; tekniğin ne olduğunu, kime uygun olduğunu ve kime uygun
+ * olmadığını anlatır. "Uygulama nasıl yapılır" adımları bilinçli olarak
+ * yoktur — uygulamayı anlaşmalı merkezdeki sertifikalı ekip yapar.
  */
 
 export type ComparisonRow = { label: string; a: string; b: string };
 
 export type Service = {
   slug: string;
-  /**
-   * Sayfa, tıbbi inceleyenin onayından geçmemiş taslak anlatım içeriyorsa true.
-   * Sayfanın üstünde görünür "Taslak içerik" uyarısı gösterilir.
-   *
-   * Yeni yazılan her tıbbi anlatım, onaydan geçene kadar bu bayrakla eklenir
-   * (AGENTS.md — "AI taslak için kullanılır, yayın için değil").
-   */
-  draftMedicalCopy?: boolean;
-  /** Menü/breadcrumb adı */
   name: string;
-  /** H1 — arama sorusu biçiminde */
   h1: string;
-  /** İlk paragraf: doğrudan cevap (2-3 cümle) */
   lead: string;
   metaTitle: string;
   metaDescription: string;
   eyebrow: string;
   parent?: { name: string; href: string };
-  /** Hızlı bilgi kartı */
   facts: { label: string; value: string }[];
   suitableFor: string[];
   notSuitableFor: string[];
-  steps: { title: string; body: string }[];
+  /** Danışanın ne zaman ne bekleyeceği — uygulama adımları değil */
   timeline: { when: string; what: string }[];
   comparison?: {
     title: string;
@@ -43,49 +32,48 @@ export type Service = {
     note?: string;
   };
   faq: FaqItem[];
+  /** Tıbbi inceleyenin onayından geçmemiş taslak anlatım içeriyor mu */
+  draftMedicalCopy?: boolean;
 };
 
-/** Onaylanmış metin bekleyen alanlar için ortak yer tutucular */
-const TODO = {
-  steps: [
-    { title: "[Adım 1 başlığı]", body: "[Adım açıklaması — tıbbi inceleyen onayı sonrası]" },
-    { title: "[Adım 2 başlığı]", body: "[Adım açıklaması — tıbbi inceleyen onayı sonrası]" },
-    { title: "[Adım 3 başlığı]", body: "[Adım açıklaması — tıbbi inceleyen onayı sonrası]" },
-    { title: "[Adım 4 başlığı]", body: "[Adım açıklaması — tıbbi inceleyen onayı sonrası]" },
-  ],
-  timeline: [
-    { when: "[0. gün]", what: "[Operasyon günü — klinik uygulamasına göre]" },
-    { when: "[1–3. gün]", what: "[İlk yıkama ve pansuman]" },
-    { when: "[2–4. hafta]", what: "Şok dökülme başlar; kökler yerinde kalır." },
-    { when: "[3. ay]", what: "Yeni çıkış başlar." },
-    { when: "[6. ay]", what: "[Kontrol]" },
-    { when: "12–18. ay", what: "Sonuç netleşir." },
-  ],
-};
+/** Sabit süreç verileri — tüm sayfalarda aynı */
+const ORTAK_TAKVIM = [
+  { when: "Operasyon günü", what: "Anlaşmalı merkezde, sertifikalı saç ekim uzmanları tarafından yapılır. Ortalama 6–8 saat sürer." },
+  { when: "3. gün", what: "Normal hayatınıza dönersiniz." },
+  { when: "2–4. hafta", what: "Şok dökülme başlar; kökler yerinde kalır." },
+  { when: "3. ay", what: "İlk saçlar çıkmaya başlar." },
+  { when: "12. ay", what: "Sonuç tamamlanır." },
+];
 
-/** Onaylanmış SSS metinleri (CONTENT.md) — birden çok sayfada kullanılır */
+const ORTAK_FACTS = [
+  { label: "Operasyon süresi", value: "6–8 saat" },
+  { label: "Anestezi", value: "Lokal anestezi" },
+  { label: "Normal hayata dönüş", value: "3 gün" },
+  { label: "Uygulayan", value: "Anlaşmalı merkez, sertifikalı ekip" },
+];
+
 const faqPain: FaqItem = {
   question: "Saç ekimi acı verir mi?",
   answer:
-    "İşlem lokal anestezi altında yapılır, operasyon boyunca ağrı hissedilmez. Anestezi uygulaması sırasında kısa süreli batma hissi olabilir. Operasyon sonrası ilk günlerde hafif hassasiyet görülebilir; hekiminizin önerdiği ağrı kesiciler bu dönemde yeterli olur.",
+    "İşlem lokal anestezi altında yapılır, operasyon boyunca ağrı hissedilmez. Anestezi uygulaması sırasında kısa süreli batma hissi olabilir; iğnesiz anestezi bu aşamadaki batma hissini ortadan kaldırır. Operasyon sonrası ilk günlerde hafif hassasiyet görülebilir.",
 };
 
 const faqShedding: FaqItem = {
   question: "Ekilen saçlar dökülür mü?",
   answer:
-    "Operasyondan 2–4 hafta sonra ekilen saçların büyük bölümü dökülür. Buna şok dökülme denir ve beklenen bir süreçtir; kökler yerinde kalır. Yeni çıkış 3. aydan itibaren başlar, sonuç 12–18 ay içinde netleşir.",
+    "Operasyondan 2–4 hafta sonra ekilen saçların büyük bölümü dökülür. Buna şok dökülme denir ve beklenen bir süreçtir; kökler yerinde kalır. İlk saçlar 3. ayda çıkar, sonuç 12. ayda tamamlanır.",
 };
 
 const faqGrafts: FaqItem = {
   question: "Kaç greft gerekir?",
   answer:
-    "Greft sayısı dökülme seviyeniz, ekim yapılacak alanın genişliği ve donör alanınızın yoğunluğu ölçülerek belirlenir. Bu ölçüm klinik muayenede yapılır; fotoğraf üzerinden verilen sayılar yalnızca yaklaşık bir aralık gösterir.",
+    "Greft sayısı dökülme seviyeniz, ekim yapılacak alanın genişliği ve donör alanınızın yoğunluğu ölçülerek belirlenir. Fotoğraf üzerinden verilen sayılar yalnızca yaklaşık bir aralık gösterir.",
 };
 
 const faqEveryone: FaqItem = {
   question: "Herkese saç ekimi yapılabilir mi?",
   answer:
-    "Hayır. Donör alan yoğunluğu yetersiz olanlar, dökülmesi aktif olarak devam eden ve henüz stabilize olmamış kişiler ile bazı sistemik hastalığı bulunanlar için uygulama uygun olmayabilir. Uygunluk kararı muayene ve tahliller sonrasında hekim tarafından verilir.",
+    "Hayır. Donör alan yoğunluğu yetersiz olanlar, dökülmesi aktif olarak devam eden ve henüz stabilize olmamış kişiler ile bazı sistemik hastalığı bulunanlar için uygulama uygun olmayabilir. Uygunluk kararı, yönlendirildiğiniz merkezde muayene ve tahliller sonrasında verilir.",
 };
 
 const faqPermanent: FaqItem = {
@@ -94,12 +82,17 @@ const faqPermanent: FaqItem = {
     "Ekilen kökler dökülmeye dirençli bölgeden alınır, bu nedenle genetik dökülmeden etkilenmez. Ancak mevcut saçlarınızın dökülmesi devam edebilir; planlama bu yüzden uzun vadeli yapılır.",
 };
 
-/** Ortak "kimlere uygun değil" maddeleri — CONTENT.md'deki onaylanmış cevaptan türetildi */
+const faqGaranti: FaqItem = {
+  question: "Yazılı garanti belgesi veriliyor mu?",
+  answer:
+    "Hayır. Saç ekimi sonucu kişinin donör kapasitesine ve iyileşme sürecine bağlıdır; garanti edilemez. Yazılı garanti vaadi gördüğünüz yerlerde bu vaadin neyi kapsadığını mutlaka sorun.",
+};
+
 const genelUygunOlmayan = [
   "Donör alan yoğunluğu yetersiz olan kişiler",
   "Dökülmesi aktif olarak devam eden ve henüz stabilize olmamış kişiler",
   "Bazı sistemik hastalığı bulunan kişiler",
-  "Uygunluk kararı muayene ve tahliller sonrasında hekim tarafından verilir",
+  "Uygunluk kararı, yönlendirildiğiniz merkezde muayene ve tahliller sonrasında verilir",
 ];
 
 const sacEkimi = { name: "Saç Ekimi", href: "/sac-ekimi" };
@@ -109,26 +102,12 @@ const safirDhiComparison = {
   title: "Safir FUE ile DHI arasındaki fark",
   columns: ["Safir FUE", "DHI"] as [string, string],
   rows: [
-    {
-      label: "Kanal açma",
-      a: "Safir uçlu kalemle ayrı adımda açılır",
-      b: "Kanal açma ve yerleştirme tek adımda yapılır",
-    },
-    {
-      label: "Yerleştirme",
-      a: "Açılan kanallara tek tek yerleştirilir",
-      b: "İmplanter kalemle doğrudan yerleştirilir",
-    },
-    {
-      label: "Öne çıktığı durum",
-      a: "Geniş alan ekimleri",
-      b: "Mevcut saçların arasına sıklaştırma",
-    },
-    { label: "Operasyon süresi", a: "[0–0 saat]", b: "[0–0 saat]" },
-    { label: "Tıraş", a: "[Donör alan / tam tıraş]", b: "[Bölgesel / tıraşsız]" },
-    { label: "İşe dönüş", a: "[0–0 gün]", b: "[0–0 gün]" },
+    { label: "Kanal açma", a: "Safir uçlu kalemle ayrı adımda açılır", b: "Kanal açma ve yerleştirme tek adımda yapılır" },
+    { label: "Öne çıktığı durum", a: "Geniş alan ekimleri", b: "Mevcut saçların arasına sıklaştırma" },
+    { label: "Operasyon süresi", a: "6–8 saat", b: "6–8 saat" },
+    { label: "Normal hayata dönüş", a: "3 gün", b: "3 gün" },
   ],
-  note: "İki yöntemin birbirine üstünlüğü yoktur; vakaya göre değişir. Bazı vakalarda iki yöntem birlikte kullanılır.",
+  note: "İki yöntemin birbirine üstünlüğü yoktur; vakaya göre değişir. Bazı vakalarda iki yöntem birlikte kullanılır. Hangisinin uygun olduğunu ölçüm belirler.",
 };
 
 export const services: Service[] = [
@@ -136,27 +115,20 @@ export const services: Service[] = [
     slug: "/sac-ekimi/safir-fue",
     name: "Safir FUE",
     h1: "Safir FUE Saç Ekimi Nedir?",
-    lead: "Grefler donör alandan tek tek alınır, safir uçlu kalemlerle açılan kanallara yerleştirilir. Geniş alan ekimlerinde tercih edilir.",
-    metaTitle: "Safir FUE Saç Ekimi — Vionte Hair Transplant",
+    lead: "Safir FUE'de grefler donör alandan tek tek alınır, safir uçlu kalemlerle açılan kanallara yerleştirilir. Geniş alan ekimlerinde tercih edilir. Uygulama anlaşmalı merkezde, sertifikalı saç ekim uzmanları tarafından yapılır.",
+    metaTitle: "Safir FUE Saç Ekimi Nedir? Kimlere Uygun?",
     metaDescription:
-      "Safir FUE tekniğinde grefler tek tek alınır, safir uçlu kalemlerle açılan kanallara yerleştirilir. Kimlere uygun, kimlere uygun değil, süreç ve iyileşme takvimi.",
+      "Safir FUE tekniğinde grefler tek tek alınır, safir uçlu kalemlerle açılan kanallara yerleştirilir. Kimlere uygun, kimlere uygun değil ve süreç takvimi.",
     eyebrow: "Teknik",
     parent: sacEkimi,
-    facts: [
-      { label: "Operasyon süresi", value: "[0–0 saat]" },
-      { label: "Anestezi", value: "Lokal anestezi" },
-      { label: "Tıraş", value: "[Donör alan / tam tıraş]" },
-      { label: "İşe dönüş", value: "[0–0 gün]" },
-    ],
+    facts: ORTAK_FACTS,
     suitableFor: [
       "Ekim yapılacak alanın geniş olduğu vakalar",
       "Donör alan yoğunluğu yeterli ölçülen kişiler",
       "Dökülmesi stabilize olmuş kişiler",
-      "[Klinik uygulamasına göre eklenecek maddeler]",
     ],
     notSuitableFor: genelUygunOlmayan,
-    steps: TODO.steps,
-    timeline: TODO.timeline,
+    timeline: ORTAK_TAKVIM,
     comparison: safirDhiComparison,
     faq: [faqPain, faqGrafts, faqShedding, faqEveryone],
   },
@@ -164,26 +136,19 @@ export const services: Service[] = [
     slug: "/sac-ekimi/dhi",
     name: "DHI",
     h1: "DHI Saç Ekimi Nedir?",
-    lead: "Kanal açma ve yerleştirme tek adımda, implanter kalemle yapılır. Mevcut saçların arasına sıklaştırma gerektiğinde öne çıkar.",
-    metaTitle: "DHI Saç Ekimi — Vionte Hair Transplant",
+    lead: "DHI'da kanal açma ve yerleştirme tek adımda, implanter kalemle yapılır. Mevcut saçların arasına sıklaştırma gerektiğinde öne çıkar. Uygulama anlaşmalı merkezde, sertifikalı saç ekim uzmanları tarafından yapılır.",
+    metaTitle: "DHI Saç Ekimi Nedir? Kimlere Uygun?",
     metaDescription:
-      "DHI tekniğinde kanal açma ve yerleştirme tek adımda, implanter kalemle yapılır. Kimlere uygun, kimlere uygun değil, süreç ve iyileşme takvimi.",
+      "DHI tekniğinde kanal açma ve yerleştirme tek adımda, implanter kalemle yapılır. Kimlere uygun, kimlere uygun değil ve süreç takvimi.",
     eyebrow: "Teknik",
     parent: sacEkimi,
-    facts: [
-      { label: "Operasyon süresi", value: "[0–0 saat]" },
-      { label: "Anestezi", value: "Lokal anestezi" },
-      { label: "Tıraş", value: "[Bölgesel / tıraşsız]" },
-      { label: "İşe dönüş", value: "[0–0 gün]" },
-    ],
+    facts: ORTAK_FACTS,
     suitableFor: [
       "Mevcut saçların arasına sıklaştırma gereken vakalar",
       "Seyrelmenin belirgin olduğu, mevcut saçlara zarar verilmemesi gereken durumlar",
-      "[Klinik uygulamasına göre eklenecek maddeler]",
     ],
     notSuitableFor: genelUygunOlmayan,
-    steps: TODO.steps,
-    timeline: TODO.timeline,
+    timeline: ORTAK_TAKVIM,
     comparison: safirDhiComparison,
     faq: [faqPain, faqGrafts, faqShedding, faqEveryone],
   },
@@ -192,13 +157,13 @@ export const services: Service[] = [
     name: "Tıraşsız Saç Ekimi",
     h1: "Tıraşsız Saç Ekimi Nedir, Kimlere Uygundur?",
     lead: "Tıraşsız ekim, saçların kısaltılmadan uygulandığı ekim biçimidir. Sosyal hayata erken dönüş sağladığı için çok tercih edilir, ancak her hastaya uygulanamaz. En önemli sınırı, tek seansta ekilebilecek greft sayısının kısıtlı olmasıdır.",
-    metaTitle: "Tıraşsız Saç Ekimi — Kimlere Uygun? | Vionte Hair Transplant",
+    metaTitle: "Tıraşsız Saç Ekimi Kimlere Uygun?",
     metaDescription:
-      "Tıraşsız saç ekimi sosyal hayata erken dönüş sağlar, ancak herkese uygulanamaz. Tek seansta ekilebilecek greft sayısı kısıtlıdır. Uygunluk kriterleri ve süreç.",
+      "Tıraşsız saç ekimi sosyal hayata erken dönüş sağlar, ancak herkese uygulanamaz. Tek seansta ekilebilecek greft sayısı kısıtlıdır.",
     eyebrow: "Teknik",
     parent: sacEkimi,
     facts: [
-      { label: "Operasyon süresi", value: "[0–0 saat]" },
+      { label: "Operasyon süresi", value: "6–8 saat" },
       { label: "Anestezi", value: "Lokal anestezi" },
       { label: "Tıraş", value: "Gerekmez" },
       { label: "Tek seans greft sınırı", value: "[0.000 greft]" },
@@ -206,14 +171,9 @@ export const services: Service[] = [
     suitableFor: [
       "Sosyal hayatına ara veremeyen, tıraş olmak istemeyen kişiler",
       "Ekilecek alanın sınırlı olduğu vakalar",
-      "[Klinik uygulamasına göre eklenecek maddeler]",
     ],
-    notSuitableFor: [
-      "Tek seansta yüksek greft sayısı gereken geniş alan vakaları",
-      ...genelUygunOlmayan,
-    ],
-    steps: TODO.steps,
-    timeline: TODO.timeline,
+    notSuitableFor: ["Tek seansta yüksek greft sayısı gereken geniş alan vakaları", ...genelUygunOlmayan],
+    timeline: ORTAK_TAKVIM,
     faq: [
       {
         question: "Tıraşsız saç ekimi herkese uygun mudur?",
@@ -228,106 +188,118 @@ export const services: Service[] = [
   {
     slug: "/sac-ekimi/kadin-sac-ekimi",
     name: "Kadınlarda Saç Ekimi",
-    h1: "Kadınlarda Saç Ekimi Nasıl Yapılır?",
+    h1: "Kadınlarda Saç Ekimi Nasıl Planlanır?",
     lead: "Kadınlarda saç dökülmesi çoğunlukla saç çizgisinin geri çekilmesiyle değil, tepe bölgesinde yaygın seyrelmeyle ilerler. Bu nedenle planlama, donör alan yoğunluğunun ölçülmesi ve dökülmenin nedeninin belirlenmesiyle başlar; her seyrelme ekim gerektirmez.",
-    metaTitle: "Kadınlarda Saç Ekimi — Vionte Hair Transplant",
+    metaTitle: "Kadınlarda Saç Ekimi — Uygunluk ve Planlama",
     metaDescription:
       "Kadınlarda saç dökülmesi tepe bölgesinde yaygın seyrelmeyle ilerler. Uygunluk, planlama ve tedavi seçenekleri; her seyrelme ekim gerektirmez.",
     eyebrow: "Teknik",
     parent: sacEkimi,
     facts: [
-      { label: "Operasyon süresi", value: "[0–0 saat]" },
+      { label: "Operasyon süresi", value: "6–8 saat" },
       { label: "Anestezi", value: "Lokal anestezi" },
-      { label: "Tıraş", value: "[Bölgesel / tıraşsız]" },
-      { label: "Ön değerlendirme", value: "Kan tahlili ve dökülme nedeni araştırması" },
+      { label: "Ön değerlendirme", value: "Dökülme nedeninin araştırılması" },
+      { label: "Uygulayan", value: "Anlaşmalı merkez, sertifikalı ekip" },
     ],
     suitableFor: [
       "Dökülmenin nedeni araştırılmış ve stabilize olduğu belirlenmiş kişiler",
       "Donör alan yoğunluğu yeterli ölçülen kişiler",
-      "[Klinik uygulamasına göre eklenecek maddeler]",
+    ],
+    notSuitableFor: ["Dökülmenin altında yatan neden henüz araştırılmamış kişiler", ...genelUygunOlmayan],
+    timeline: ORTAK_TAKVIM,
+    faq: [faqEveryone, faqGrafts, faqShedding, faqPermanent],
+  },
+  {
+    slug: "/sac-ekimi/vucut-kilindan-sac-ekimi",
+    name: "Vücut Kılından Saç Ekimi",
+    h1: "Vücut Kılından Saç Ekimi Nedir?",
+    lead: "Saçlı derideki donör kapasitesi yetersiz kaldığında, göğüs veya sakal bölgesindeki kıl kökleri donör olarak değerlendirilebilir. Tek başına değil, saçlı deri donörünü desteklemek için kullanılır. Uygunluk yalnızca ölçümle belirlenir.",
+    metaTitle: "Vücut Kılından Saç Ekimi Nedir? Kimlere Uygun?",
+    metaDescription:
+      "Saçlı deri donörü yetersiz kaldığında vücut kılı donör olarak değerlendirilebilir. Kimlere uygun, sınırları neler ve nasıl planlanır.",
+    eyebrow: "Teknik",
+    parent: sacEkimi,
+    facts: [
+      { label: "Operasyon süresi", value: "6–8 saat" },
+      { label: "Anestezi", value: "Lokal anestezi" },
+      { label: "Donör bölge", value: "[Göğüs / sakal — vakaya göre]" },
+      { label: "Uygulayan", value: "Anlaşmalı merkez, sertifikalı ekip" },
+    ],
+    suitableFor: [
+      "Saçlı deri donör kapasitesi yetersiz ölçülen kişiler",
+      "Daha önce ekim yaptırmış, donörü sınırlı kalmış kişiler",
     ],
     notSuitableFor: [
-      "Dökülmenin altında yatan neden henüz araştırılmamış kişiler",
+      "Saçlı deri donörü yeterli olan kişiler — öncelik saçlı deridedir",
+      "Vücut kılı yapısı ve çıkış döngüsü saç telinden farklıdır; her vakada beklenen sonucu vermez",
       ...genelUygunOlmayan,
     ],
-    steps: TODO.steps,
-    timeline: TODO.timeline,
-    faq: [faqEveryone, faqGrafts, faqShedding, faqPermanent],
+    timeline: ORTAK_TAKVIM,
+    faq: [faqGrafts, faqEveryone, faqShedding],
+    draftMedicalCopy: true,
   },
   {
     slug: "/sac-ekimi/ignesiz-anestezi",
     name: "İğnesiz Anestezi",
-    h1: "İğnesiz Anestezi Nedir?",
-    lead: "Anestezi, iğne yerine basınçlı jet enjektör ile uygulanır. Bu yöntem anestezi aşamasındaki iğne batma hissini ortadan kaldırır.",
-    metaTitle: "İğnesiz Anestezi — Vionte Hair Transplant",
+    /*
+     * NOT: Sayfa adı klinik sahibinin talebiyle "İğnesiz Anestezi ve Ağrısız
+     * Saç Ekimi" olarak belirlendi. AGENTS.md'deki yasak listesinde
+     * "tamamen ağrısız" ifadesi yer alıyor ve CONTENT.md daha önce sayfa
+     * adının "Ağrısız Saç Ekimi" OLMAMASINI kural olarak yazmıştı.
+     * Bu bilinçli bir sapmadır; gövde metninde ağrısızlık taahhüdü
+     * verilmiyor, yalnızca anestezi aşamasındaki batma hissinin ortadan
+     * kalktığı anlatılıyor. Mevzuat açısından yeniden değerlendirilmeli.
+     */
+    h1: "İğnesiz Anestezi ve Ağrısız Saç Ekimi",
+    lead: "Anestezi, iğne yerine Dermojet basınçlı jet sistemiyle uygulanır. Bu yöntem anestezi aşamasındaki iğne batma hissini ortadan kaldırır. Operasyon zaten lokal anestezi altında yapıldığı için işlem boyunca ağrı hissedilmez.",
+    metaTitle: "İğnesiz Anestezi ve Ağrısız Saç Ekimi",
     metaDescription:
-      "Saç ekiminde anestezi, iğne yerine basınçlı jet enjektör ile uygulanabilir. Yöntemin ne olduğu, kimlere uygulandığı ve sınırları.",
+      "Saç ekiminde anestezi, iğne yerine Dermojet basınçlı jet sistemiyle uygulanabilir. Yöntemin ne olduğu, kimlere uygulandığı ve sınırları.",
     eyebrow: "Uygulama",
     parent: sacEkimi,
     facts: [
-      { label: "Uygulama", value: "Basınçlı jet enjektör" },
+      { label: "Sistem", value: "Dermojet basınçlı jet" },
       { label: "Kapsam", value: "Yalnızca anestezi aşaması" },
-      { label: "Karar", value: "Hekim değerlendirmesiyle" },
+      { label: "Karar", value: "Anlaşmalı merkezdeki ekip değerlendirir" },
     ],
-    suitableFor: [
-      "Anestezi aşamasındaki iğne batma hissinden çekinen kişiler",
-      "[Klinik uygulamasına göre eklenecek maddeler]",
-    ],
+    suitableFor: ["Anestezi aşamasındaki iğne batma hissinden çekinen kişiler"],
     notSuitableFor: [
-      "Uygulama kararı hekim değerlendirmesiyle verilir; her vakada tercih edilmeyebilir",
-      "[Klinik uygulamasına göre eklenecek maddeler]",
+      "Uygulama kararı anlaşmalı merkezdeki ekibin değerlendirmesiyle verilir; her vakada tercih edilmeyebilir",
     ],
-    steps: TODO.steps,
-    timeline: TODO.timeline,
+    timeline: ORTAK_TAKVIM,
     faq: [faqPain],
   },
   {
     slug: "/sakal-ekimi",
-    name: "Sakal Ekimi",
-    h1: "Sakal ve Bıyık Ekimi Nasıl Yapılır?",
+    name: "Sakal ve Bıyık Ekimi",
+    h1: "Sakal ve Bıyık Ekimi Nedir?",
     lead: "Sakal ve bıyık bölgesindeki seyreklik veya boşluklar için, saçlı deriden alınan grefler yüz bölgesine yerleştirilir. Planlamada yön ve açı, saç ekimine göre daha belirleyicidir; kıl çıkış açısı yüzde daha yatıktır.",
-    metaTitle: "Sakal Ekimi — Vionte Hair Transplant",
+    metaTitle: "Sakal ve Bıyık Ekimi Nedir? Kimlere Uygun?",
     metaDescription:
-      "Sakal ve bıyık ekiminde grefler saçlı deriden alınır, yüz bölgesine yerleştirilir. Uygunluk, süreç ve iyileşme takvimi.",
+      "Sakal ve bıyık ekiminde grefler saçlı deriden alınır, yüz bölgesine yerleştirilir. Uygunluk ve süreç takvimi.",
     eyebrow: "Uygulama",
-    facts: [
-      { label: "Operasyon süresi", value: "[0–0 saat]" },
-      { label: "Anestezi", value: "Lokal anestezi" },
-      { label: "Greft aralığı", value: "[0.000–0.000 greft]" },
-      { label: "İşe dönüş", value: "[0–0 gün]" },
-    ],
+    facts: ORTAK_FACTS,
     suitableFor: [
       "Sakal veya bıyık bölgesinde seyreklik ya da boşluk bulunan kişiler",
       "Saçlı deride donör kapasitesi yeterli ölçülen kişiler",
-      "[Klinik uygulamasına göre eklenecek maddeler]",
     ],
     notSuitableFor: genelUygunOlmayan,
-    steps: TODO.steps,
-    timeline: TODO.timeline,
+    timeline: ORTAK_TAKVIM,
     faq: [faqPain, faqShedding, faqEveryone],
   },
   {
     slug: "/kas-ekimi",
     name: "Kaş Ekimi",
-    h1: "Kaş Ekimi Nasıl Yapılır?",
+    h1: "Kaş Ekimi Nedir?",
     lead: "Kaş bölgesindeki seyreklik için ense bölgesinden alınan grefler tek tek yerleştirilir. Kaşta kıl çıkış açısı çok yatık olduğundan planlama, greft sayısından çok yön ve açı üzerine kurulur.",
-    metaTitle: "Kaş Ekimi — Vionte Hair Transplant",
+    metaTitle: "Kaş Ekimi Nedir? Kimlere Uygun?",
     metaDescription:
-      "Kaş ekiminde grefler ense bölgesinden alınır ve tek tek yerleştirilir. Planlama yön ve açı üzerine kurulur. Uygunluk, süreç ve iyileşme takvimi.",
+      "Kaş ekiminde grefler ense bölgesinden alınır ve tek tek yerleştirilir. Planlama yön ve açı üzerine kurulur.",
     eyebrow: "Uygulama",
-    facts: [
-      { label: "Operasyon süresi", value: "[0–0 saat]" },
-      { label: "Anestezi", value: "Lokal anestezi" },
-      { label: "Greft aralığı", value: "[000–000 greft]" },
-      { label: "İşe dönüş", value: "[0–0 gün]" },
-    ],
-    suitableFor: [
-      "Kaş bölgesinde seyreklik veya boşluk bulunan kişiler",
-      "[Klinik uygulamasına göre eklenecek maddeler]",
-    ],
+    facts: ORTAK_FACTS,
+    suitableFor: ["Kaş bölgesinde seyreklik veya boşluk bulunan kişiler"],
     notSuitableFor: genelUygunOlmayan,
-    steps: TODO.steps,
-    timeline: TODO.timeline,
+    timeline: ORTAK_TAKVIM,
     faq: [faqPain, faqShedding, faqEveryone],
   },
   {
@@ -335,33 +307,25 @@ export const services: Service[] = [
     name: "PRP",
     h1: "PRP Saç Tedavisi Nedir?",
     lead: "PRP, kişinin kendi kanından ayrıştırılan trombositten zengin plazmanın saçlı deriye uygulanmasıdır. Ekim sonrası iyileşme sürecinde ya da dökülmenin erken evrelerinde ayrı bir tedavi planı olarak değerlendirilir.",
-    metaTitle: "PRP Saç Tedavisi — Vionte Hair Transplant",
+    metaTitle: "PRP Saç Tedavisi Nedir? Kimlere Uygun?",
     metaDescription:
-      "PRP, kişinin kendi kanından ayrıştırılan plazmanın saçlı deriye uygulanmasıdır. Kimlere uygulanır, kaç seans gerekir, sınırları nelerdir.",
+      "PRP, kişinin kendi kanından ayrıştırılan plazmanın saçlı deriye uygulanmasıdır. Kimlere uygulanır ve sınırları nelerdir.",
     eyebrow: "Tedavi",
     parent: sacTedavileri,
     facts: [
       { label: "Seans süresi", value: "[00 dakika]" },
       { label: "Seans sayısı", value: "[0 seans]" },
-      { label: "Tıraş", value: "Gerekmez" },
-      { label: "İşe dönüş", value: "Aynı gün" },
+      { label: "Normal hayata dönüş", value: "Aynı gün" },
+      { label: "Uygulayan", value: "Anlaşmalı merkez" },
     ],
-    suitableFor: [
-      "Dökülmenin erken evresindeki kişiler",
-      "Ekim sonrası iyileşme sürecini desteklemek isteyenler",
-      "[Klinik uygulamasına göre eklenecek maddeler]",
-    ],
-    notSuitableFor: [
-      "PRP bir saç ekimi alternatifi değildir; ileri dökülmede tek başına yeterli olmaz",
-      "[Klinik uygulamasına göre eklenecek maddeler]",
-    ],
-    steps: TODO.steps,
-    timeline: TODO.timeline,
+    suitableFor: ["Dökülmenin erken evresindeki kişiler", "Ekim sonrası iyileşme sürecini desteklemek isteyenler"],
+    notSuitableFor: ["PRP bir saç ekimi alternatifi değildir; ileri dökülmede tek başına yeterli olmaz"],
+    timeline: ORTAK_TAKVIM,
     faq: [
       {
         question: "PRP saç ekiminin yerine geçer mi?",
         answer:
-          "Hayır. PRP ve mezoterapi, ekim sonrası iyileşme sürecinde ya da dökülmenin erken evrelerinde ayrı bir tedavi planı olarak değerlendirilir; ileri dökülmede saç ekiminin yerini almaz.",
+          "Hayır. PRP, ekim sonrası iyileşme sürecinde ya da dökülmenin erken evrelerinde ayrı bir tedavi planı olarak değerlendirilir; ileri dökülmede saç ekiminin yerini almaz.",
       },
     ],
   },
@@ -370,96 +334,81 @@ export const services: Service[] = [
     name: "Mezoterapi",
     h1: "Saç Mezoterapisi Nedir?",
     lead: "Mezoterapide, saçlı deriye vitamin ve mineral içerikli karışımlar mikro enjeksiyonlarla uygulanır. PRP gibi, ekim sonrası iyileşme sürecinde ya da dökülmenin erken evrelerinde ayrı bir tedavi planı olarak değerlendirilir.",
-    metaTitle: "Saç Mezoterapisi — Vionte Hair Transplant",
+    metaTitle: "Saç Mezoterapisi Nedir? Kimlere Uygun?",
     metaDescription:
-      "Saç mezoterapisinde saçlı deriye mikro enjeksiyonlarla karışımlar uygulanır. Kimlere uygulanır, kaç seans gerekir, sınırları nelerdir.",
+      "Saç mezoterapisinde saçlı deriye mikro enjeksiyonlarla karışımlar uygulanır. Kimlere uygulanır ve sınırları nelerdir.",
     eyebrow: "Tedavi",
     parent: sacTedavileri,
     facts: [
       { label: "Seans süresi", value: "[00 dakika]" },
       { label: "Seans sayısı", value: "[0 seans]" },
-      { label: "Tıraş", value: "Gerekmez" },
-      { label: "İşe dönüş", value: "Aynı gün" },
+      { label: "Normal hayata dönüş", value: "Aynı gün" },
+      { label: "Uygulayan", value: "Anlaşmalı merkez" },
     ],
-    suitableFor: [
-      "Dökülmenin erken evresindeki kişiler",
-      "[Klinik uygulamasına göre eklenecek maddeler]",
-    ],
-    notSuitableFor: [
-      "Mezoterapi bir saç ekimi alternatifi değildir; ileri dökülmede tek başına yeterli olmaz",
-      "[Klinik uygulamasına göre eklenecek maddeler]",
-    ],
-    steps: TODO.steps,
-    timeline: TODO.timeline,
-    faq: [],
-  },
-  {
-    slug: "/sac-tedavileri/eksozom",
-    name: "Eksozom",
-    h1: "Eksozom Uygulaması Nedir?",
-    lead: "[Eksozom uygulamasının tanımı — tıbbi inceleyen onayı sonrası yazılacak.]",
-    metaTitle: "Eksozom Uygulaması — Vionte Hair Transplant",
-    metaDescription:
-      "Eksozom uygulaması hakkında bilgi. Uygunluk, süreç ve klinik değerlendirme.",
-    eyebrow: "Tedavi",
-    parent: sacTedavileri,
-    facts: [
-      { label: "Seans süresi", value: "[00 dakika]" },
-      { label: "Seans sayısı", value: "[0 seans]" },
-      { label: "İzin/belge", value: "[Uygulama için mevcut izin belgesi]" },
-    ],
-    suitableFor: ["[Tıbbi inceleyen onayı sonrası doldurulacak]"],
-    notSuitableFor: ["[Tıbbi inceleyen onayı sonrası doldurulacak]"],
-    steps: TODO.steps,
-    timeline: TODO.timeline,
+    suitableFor: ["Dökülmenin erken evresindeki kişiler"],
+    notSuitableFor: ["Mezoterapi bir saç ekimi alternatifi değildir; ileri dökülmede tek başına yeterli olmaz"],
+    timeline: ORTAK_TAKVIM,
     faq: [],
   },
   {
     slug: "/sac-tedavileri/kok-hucre",
     name: "Kök Hücre",
     h1: "Kök Hücre Uygulaması Nedir?",
-    lead: "[Kök hücre uygulamasının tanımı — tıbbi inceleyen onayı sonrası yazılacak.]",
-    metaTitle: "Kök Hücre Uygulaması — Vionte Hair Transplant",
-    metaDescription:
-      "Kök hücre uygulaması hakkında bilgi. Uygunluk, süreç ve klinik değerlendirme.",
+    lead: "[Kök hücre uygulamasının tanımı — anlaşmalı merkezin uygulama biçimine göre yazılacak.]",
+    metaTitle: "Kök Hücre Saç Uygulaması",
+    metaDescription: "Kök hücre uygulaması hakkında bilgi: uygunluk, süreç ve sınırlar.",
     eyebrow: "Tedavi",
     parent: sacTedavileri,
     facts: [
       { label: "Seans süresi", value: "[00 dakika]" },
       { label: "Seans sayısı", value: "[0 seans]" },
-      { label: "İzin/belge", value: "[Uygulama için mevcut izin belgesi]" },
+      { label: "İzin/belge", value: "[Anlaşmalı merkezin izin belgesi]" },
+      { label: "Uygulayan", value: "Anlaşmalı merkez" },
     ],
-    suitableFor: ["[Tıbbi inceleyen onayı sonrası doldurulacak]"],
-    notSuitableFor: ["[Tıbbi inceleyen onayı sonrası doldurulacak]"],
-    steps: TODO.steps,
-    timeline: TODO.timeline,
+    suitableFor: ["[Anlaşmalı merkezin uygulama kriterlerine göre doldurulacak]"],
+    notSuitableFor: ["[Anlaşmalı merkezin uygulama kriterlerine göre doldurulacak]"],
+    timeline: ORTAK_TAKVIM,
+    faq: [],
+  },
+  {
+    slug: "/sac-tedavileri/buyume-faktoru",
+    name: "Büyüme Faktörü",
+    h1: "Büyüme Faktörü Uygulaması Nedir?",
+    lead: "[Büyüme faktörü uygulamasının tanımı — anlaşmalı merkezin uygulama biçimine göre yazılacak.]",
+    metaTitle: "Büyüme Faktörü Saç Uygulaması",
+    metaDescription: "Büyüme faktörü uygulaması hakkında bilgi: uygunluk, süreç ve sınırlar.",
+    eyebrow: "Tedavi",
+    parent: sacTedavileri,
+    facts: [
+      { label: "Seans süresi", value: "[00 dakika]" },
+      { label: "Seans sayısı", value: "[0 seans]" },
+      { label: "İzin/belge", value: "[Anlaşmalı merkezin izin belgesi]" },
+      { label: "Uygulayan", value: "Anlaşmalı merkez" },
+    ],
+    suitableFor: ["[Anlaşmalı merkezin uygulama kriterlerine göre doldurulacak]"],
+    notSuitableFor: ["[Anlaşmalı merkezin uygulama kriterlerine göre doldurulacak]"],
+    timeline: ORTAK_TAKVIM,
     faq: [],
   },
   {
     slug: "/sac-tedavileri/sac-analizi",
     name: "Saç Analizi",
     h1: "Saç Analizi Nasıl Yapılır?",
-    lead: "Saç analizinde donör alan yoğunluğunuz, dökülme tipiniz ve saç telinizin kalınlığı ölçülür. Greft planı bu ölçümler üzerine kurulur; ölçüm yapılmadan verilen greft sayıları yalnızca yaklaşık bir aralık gösterir.",
-    metaTitle: "Saç Analizi — Vionte Hair Transplant",
+    lead: "Saç analizinde donör alan yoğunluğunuz, dökülme tipiniz ve saç telinizin kalınlığı ölçülür. Yönlendirme planı bu ölçümler üzerine kurulur; ölçüm yapılmadan verilen greft sayıları yalnızca yaklaşık bir aralık gösterir. Vionte'de saç analizi ücretsizdir.",
+    metaTitle: "Saç Analizi Nasıl Yapılır?",
     metaDescription:
-      "Saç analizinde donör alan yoğunluğu, dökülme tipi ve saç teli kalınlığı ölçülür. Greft planı bu ölçümler üzerine kurulur.",
+      "Saç analizinde donör alan yoğunluğu, dökülme tipi ve saç teli kalınlığı ölçülür. Yönlendirme planı bu ölçümler üzerine kurulur.",
     eyebrow: "Tedavi",
     parent: sacTedavileri,
     facts: [
-      { label: "Süre", value: "[00 dakika]" },
+      { label: "Ücret", value: "Ücretsiz" },
       { label: "Ölçülenler", value: "Donör yoğunluğu, dökülme tipi, tel kalınlığı" },
-      { label: "Sonrasında", value: "Greft planı ve uygunluk görüşü" },
+      { label: "Sonrasında", value: "Yönlendirme planı ve uygunluk görüşü" },
     ],
-    suitableFor: [
-      "Saç ekimi düşünen herkes",
-      "Dökülmesinin nedenini ve seviyesini öğrenmek isteyenler",
-    ],
-    notSuitableFor: [
-      "Analiz bir tanı işlemi değildir; tanı hekim muayenesiyle konur",
-    ],
-    steps: TODO.steps,
-    timeline: TODO.timeline,
-    faq: [faqGrafts, faqEveryone],
+    suitableFor: ["Saç ekimi düşünen herkes", "Dökülmesinin nedenini ve seviyesini öğrenmek isteyenler"],
+    notSuitableFor: ["Analiz bir tanı işlemi değildir; tanı hekim muayenesiyle konur"],
+    timeline: ORTAK_TAKVIM,
+    faq: [faqGrafts, faqEveryone, faqGaranti],
   },
 ];
 

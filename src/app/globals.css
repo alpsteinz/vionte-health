@@ -117,6 +117,38 @@
   /* DESIGN.md 75 karakter/satır istiyor. `ch` birimi Jost'un dar "0"
      karakterine göre hesaplandığından 75ch gerçekte 87 karakter veriyordu;
      ölçülen değere göre 62ch'ye çekildi (~72 görünen karakter). */
+  /*
+   * İçerik kapsayıcısı.
+   *
+   * DESIGN.md 1180px veriyor; bu değer 1440px'e kadar doğru. Daha geniş
+   * ekranlarda (1920/2560) içerik ekranın yarısından azını kaplayıp
+   * boşlukta yüzdüğü için üst sınır kademeli açılıyor. Tailwind varyant
+   * sıralamasına bağlı kalmamak için doğrudan medya sorgusuyla yazıldı.
+   *
+   * Ölçü genişliği (.measure) değişmez — satır uzunluğu okunabilir
+   * aralıkta kalır, genişleyen yalnızca ızgara.
+   */
+  .shell {
+    width: 100%;
+    margin-inline: auto;
+    max-width: 1180px;
+    padding-inline: 1.5rem;
+  }
+
+  @media (min-width: 1536px) {
+    .shell {
+      max-width: 1360px;
+      padding-inline: 2.5rem;
+    }
+  }
+
+  @media (min-width: 1800px) {
+    .shell {
+      max-width: 1560px;
+      padding-inline: 3rem;
+    }
+  }
+
   .measure {
     max-width: 62ch;
   }

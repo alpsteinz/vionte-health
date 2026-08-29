@@ -4,7 +4,7 @@ import { Breadcrumbs, type Crumb } from "@/components/ui/breadcrumbs";
 import { PageHero } from "@/components/ui/page-hero";
 import { Section } from "@/components/ui/section";
 import { Container } from "@/components/ui/container";
-import { MedicalReview } from "@/components/ui/medical-review";
+import { ContentInfo } from "@/components/ui/content-info";
 import { AiSummary } from "@/components/ui/ai-summary";
 import { JsonLd } from "@/components/ui/json-ld";
 import { LeadForm } from "./lead-form";
@@ -57,14 +57,14 @@ export function HubPage({
       {children}
 
       <Section tone="navy">
-        <div className="grid gap-12 lg:grid-cols-[1fr_460px] lg:gap-16">
+        <div className="grid gap-12 lg:grid-cols-[1fr_460px] lg:gap-20 xl:gap-28">
           <div className="reveal flex flex-col justify-center">
             <p className="eyebrow eyebrow-light">Ön değerlendirme</p>
             <h2 className="h2 mt-4 text-white">Hangisi size uygun, ölçelim</h2>
             <p className="measure mt-6 text-[1.0625rem] leading-relaxed text-blue-light">
-              Teknik seçimi tercih meselesi değildir; donör alanınızın
-              yoğunluğuna, ekim yapılacak bölgenin genişliğine ve mevcut
-              saçlarınızın durumuna göre belirlenir.
+              Hangi tekniğin uygun olduğunu ölçüm belirler: donör alanınızın
+              yoğunluğu, ekim yapılacak bölgenin genişliği ve mevcut
+              saçlarınızın durumu. Analiz ücretsizdir.
             </p>
           </div>
           <div className="reveal">
@@ -75,7 +75,7 @@ export function HubPage({
 
       <Container className="pb-20">
         <AiSummary path={path} title={title} />
-        <MedicalReview />
+        <ContentInfo />
       </Container>
 
       <JsonLd data={breadcrumbSchema(trail)} />

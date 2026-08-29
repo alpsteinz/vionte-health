@@ -5,7 +5,7 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { PageHero } from "@/components/ui/page-hero";
 import { Section, SectionHead } from "@/components/ui/section";
 import { Container } from "@/components/ui/container";
-import { MedicalReview } from "@/components/ui/medical-review";
+import { ContentInfo } from "@/components/ui/content-info";
 import { JsonLd } from "@/components/ui/json-ld";
 import { breadcrumbSchema } from "@/lib/schema";
 import { posts, clusters } from "@/content/blog";
@@ -90,7 +90,7 @@ export default function Page() {
       </Section>
 
       <Container className="pb-20">
-        <MedicalReview />
+        <ContentInfo />
       </Container>
       <JsonLd data={breadcrumbSchema(trail)} />
     </>

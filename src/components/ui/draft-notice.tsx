@@ -11,16 +11,16 @@ import { Container } from "./container";
  * İçerik onaylandığında ilgili sayfanın `draftMedicalCopy` bayrağı kaldırılır
  * ve uyarı kaybolur.
  */
-export function DraftNotice() {
+export function DraftNotice({ mesaj }: { mesaj?: string } = {}) {
   return (
     <div className="border-b border-[#e6d5a8] bg-[#fdf8ec]">
       <Container>
         <p className="measure flex items-start gap-3 py-3 text-[0.8125rem] leading-relaxed text-[#6b5518]">
           <AlertTriangle className="mt-0.5 size-4 shrink-0" strokeWidth={1.5} aria-hidden />
           <span>
-            <strong className="font-medium">Taslak içerik.</strong> Bu sayfadaki
-            tıbbi anlatımın bir bölümü henüz onaylanmadı; yayından önce tıbbi
-            inceleyenin onayından geçmesi gerekiyor.
+            <strong className="font-medium">Taslak içerik.</strong>{" "}
+            {mesaj ??
+              "Bu sayfadaki anlatımın bir bölümü henüz onaylanmadı; yayından önce onaydan geçmesi gerekiyor."}
           </span>
         </p>
       </Container>

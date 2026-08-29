@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ServicePage } from "@/components/sections/service-page";
 import { getService } from "@/content/services";
 
-const service = getService("/sac-tedavileri/eksozom")!;
+const service = getService("/sac-ekimi/vucut-kilindan-sac-ekimi")!;
 
 export const metadata: Metadata = {
   title: service.metaTitle,

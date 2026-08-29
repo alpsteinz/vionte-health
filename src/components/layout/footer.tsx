@@ -15,8 +15,9 @@ export function Footer() {
           <div>
             <Logo tone="light" />
             <p className="measure mt-6 text-[0.9375rem] text-blue-light">
-              İstanbul&apos;da Safir FUE ve DHI teknikleriyle saç ekimi
-              uygulamaları. Planlama, ölçüm sonuçları üzerine kurulur.
+              Saç ekimi danışmanlık ve yönlendirme. Uygulama yapmayız;
+              ölçüme göre size uygun tekniğe ve anlaşmalı merkeze
+              yönlendirir, süreci takip ederiz.
             </p>
 
             <ul className="mt-8 space-y-3 text-[0.9375rem] text-blue-light">
@@ -113,11 +114,12 @@ export function Footer() {
 
         {/* Zorunlu künye: ticari ünvan, tıbbi sorumluluk notu, içerik sorumlusu, son güncelleme */}
         <div className="border-t border-line-dark py-10 text-[0.8125rem] leading-relaxed text-blue-light">
-          <p className="measure">{site.disclaimers.medical}</p>
+          <p className="measure">{site.disclaimers.rol}</p>
+          <p className="measure mt-3">{site.disclaimers.medical}</p>
           <dl className="mt-6 grid gap-x-10 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">
             <div className="flex gap-2">
               <dt className="text-white/60">Ticari ünvan:</dt>
-              <dd>{site.legalName}</dd>
+              <dd>{site.legalName} ({site.legalForm})</dd>
             </div>
             <div className="flex gap-2">
               <dt className="text-white/60">İçerik sorumlusu:</dt>

@@ -10,7 +10,7 @@ export function Process() {
         tone="dark"
       />
 
-      <ol className="rule-grid rule-grid-dark reveal mt-12 sm:grid-cols-2">
+      <ol className="rule-grid rule-grid-dark reveal mt-12 sm:grid-cols-2 2xl:grid-cols-4">
         {process.steps.map((step, i) => (
           <li key={step.title} className="bg-navy p-7 md:p-8">
             <span className="font-serif text-[2.2rem] leading-none text-blue-light/50">

@@ -84,17 +84,50 @@ for (const f of [join(KOK, "src/content/services.ts"), join(KOK, "src/content/gu
   const satirlar = metin.split("\n");
   satirlar.forEach((satir, i) => {
     if (!satir.includes("draftMedicalCopy: true")) return;
-    const slug = satirlar[i - 1]?.match(/slug: "([^"]+)"/)?.[1];
-    if (slug) {
-      console.log(`   ! ${slug}`);
-      taslak++;
+    let slug = null;
+    for (let j = i; j >= 0 && j > i - 40; j--) {
+      const m = satirlar[j].match(/slug: "([^"]+)"/);
+      if (m) { slug = m[1]; break; }
     }
+    console.log(`   ! ${slug ?? f.replace(KOK, "") + ":" + (i + 1)}`);
+    taslak++;
   });
 }
 console.log(taslak === 0 ? "   ✓ tüm sayfalar onaylı" : `   toplam ${taslak} sayfa tıbbi inceleme bekliyor`);
 if (taslak > 0) hata++;
 
-console.log("\n4) SONUÇ İÇERİĞİ YAYIN KAPILARI");
+console.log("\n4) KONUMLANDIRMA DİLİ");
+{
+  // Vionte uygulama yapmaz; bu ifadeler uygulamayı Vionte'nin yaptığı
+  // izlenimi verir ve kullanılmamalıdır.
+  const yasakDil = [
+    [/kliniğimiz/i, "kliniğimiz"],
+    [/uyguluyoruz/i, "uyguluyoruz"],
+    [/operasyonumuz/i, "operasyonumuz"],
+    [/hekimimiz|doktorumuz/i, "hekimimiz/doktorumuz"],
+    [/tıbbi inceleme/i, "Tıbbi inceleme satırı"],
+  ];
+  let n = 0;
+  for (const f of kaynaklar) {
+    const metin = readFileSync(f, "utf8");
+    metin.split("\n").forEach((satir, i) => {
+      if (satir.trimStart().startsWith("*") || satir.trimStart().startsWith("//")) return;
+      for (const [pat, ad] of yasakDil) {
+        // Olumsuz kullanım ihlal değil: "kendi kliniğimiz olmadığı için..."
+        const olumsuz = /\b(değil|yok|olmadığı|bulunmaz|yapmaz)\b/i.test(satir);
+        if (pat.test(satir) && !olumsuz) {
+          console.log(`   ! ${ad}: ${f.replace(KOK, "")}:${i + 1}`);
+          console.log(`     ${satir.trim().slice(0, 90)}`);
+          n++;
+        }
+      }
+    });
+  }
+  console.log(n === 0 ? "   ✓ temiz — uygulamayı Vionte'nin yaptığı izlenimi yok" : `   ${n} ihlal`);
+  if (n > 0) hata++;
+}
+
+console.log("\n5) SONUÇ İÇERİĞİ YAYIN KAPILARI");
 {
   const src = readFileSync(join(KOK, "src/content/results.ts"), "utf8");
   const say = (re) => (src.match(re) || []).length;

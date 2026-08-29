@@ -1,24 +1,27 @@
 /**
- * CONTENT.md'deki onaylanmış metinler. Burada yeni metin üretilmez.
- * Değişiklik gerekiyorsa önce CONTENT.md güncellenir.
+ * Ana sayfa metinleri.
+ *
+ * DİL KURALI: Vionte uygulama yapmaz, yönlendirir. "Kliniğimiz",
+ * "uyguluyoruz", "operasyonumuz" gibi ifadeler kullanılmaz; yerine
+ * "anlaşmalı merkez", "yönlendiriyoruz", "danışmanlık" geçer.
  */
 
 export const hero = {
-  eyebrow: "İstanbul · Saç Ekimi Kliniği",
+  eyebrow: "İstanbul · Saç Ekimi Danışmanlığı",
   titleLead: "Saç ekimi",
-  titleEmphasis: "bir planla",
+  titleEmphasis: "doğru yönlendirmeyle",
   titleTail: "başlar.",
-  body: "Her saç yapısı farklıdır. Ekim öncesi donör alan yoğunluğunuz, dökülme tipiniz ve saç telinizin kalınlığı ölçülür; greft planı bu ölçümler üzerine kurulur.",
+  body: "Vionte bir klinik değil, saç ekimi danışmanlık ve yönlendirme şirketidir. Dökülme tipinizi ve donör kapasitenizi ölçer, size uygun tekniği ve anlaşmalı merkezi birlikte belirleriz. Operasyonu anlaşmalı merkezde sertifikalı saç ekim uzmanları yapar.",
   counters: [
-    { value: "15+", label: "Yıl tecrübe" },
-    { value: "1000+", label: "Uygulama" },
-    { value: "Safir FUE / DHI", label: "Teknikler" },
+    { value: "12", label: "Yıl deneyim" },
+    { value: "200+", label: "Yıllık danışan" },
+    { value: "2000+", label: "Toplam danışan" },
   ],
 };
 
 export const form = {
-  title: "Ücretsiz ön değerlendirme",
-  subtitle: "Dökülme seviyenizi işaretleyin, uzmanımız sizi arasın.",
+  title: "Ücretsiz saç analizi",
+  subtitle: "Dökülme seviyenizi işaretleyin, uzmanımız sizi WhatsApp'tan arasın.",
   norwoodLabel: "Dökülme seviyeniz",
   norwoodEmpty: "Size en yakın görseli seçin.",
 };
@@ -28,78 +31,38 @@ export type NorwoodLevel = {
   roman: string;
   title: string;
   description: string;
-  /** Tepe (vertex) görünümünde açık alan oranı — şematik gösterim için */
   vertex: number;
-  /** Ön saç çizgisinin geri çekilme oranı — şematik gösterim için */
   hairline: number;
 };
 
-/** CONTENT.md — Norwood açıklamaları */
+/**
+ * Norwood seviyeleri.
+ * Şematik çizimler yer tutucudur; klinik kendi görsel setini yükleyecek
+ * ve `NorwoodFigure` bileşeni o dosyalarla değiştirilecek.
+ */
 export const norwoodLevels: NorwoodLevel[] = [
-  {
-    id: "tip-1",
-    roman: "I",
-    title: "Tip I",
-    description: "Belirgin dökülme yok. Koruyucu takip yeterli olabilir.",
-    vertex: 0,
-    hairline: 0.04,
-  },
-  {
-    id: "tip-2",
-    roman: "II",
-    title: "Tip II",
-    description: "Şakaklarda hafif geri çekilme.",
-    vertex: 0,
-    hairline: 0.18,
-  },
-  {
-    id: "tip-3",
-    roman: "III",
-    title: "Tip III",
-    description: "Saç çizgisinde belirginleşen açılma.",
-    vertex: 0.16,
-    hairline: 0.34,
-  },
-  {
-    id: "tip-4",
-    roman: "IV",
-    title: "Tip IV",
-    description: "Ön bölge ve tepe ayrışmaya başlamış.",
-    vertex: 0.36,
-    hairline: 0.46,
-  },
-  {
-    id: "tip-5",
-    roman: "V",
-    title: "Tip V",
-    description: "Ön bölge ile tepe arasındaki bant incelmiş.",
-    vertex: 0.54,
-    hairline: 0.58,
-  },
-  {
-    id: "tip-6",
-    roman: "VI",
-    title: "Tip VI",
-    description: "Ön bölge ve tepe birleşmiş. Donör kapasitesi belirleyici.",
-    vertex: 0.78,
-    hairline: 0.72,
-  },
+  { id: "tip-1", roman: "I", title: "Tip I", description: "Belirgin dökülme yok. Koruyucu takip yeterli olabilir.", vertex: 0, hairline: 0.04 },
+  { id: "tip-2", roman: "II", title: "Tip II", description: "Şakaklarda hafif geri çekilme.", vertex: 0, hairline: 0.18 },
+  { id: "tip-3", roman: "III", title: "Tip III", description: "Saç çizgisinde belirginleşen açılma.", vertex: 0.16, hairline: 0.34 },
+  { id: "tip-4", roman: "IV", title: "Tip IV", description: "Ön bölge ve tepe ayrışmaya başlamış.", vertex: 0.36, hairline: 0.46 },
+  { id: "tip-5", roman: "V", title: "Tip V", description: "Ön bölge ile tepe arasındaki bant incelmiş.", vertex: 0.54, hairline: 0.58 },
+  { id: "tip-6", roman: "VI", title: "Tip VI", description: "Ön bölge ve tepe birleşmiş. Donör kapasitesi belirleyici.", vertex: 0.78, hairline: 0.72 },
 ];
 
 export const techniques = {
   eyebrow: "Teknikler",
-  title: "İki yöntem, iki farklı saç yapısı",
+  title: "Teknik seçimi tercih değil, ölçüm meselesi",
   intro:
-    "Teknik seçimi tercih meselesi değildir; donör alanınızın yoğunluğuna, ekim yapılacak bölgenin genişliğine ve mevcut saçlarınızın durumuna göre belirlenir.",
+    "Hangi tekniğin uygun olduğu donör alanınızın yoğunluğuna, ekim yapılacak bölgenin genişliğine ve mevcut saçlarınızın durumuna göre belirlenir. Aşağıdaki sayfalarda her tekniğin ne olduğu, kime uygun olduğu ve kime uygun olmadığı anlatılır.",
   items: [
     {
       name: "Safir FUE",
       href: "/sac-ekimi/safir-fue",
       body: "Grefler donör alandan tek tek alınır, safir uçlu kalemlerle açılan kanallara yerleştirilir. Geniş alan ekimlerinde tercih edilir.",
       specs: [
-        { label: "Operasyon süresi", value: "[0–0 saat]" },
-        { label: "Tıraş", value: "[Donör alan / tam tıraş]" },
-        { label: "İşe dönüş", value: "[0–0 gün]" },
+        { label: "Operasyon süresi", value: "6–8 saat" },
+        { label: "Normal hayata dönüş", value: "3 gün" },
+        { label: "Sonuç", value: "12. ayda tamamlanır" },
       ],
     },
     {
@@ -107,19 +70,19 @@ export const techniques = {
       href: "/sac-ekimi/dhi",
       body: "Kanal açma ve yerleştirme tek adımda, implanter kalemle yapılır. Mevcut saçların arasına sıklaştırma gerektiğinde öne çıkar.",
       specs: [
-        { label: "Operasyon süresi", value: "[0–0 saat]" },
-        { label: "Tıraş", value: "[Bölgesel / tıraşsız]" },
-        { label: "İşe dönüş", value: "[0–0 gün]" },
+        { label: "Operasyon süresi", value: "6–8 saat" },
+        { label: "Normal hayata dönüş", value: "3 gün" },
+        { label: "Sonuç", value: "12. ayda tamamlanır" },
       ],
     },
     {
-      name: "Destekleyici uygulamalar",
+      name: "Destekleyici tedaviler",
       href: "/sac-tedavileri",
-      body: "PRP ve mezoterapi, ekim sonrası iyileşme sürecinde ya da dökülmenin erken evrelerinde ayrı bir tedavi planı olarak değerlendirilir.",
+      body: "PRP, mezoterapi, kök hücre ve büyüme faktörü uygulamaları; ekim sonrası iyileşme sürecinde ya da dökülmenin erken evrelerinde ayrı bir tedavi planı olarak değerlendirilir.",
       specs: [
         { label: "Seans süresi", value: "[00 dakika]" },
-        { label: "Tıraş", value: "Gerekmez" },
-        { label: "İşe dönüş", value: "Aynı gün" },
+        { label: "Normal hayata dönüş", value: "Aynı gün" },
+        { label: "Yer", value: "Anlaşmalı merkez" },
       ],
     },
   ],
@@ -127,93 +90,59 @@ export const techniques = {
 
 export const process = {
   eyebrow: "Süreç",
-  title: "İlk görüşmeden bir yıllık kontrole",
+  title: "İlk görüşmeden post-op takibe",
   steps: [
     {
-      title: "Ön değerlendirme",
-      body: "Fotoğraf ve görüşme üzerinden dökülme tipiniz değerlendirilir, uygunluk ön görüşü verilir.",
+      title: "İlk görüşme",
+      body: "Fotoğraf ve görüşme üzerinden dökülme tipiniz değerlendirilir, uygunluk ön görüşü verilir. Ücretsizdir.",
     },
     {
-      title: "Klinik muayene",
-      body: "Donör alan yoğunluğu ölçülür, kan tahlilleri yapılır, greft sayısı ve saç çizgisi birlikte planlanır.",
+      title: "Planlama",
+      body: "Donör kapasiteniz ölçülür; size uygun teknik ve anlaşmalı merkez birlikte belirlenir.",
     },
     {
-      title: "Operasyon günü",
-      body: "Lokal anestezi altında greftler alınır ve yerleştirilir. Aynı gün taburcu olursunuz.",
+      title: "Operasyon yönlendirmesi",
+      body: "Operasyon anlaşmalı merkezde, sertifikalı saç ekim uzmanları tarafından yapılır. Ortalama 6–8 saat sürer; 3 gün sonra normal hayatınıza dönersiniz.",
     },
     {
-      title: "Takip",
-      body: "İlk yıkama klinikte yapılır. 3., 6. ve 12. ay kontrolleriyle süreç izlenir.",
+      title: "Post-op takip",
+      body: "Süreç boyunca yanınızdayız. İlk saçlar 3. ayda çıkar, sonuç 12. ayda tamamlanır.",
     },
   ],
+};
+
+/** Ana farklılaşma noktası — öne çıkarılır */
+export const referans = {
+  eyebrow: "Neden Vionte",
+  title: "Danışanlarımızın yarısından çoğu bize referansla geliyor",
+  body: "Reklamla değil, daha önce yönlendirdiğimiz kişilerin tavsiyesiyle. Bu, bizim için tek anlamlı ölçü: süreci yaşayan biri, aynı yolu bir yakınına önerecek kadar memnun kaldı mı?",
+  note: "Vionte uygulama yapmaz. Bağımsız bir danışman olarak sizi doğru merkeze ve doğru tekniğe yönlendirir, süreç boyunca yanınızda kalır.",
 };
 
 export const team = {
-  eyebrow: "Uygulama ekibi",
-  title: "Sertifikalı ekip, hekim sorumluluğunda",
-  body: "Saç ekimi bir ekip işidir. Kanal açma aşamasını saç ekimi uygulayıcı sertifikasına sahip hekim yürütür; greft alımı ve yerleştirme, Sağlık Bakanlığı tescilli yardımcı uygulayıcı sertifikasına sahip sağlık personeli tarafından hekim sorumluluğunda yapılır.",
+  eyebrow: "Ekip",
+  title: "Sertifikalı saç ekim uzmanları",
+  body: "Vionte'nin kendi kliniği yoktur; operasyonlar anlaşmalı merkezlerde yapılır. Yönlendirme ve süreç takibi, 12 yıllık deneyime sahip sertifikalı saç ekim uzmanlarından oluşan ekip tarafından yürütülür.",
   quote:
     "Greft sayısı tek başına bir başarı ölçüsü değil. Belirleyici olan, o greftlerin hangi açıyla ve hangi yoğunlukta yerleştirildiği.",
   roles: [
-    { label: "Sorumlu hekim", value: "[Ad Soyad, unvan]" },
-    { label: "Uygulama ekibi", value: "[Kişi sayısı, meslek grupları]" },
-    { label: "Sertifikasyon", value: "[Bakanlık tescilli uygulayıcı / yardımcı uygulayıcı]" },
-  ],
-};
-
-export type ResultCase = {
-  id: string;
-  grafts: string;
-  age: string;
-  technique: string;
-  month: string;
-  city: string;
-  /** Onamlı görsel gelene kadar boş bırakılır */
-  beforeSrc?: string;
-  afterSrc?: string;
-};
-
-/**
- * Öncesi–sonrası görselleri yalnızca imzalı hasta onam formu varsa yayınlanır.
- * Onam formları gelene kadar kartlar yer tutucu olarak kalır.
- */
-export const results = {
-  eyebrow: "Sonuçlar",
-  title: "Öncesi ve sonrası",
-  cases: [
-    { id: "vaka-1", grafts: "[0.000]", age: "[00]", technique: "[Safir FUE]", month: "[00]", city: "[Şehir]" },
-    { id: "vaka-2", grafts: "[0.000]", age: "[00]", technique: "[DHI]", month: "[00]", city: "[Şehir]" },
-    { id: "vaka-3", grafts: "[0.000]", age: "[00]", technique: "[Safir FUE]", month: "[00]", city: "[Şehir]" },
-  ] satisfies ResultCase[],
-};
-
-export const gallery = {
-  eyebrow: "Klinikten",
-  title: "Geleceğiniz yeri önceden görün",
-  subtitle:
-    "Danışma odasından operasyon salonuna, kliniğin tamamı. Fotoğraflar rötuşsuzdur.",
-  items: [
-    { id: "dis-cephe", caption: "Klinik dış cephe" },
-    { id: "bekleme", caption: "Bekleme alanı" },
-    { id: "danisma", caption: "Danışma odası" },
-    { id: "operasyon", caption: "Operasyon salonu" },
-    { id: "sterilizasyon", caption: "Sterilizasyon ünitesi" },
-    { id: "kontrol", caption: "Kontrol odası" },
+    { label: "Sorumlu teknisyen", value: "Mehtap Dizge — sertifikalı saç ekim uzmanı" },
+    { label: "Ekip", value: "12 yıllık deneyime sahip sertifikalı saç ekim uzmanları" },
+    { label: "Sertifikasyon", value: "Sağlık Bakanlığı saç ekim sertifikası; ekipteki herkeste Bakanlık tescilli yardımcı uygulayıcı sertifikası" },
   ],
 };
 
 export const reviews = {
-  eyebrow: "Hasta yorumları",
-  title: "Anlatanlar hastalar",
-  /** Google puanı doğrulanabilir olduğu için önemli — gerçek veri gelince doldurulur */
+  eyebrow: "Danışan yorumları",
+  title: "Anlatanlar danışanlar",
   google: {
     rating: "[0,0]",
     count: "[000]",
     href: "[Google Business Profile bağlantısı]",
   },
   items: [
-    { id: "yorum-1", name: "[Ad S.]", meta: "[Safir FUE · 00. ay]", quote: "[Hasta yorumu — video yorum bağlantısı ile birlikte]" },
-    { id: "yorum-2", name: "[Ad S.]", meta: "[DHI · 00. ay]", quote: "[Hasta yorumu — video yorum bağlantısı ile birlikte]" },
-    { id: "yorum-3", name: "[Ad S.]", meta: "[Safir FUE · 00. ay]", quote: "[Hasta yorumu — video yorum bağlantısı ile birlikte]" },
+    { id: "yorum-1", name: "[Ad S.]", meta: "[Safir FUE · 00. ay]", quote: "[Danışan yorumu — Google Business Profile entegrasyonu ile gelecek]" },
+    { id: "yorum-2", name: "[Ad S.]", meta: "[DHI · 00. ay]", quote: "[Danışan yorumu — Google Business Profile entegrasyonu ile gelecek]" },
+    { id: "yorum-3", name: "[Ad S.]", meta: "[Safir FUE · 00. ay]", quote: "[Danışan yorumu — Google Business Profile entegrasyonu ile gelecek]" },
   ],
 };

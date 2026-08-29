@@ -1,7 +1,10 @@
 export type NavChild = { title: string; href: string; note?: string };
 export type NavItem = { title: string; href: string; children?: NavChild[] };
 
-/** AGENTS.md — site mimarisi */
+/**
+ * Menü, danışmanlık konumlandırmasına göre kurulur.
+ * "Klinik" başlığı yoktur — Vionte'nin kendi kliniği yoktur.
+ */
 export const navigation: NavItem[] = [
   {
     title: "Saç Ekimi",
@@ -11,10 +14,11 @@ export const navigation: NavItem[] = [
       { title: "DHI", href: "/sac-ekimi/dhi" },
       { title: "Tıraşsız Saç Ekimi", href: "/sac-ekimi/tirassiz-sac-ekimi" },
       { title: "Kadınlarda Saç Ekimi", href: "/sac-ekimi/kadin-sac-ekimi" },
+      { title: "Vücut Kılından Saç Ekimi", href: "/sac-ekimi/vucut-kilindan-sac-ekimi" },
       { title: "İğnesiz Anestezi", href: "/sac-ekimi/ignesiz-anestezi" },
     ],
   },
-  { title: "Sakal Ekimi", href: "/sakal-ekimi" },
+  { title: "Sakal ve Bıyık Ekimi", href: "/sakal-ekimi" },
   { title: "Kaş Ekimi", href: "/kas-ekimi" },
   {
     title: "Saç Tedavileri",
@@ -22,13 +26,30 @@ export const navigation: NavItem[] = [
     children: [
       { title: "PRP", href: "/sac-tedavileri/prp" },
       { title: "Mezoterapi", href: "/sac-tedavileri/mezoterapi" },
-      { title: "Eksozom", href: "/sac-tedavileri/eksozom" },
       { title: "Kök Hücre", href: "/sac-tedavileri/kok-hucre" },
+      { title: "Büyüme Faktörü", href: "/sac-tedavileri/buyume-faktoru" },
       { title: "Saç Analizi", href: "/sac-tedavileri/sac-analizi" },
     ],
   },
   {
-    title: "Hasta Rehberi",
+    title: "Danışmanlık",
+    href: "/neden-danisman",
+    children: [
+      { title: "Neden Danışman?", href: "/neden-danisman" },
+      { title: "Ücretsiz Saç Analizi", href: "/ucretsiz-sac-analizi" },
+      {
+        title: "Klinik Seçerken Nelere Dikkat Edilmeli",
+        href: "/klinik-secerken-nelere-dikkat-edilmeli",
+      },
+      {
+        title: "Saç Ekimi Öncesi Sorulacak Sorular",
+        href: "/sac-ekimi-oncesi-sorulacak-sorular",
+      },
+      { title: "Ekibimiz", href: "/ekibimiz" },
+    ],
+  },
+  {
+    title: "Rehber",
     href: "/hasta-rehberi",
     children: [
       { title: "Operasyon Öncesi", href: "/hasta-rehberi/operasyon-oncesi" },
@@ -40,20 +61,11 @@ export const navigation: NavItem[] = [
         title: "Fiyatlandırma Nasıl Belirlenir",
         href: "/hasta-rehberi/fiyatlandirma-nasil-belirlenir",
       },
-    ],
-  },
-  {
-    title: "Klinik",
-    href: "/ekibimiz",
-    children: [
-      { title: "Ekibimiz", href: "/ekibimiz" },
-      { title: "Galeri", href: "/galeri" },
-      { title: "Vakalar", href: "/vakalar" },
-      { title: "Sonuçlarımız", href: "/sonuclarimiz" },
-      { title: "Yorumlar", href: "/yorumlar" },
       { title: "Doğru Bilinen Yanlışlar", href: "/dogru-bilinen-yanlislar" },
-      { title: "Blog", href: "/blog" },
+      { title: "Vakalar", href: "/vakalar" },
+      { title: "Yorumlar", href: "/yorumlar" },
       { title: "S.S.S.", href: "/sss" },
+      { title: "Blog", href: "/blog" },
     ],
   },
   { title: "İletişim", href: "/iletisim" },

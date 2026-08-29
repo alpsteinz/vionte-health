@@ -22,7 +22,7 @@ export function Contact() {
     <Section id="iletisim" tone="navy">
       <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
         <div className="reveal">
-          <p className="eyebrow eyebrow-light">Klinik</p>
+          <p className="eyebrow eyebrow-light">İletişim</p>
           <h2 className="h2 mt-4 text-white">Bize ulaşın</h2>
 
           <dl className="mt-10 divide-y divide-line-dark border-y border-line-dark">
@@ -57,7 +57,7 @@ export function Contact() {
         </div>
 
         <div className="reveal border border-line-dark">
-          <PhotoPlaceholder label="Harita — adres onaylandığında eklenecek" ratio="4/3" tone="dark" />
+          <PhotoPlaceholder label="Harita — Varyap Plaza, Pendik" ratio="4/3" tone="dark" />
         </div>
       </div>
     </Section>
