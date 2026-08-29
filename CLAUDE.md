@@ -5,17 +5,94 @@ CLAUDE.md aynı içeriği taşır.
 
 ## Proje
 
-Vionte Hair Transplant (İstanbul) için saç ekimi kliniği web sitesi.
-Domain: viontehealth.com — şu an "Çok Yakında" sayfası yayında, içerik yok.
-Instagram: @viontehealth
+**Vionte bir saç ekimi kliniği DEĞİLDİR.** Saç ekimi danışmanlık ve
+yönlendirme şirketidir.
+
+- Vergi levhasındaki faaliyet: "tıp, dişçilik ve diğer insan sağlığı
+  hizmetlerine yönelik aracılık hizmetleri"
+- Şahıs şirketi — **Mehtap Dizge**
+- Kendi kliniği yok. Operasyonlar anlaşmalı hastanede, sertifikalı saç ekim
+  teknisyenleri tarafından yapılır.
+- Site bilgilendiren, yönlendiren, danışmanlık veren bir kurum gibi kurgulanır.
+
+Domain: viontehealth.com · Instagram: @viontehealth
 
 **Amaç:** Lead toplamak + Google organik aramada ve AI arama deneyimlerinde
 (AI Overviews, AI Mode, ChatGPT, Perplexity) görünürlük.
 
-**Trafik kaynağı:** Hastaların çoğu sosyal medya reklamı ve referansla geliyor.
-Site ikna aracı değil, **doğrulama** aracıdır. Ziyaretçi kliniğin adını zaten
-duymuştur; "bu gerçek mi, doğru yer mi" sorusuna cevap arar. Bu yüzden yorumlar,
-klinik fotoğrafları ve şeffaflık öne çıkar.
+**Trafik kaynağı:** Danışanların yarısından çoğu eski danışan referansıyla
+geliyor. Bu ana farklılaşma noktasıdır ve öne çıkarılır. Site ikna aracı
+değil, **doğrulama** aracıdır.
+
+## Mutlak kurallar — konumlandırma
+
+1. Hiçbir yerde uygulamayı Vionte'nin yaptığı izlenimi verilmez.
+2. "Kliniğimiz", "uyguluyoruz", "operasyonumuz" yazılmaz. Yerine
+   "anlaşmalı merkez", "yönlendiriyoruz", "danışmanlık" kullanılır.
+3. Bünyede hekim yoktur. Doktor sayfası, doktor referansı ve
+   "Tıbbi inceleme: Dr. X" satırı **bulunmaz**. Sayfa künyesinde içerik
+   sorumlusu ve son güncelleme tarihi yer alır (`ContentInfo`).
+4. Klinik galerisi yoktur — kendi kliniği yok.
+5. Hizmet sayfaları "biz nasıl yapıyoruz" anlatmaz. Anlatılan: bu teknik
+   nedir, kime uygun, **kime uygun değil**. Uygulama adımları bölümü yoktur.
+6. Schema.org tipi `MedicalClinic` DEĞİL, `ProfessionalService` +
+   `LocalBusiness`. `Physician` şeması kullanılmaz.
+7. Hiçbir görsel Vionte'nin kendi kliniği veya kendi sonucu izlenimi
+   vermez. Kaynağı belirtilmeyen sonuç görseli kullanılmaz.
+
+## Sabit veriler
+
+- **12 yıl** deneyim (15 değil)
+- Yılda **200+** danışan, toplam **2000+**
+- Danışanların yarısından çoğu eski danışan referansıyla geliyor
+- **Yazılı garanti belgesi verilmez**
+- **Fiyat gösterilmez.** Gerekçe metni: "Saç ekimi fiyatı kişiseldir. Her
+  vakanın ihtiyacı farklıdır; yapılacak yer, ekip ve teknik fiyatı etkiler."
+  Greft başına fiyatlandırma yapılmaz.
+
+## Hizmetler
+
+**Saç ekimi teknikleri:** Safir FUE, DHI, tıraşsız saç ekimi, kadın saç
+ekimi, sakal & bıyık ekimi, kaş ekimi, vücut kılından saç ekimi.
+
+**Saç tedavileri:** PRP, mezoterapi, kök hücre, büyüme faktörü.
+**Eksozom yoktur** — yapılmıyor.
+
+**İğnesiz anestezi:** Dermojet basınçlı sistem. Ayrı sayfa.
+
+## Süreç
+
+İlk görüşme → planlama → operasyon yönlendirmesi → post-op takip
+
+- Ortalama operasyon: 6–8 saat
+- 3 gün sonra normal hayata dönüş
+- İlk saçlar 3. ayda çıkar
+- 12. ayda tamamlanır
+
+## Ekip
+
+**Mehtap Dizge** — sertifikalı saç ekim uzmanı, sorumlu teknisyen, aynı
+zamanda içerik sorumlusu. Ekip: 12 yıllık deneyime sahip sertifikalı saç
+ekim uzmanları. Sertifika: Sağlık Bakanlığı saç ekim sertifikası. Ekipteki
+herkeste Bakanlık tescilli yardımcı uygulayıcı sertifikası mevcut.
+
+## İletişim
+
+- Esenyalı Mah. Yanyol Cad. Varyap Plaza No:61 D:247 Pendik/İstanbul
+- Tel/WhatsApp: 0532 015 79 85
+- info@viontehealth.com
+- Çalışma saatleri: 09:00–17:00
+- Instagram: @viontehealth
+- **Formlar WhatsApp'a düşer.** Talepler teknisyenler tarafından anında
+  yanıtlanır.
+
+## Yasal
+
+- Ticari ünvan: **Mehtap Dizge** (şahıs şirketi)
+- İçerik sorumlusu: Mehtap Dizge, info@viontehealth.com
+- **VERBİS kayıt numarası alanı bulunmaz** — muafiyet kapsamında
+  (10'dan az çalışan, 10 milyon TL altı bilanço)
+- Yasal metinler hukuk danışmanı onayına gidecek; onaya kadar `taslak: true`
 
 ## Stack
 
@@ -63,25 +140,11 @@ hedeflenirse ayrı domain/platform gerekir. Genel web tasarım rehberlerinin
 - Formda iki ayrı KVKK onayı: iletişim (zorunlu) + sağlık verisi (açık rıza, isteğe bağlı)
 - Öncesi–sonrası görselleri yalnızca imzalı hasta onam formu varsa
 - Görsellerin yanında "sonuçlar kişiye göre değişir" ibaresi
-- Her hizmet ve blog sayfasında "Tıbbi inceleme: Dr. X — tarih"
+- Her sayfada içerik sorumlusu + son güncelleme + aracılık rolü notu (`ContentInfo`)
 
 **Zorunlu değil:** Vergi no / MERSİS no (online satış yok), ruhsat belgesi görseli.
 **Bulunmayacak:** VERBİS kayıt numarası — şirket muafiyet kapsamında.
 
-## Klinik gerçekleri
-
-- 15+ yıl tecrübe, 1000+ uygulama
-  (Not: Instagram'da "12 yılı aşkın" yazıyor, sitede "15 yılı aşkın". Sahiple
-  netleştirilecek, tek rakamda karar kılınacak.)
-- Teknikler: Safir FUE, DHI, tıraşsız saç ekimi, kadın saç ekimi, sakal/bıyık, kaş
-- Tedaviler: PRP, mezoterapi, eksozom, kök hücre
-- İğnesiz anestezi (basınçlı jet enjektör) uygulanıyor
-
-**Operasyon yapısı (doğru anlatım):** Kanal açma aşamasını saç ekimi uygulayıcı
-sertifikalı hekim yapar. Greft alımı ve yerleştirme, Sağlık Bakanlığı tescilli
-"yardımcı uygulayıcı" sertifikasına sahip sağlık personeli tarafından hekim
-sorumluluğunda yapılır. Bu yapı mevzuata uygundur ve olduğu gibi anlatılır —
-"her şeyi doktor yapar" gibi abartıya gerek yok.
 
 ## Sonuç içeriği — üç tip, üç bileşen
 
@@ -138,6 +201,40 @@ kapsamındadır. Bu alan sonradan da eklenmemelidir.
 
 **Veri sorumlusu: Mehtap Dizge.**
 
+## Karşılaştırma slider'ı
+
+Öncesi–sonrası için sürüklemeli karşılaştırma çizgisi; dış katmanda çoklu
+vaka geçişi (`KarsilastirmaGalerisi`).
+
+- Görseller `loading="lazy"` — LCP'yi bozmaz, slider ilk ekranda yer almaz
+- Mobilde yatay kaydırma jesti **karşılaştırma çizgisini** sürükler,
+  galeriyi değil. Vaka geçişi ok düğmeleriyle yapılır; iki davranış aynı
+  jeste bağlanırsa slider mobilde kullanılamaz hale gelir
+- Klavye erişilebilir: ok tuşları, Home/End
+- Yalnızca `kaynak` dolu VE iki görseli de olan kayıtlar gösterilir;
+  koşul sağlanmazsa bileşen hiçbir şey render etmez
+
+## Google yorumları
+
+Yorumlar Google Places API (New) üzerinden **build sırasında sunucuda**
+çekilir; API anahtarı tarayıcıya gitmez. İki ortam değişkeni:
+
+```
+GOOGLE_PLACES_API_KEY
+GOOGLE_PLACE_ID
+```
+
+Tanımlı değilse site yorumsuz çalışır, sayfa bozulmaz. Uydurma yorum veya
+puan yayınlanmaz; `AggregateRating` şeması yalnızca gerçek veri varsa
+üretilir.
+
+## Görseller
+
+Görsel yükleme kuralları ve klasör yapısı `GORSELLER.md` dosyasındadır.
+Norwood görselleri `public/norwood/` altına konur ve `home.ts` içindeki
+seviyeye `gorsel:` yolu yazılır; yol verilmeyen seviye şematik çizimle
+görünmeye devam eder.
+
 ## Ayrışma stratejisi
 
 Rakipler (Dr. Terziler, Dr. Serkan Aygın, Smile Hair Clinic) abartılı iddia
@@ -173,26 +270,27 @@ güven kazandırır ve sektörde nadirdir.
 ```
 /                                    Ana sayfa (lead odaklı)
 /sac-ekimi/
-  ├ /safir-fue/
-  ├ /dhi/
-  ├ /tirassiz-sac-ekimi/            ← yüksek değerli sayfa
-  ├ /kadin-sac-ekimi/               ← yüksek değerli sayfa
+  ├ /safir-fue/  ├ /dhi/  ├ /tirassiz-sac-ekimi/
+  ├ /kadin-sac-ekimi/  ├ /vucut-kilindan-sac-ekimi/
   └ /ignesiz-anestezi/
-/sakal-ekimi/
-/kas-ekimi/
+/sakal-ekimi/   /kas-ekimi/
 /sac-tedavileri/
-  ├ /prp/  ├ /mezoterapi/  ├ /eksozom/  ├ /kok-hucre/  └ /sac-analizi/
-/hasta-rehberi/
-  ├ /operasyon-oncesi/
-  ├ /operasyon-gunu/
-  ├ /operasyon-sonrasi/
-  ├ /sac-yikama/
-  ├ /sterilizasyon-ve-hijyen/
-  └ /fiyatlandirma-nasil-belirlenir/
-/ekibimiz/  /galeri/  /sonuclarimiz/  /yorumlar/  /sss/  /iletisim/
-/blog/[slug]/
+  ├ /prp/  ├ /mezoterapi/  ├ /kok-hucre/
+  ├ /buyume-faktoru/  └ /sac-analizi/
+Danışmanlık (ayrışma stratejisinin merkezi):
+  ├ /neden-danisman/
+  ├ /ucretsiz-sac-analizi/
+  ├ /klinik-secerken-nelere-dikkat-edilmeli/
+  ├ /sac-ekimi-oncesi-sorulacak-sorular/
+  └ /ekibimiz/
+/hasta-rehberi/  (6 alt sayfa)
+/vakalar/  /sonuclarimiz/  /yorumlar/  /sss/  /dogru-bilinen-yanlislar/
+/blog/[slug]/  /iletisim/
 /kvkk-aydinlatma-metni/  /gizlilik-politikasi/  /cerez-politikasi/
 ```
+
+Bulunmayan sayfalar (bilinçli): doktor sayfası, klinik galerisi, eksozom.
+
 
 ## Ana sayfa bölüm sırası
 
@@ -216,83 +314,13 @@ güven kazandırır ve sektörde nadirdir.
 
 ## Hizmet sayfası şablonu
 
-Her teknik için aynı iskelet:
+Her teknik için aynı iskelet. **"İşlem adımları" bölümü yoktur** — Vionte
+uygulama yapmaz, uygulamanın nasıl yapıldığını anlatmaz.
 
 1. Teknik nedir — 2-3 cümlelik doğrudan cevap
 2. Kimlere uygun / **kimlere uygun değil**
-3. İşlem adımları
-4. Süre ve iyileşme takvimi
-5. Diğer tekniklerden farkı (karşılaştırma tablosu)
-6. Bu teknikle yapılmış sonuçlar
-7. Tekniğe özel SSS
-8. Form
-9. Tıbbi inceleme satırı
-
-## SEO / AI görünürlük
-
-Google'ın kendi dokümantasyonuna göre AI arama için ayrı teknik yok — AI Overviews
-ve AI Mode aynı Search index'inden besleniyor. Ayrı "GEO/AEO" hizmetine gerek yok;
-temel SEO + E-E-A-T yeterli.
-
-- Sağlık içeriği YMYL — en sıkı denetlenen kategori. Toplu üretilmiş, editörden
-  geçmemiş AI içeriği domaini yakar. AI taslak için kullanılır, yayın için değil.
-- Ayda 4-8 iyi makale > 100 vasat makale
-- **Query fan-out:** model tek soruyu alt sorgulara böler. Makaleler tek anahtar
-  kelimeye değil, konunun tüm alt sorularına cevap verecek şekilde yazılır.
-- H1 = arama sorusu, ilk paragraf = doğrudan cevap (2-3 cümle), H2'ler = alt sorular
-- Schema: ana sayfa `MedicalClinic` + `LocalBusiness`, hizmet sayfaları
-  `MedicalProcedure` + `FAQPage`, ekip `Physician`, blog `MedicalWebPage` + `FAQPage`,
-  tüm site `BreadcrumbList`
-- Özgün veri (klinik vaka sayıları) AI modellerinin alıntılamasını kolaylaştırır
-- sitemap.xml, robots.txt, llms.txt
-- Sayfalara "ChatGPT/Claude/Perplexity ile özetle" butonları (Smile Hair Clinic
-  uyguluyor, uygulaması kolay, AI görünürlüğüne katkı)
-
-**En değerli iki sayfa:** "kadın saç ekimi" ve "tıraşsız saç ekimi". Arama hacmi
-ciddi, rekabet ana terime göre düşük, dönüşüm niyeti yüksek. Kadın saç dökülmesi
-alanı neredeyse boş.
-
-**Fiyat trafiği:** "saç ekimi fiyatları" Türkiye'nin en yüksek hacimli saç ekimi
-araması ama en riskli alan. Güvenli çözüm: "Saç Ekimi Fiyatı Nasıl Belirlenir?"
-sayfası — fiyatı etkileyen faktörleri anlatır, rakam vermez, forma yönlendirir.
-
-**Blog konu kümeleri** (her küme ilgili hizmet sayfasına iç link):
-- Saç dökülmesi: nedenleri, tipleri, kadınlarda, genç yaşta
-- Operasyon öncesi: hazırlık, kimler uygun, greft hesabı
-- Operasyon sonrası: yıkama, şok dökülme, uyku, spor, güneş
-- Teknik karşılaştırmaları: FUE vs DHI, safir uç farkı
-- Alternatif tedaviler: PRP, mezoterapi, ilaç tedavileri
-- **Doğru bilinen yanlışlar** ← ayrıştırıcı küme, aşağıya bak
-
-## "Doğru Bilinen Yanlışlar" bölümü
-
-Memorial'ın sitesinden alınan, ayrışma stratejisine birebir uyan format.
-Hem AI aramalarda çok alıntılanır hem mevzuata tamamen uygundur.
-
-Konular:
-- "Yaz aylarında saç ekimi yapılmaz" → yanlış
-- "Safir DHI'dan iyidir" / "DHI safirden iyidir" → ikisinin birbirine üstünlüğü yok,
-  vakaya göre değişir, bazen birlikte kullanılır
-- "Saç ekiminde komplikasyon riski yoktur" → yanlış; enfeksiyon ve nekroz riski var
-- "Tıraşsız ekim herkese uygundur" → yanlış; tek seansta sınırlı greft ekilebiliyor
-- "Greft sayısı ne kadar çoksa o kadar iyi" → yanlış; belirleyici olan açı ve yoğunluk
-
-## Açık kalan konular (klinik sahibinden bekleniyor)
-
-1. Sorumlu hekimin adı ve saç ekimi uygulayıcı sertifikası
-2. Ekipteki her kişinin Bakanlık tescilli yardımcı uygulayıcı sertifikası
-   (6 Mayıs 2026 zorunluluk tarihi geçti — denetimde ilk bakılan şey)
-3. Eksozom ve kök hücre uygulamaları için hangi izin/belge mevcut
-4. Ruhsattaki tam ticari ünvan
-5. Öncesi–sonrası görselleri + imzalı hasta onam formları
-6. Vektörel logo, marka renk kodları
-7. Klinik fotoğrafları (dış cephe, bekleme, danışma, operasyon salonu)
-8. Adres, telefon, WhatsApp, e-posta, çalışma saatleri
-9. Lead'lerin nereye düşeceği, kim tarafından ne kadar sürede yanıtlanacağı
-10. Sitede fiyat gösterilip gösterilmeyeceği
-11. Norwood seviyeleri için 6 adet tepe fotoğrafı (yüz görünmeyen, onamlı)
-    veya lisanslı Norwood ikon seti bütçesi
-12. Deneyim yılı tutarsızlığı (12 mi 15 mi)
-13. Yazılı garanti belgesi veriliyor mu, koşulları ne
-14. Referans veren hastalara yönelik bir teşekkür sistemi var mı
-    (nakit indirim kampanya sayılır; kontrol/bakım seansı gibi hizmet olarak sunulabilir)
+3. Ne zaman ne olur (danışan takvimi: 6–8 saat, 3 gün, 3. ay, 12. ay)
+4. Diğer tekniklerden farkı (karşılaştırma tablosu)
+5. Tekniğe özel SSS
+6. Form
+7. Sayfa künyesi (`ContentInfo`)

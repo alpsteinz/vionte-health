@@ -19,7 +19,11 @@ const KOK = new URL("..", import.meta.url).pathname;
 /** AGENTS.md — Yasaklar / İçerik */
 const yasakli = [
   ["Üstünlük iddiası", [/\ben iyi\b/i, /türkiye'?nin tek/i, /türkiye'?nin lider/i, /avrupa'?nın en/i, /\blider klinik/i, /dünyanın en/i]],
-  ["Sonuç/deneyim garantisi", [/garanti/i, /%\s*100 kalıcı/i, /sonsuza dek/i, /tamamen ağrısız/i, /ömür boyu/i, /ağrısız saç ekimi/i]],
+  ["Sonuç/deneyim garantisi", [
+    /garanti(li|liyiz|si var|\s+ediyoruz|\s+veriyoruz|\s+altında|\s+kapsamında)/i,
+    /\d+\s*yıl garanti/i,
+    /%\s*100 kalıcı/i, /sonsuza dek/i, /tamamen ağrısız/i, /ömür boyu/i, /ağrısız saç ekimi/i,
+  ]],
   ["Talep oluşturucu reklam", [/hayatınızı değiştir/i, /hayallerinizdeki/i, /yeniden doğ/i]],
   ["Fiyat vurgulu çağrı", [/indirim/i, /kampanya/i, /en uygun fiyat/i, /gizli ücret/i, /taksit/i]],
   ["Dayanaksız istatistik", [/%\s*9\d/, /başarı oran/i, /greft yaşam oran/i]],
@@ -48,11 +52,21 @@ let bulundu = 0;
 for (const [kategori, patterns] of yasakli) {
   for (const f of kaynaklar) {
     const metin = readFileSync(f, "utf8");
-    for (const satirNo of metin.split("\n").keys()) {
-      const satir = metin.split("\n")[satirNo];
-      if (satir.trimStart().startsWith("*") || satir.trimStart().startsWith("//")) continue;
+    const tumSatirlar = metin.split("\n");
+    for (const satirNo of tumSatirlar.keys()) {
+      // Yalnızca çift tırnak içindeki kullanıcıya görünen metni incele;
+      // değişken/anahtar adları ("garanti:", faqGaranti) taranmaz.
+      const ham = tumSatirlar[satirNo];
+      const satir = (ham.match(/"([^"\\]|\\.)*"/g) || []).join(" ");
+      if (!satir) continue;
+      const hamTrim = ham.trimStart();
+      if (hamTrim.startsWith("*") || hamTrim.startsWith("//") || hamTrim.startsWith("/*")) continue;
+      // Yasağı ANLATAN cümle ihlal değil: "yazılı garanti belgesi verilmez",
+      // "garanti edilemez", "tamamen ağrısız denmez" gibi.
+      const olumsuzlama =
+        /(verilmez|verilmiyor|edilemez|yapılmaz|yapılmıyor|kullanılmaz|denmez|değildir|\bdeğil\b|\byok\b|Hayır|olmamalı|OLMAMASINI|DEĞİL|yasak)/i.test(satir);
       for (const pat of patterns) {
-        if (pat.test(satir)) {
+        if (pat.test(satir) && !olumsuzlama) {
           console.log(`   ! ${kategori}: ${f.replace(KOK, "")}:${satirNo + 1}`);
           console.log(`     ${satir.trim().slice(0, 100)}`);
           bulundu++;
@@ -84,17 +98,50 @@ for (const f of [join(KOK, "src/content/services.ts"), join(KOK, "src/content/gu
   const satirlar = metin.split("\n");
   satirlar.forEach((satir, i) => {
     if (!satir.includes("draftMedicalCopy: true")) return;
-    const slug = satirlar[i - 1]?.match(/slug: "([^"]+)"/)?.[1];
-    if (slug) {
-      console.log(`   ! ${slug}`);
-      taslak++;
+    let slug = null;
+    for (let j = i; j >= 0 && j > i - 40; j--) {
+      const m = satirlar[j].match(/slug: "([^"]+)"/);
+      if (m) { slug = m[1]; break; }
     }
+    console.log(`   ! ${slug ?? f.replace(KOK, "") + ":" + (i + 1)}`);
+    taslak++;
   });
 }
 console.log(taslak === 0 ? "   ✓ tüm sayfalar onaylı" : `   toplam ${taslak} sayfa tıbbi inceleme bekliyor`);
 if (taslak > 0) hata++;
 
-console.log("\n4) SONUÇ İÇERİĞİ YAYIN KAPILARI");
+console.log("\n4) KONUMLANDIRMA DİLİ");
+{
+  // Vionte uygulama yapmaz; bu ifadeler uygulamayı Vionte'nin yaptığı
+  // izlenimi verir ve kullanılmamalıdır.
+  const yasakDil = [
+    [/kliniğimiz/i, "kliniğimiz"],
+    [/uyguluyoruz/i, "uyguluyoruz"],
+    [/operasyonumuz/i, "operasyonumuz"],
+    [/hekimimiz|doktorumuz/i, "hekimimiz/doktorumuz"],
+    [/tıbbi inceleme/i, "Tıbbi inceleme satırı"],
+  ];
+  let n = 0;
+  for (const f of kaynaklar) {
+    const metin = readFileSync(f, "utf8");
+    metin.split("\n").forEach((satir, i) => {
+      if (satir.trimStart().startsWith("*") || satir.trimStart().startsWith("//")) return;
+      for (const [pat, ad] of yasakDil) {
+        // Olumsuz kullanım ihlal değil: "kendi kliniğimiz olmadığı için..."
+        const olumsuz = /\b(değil|yok|olmadığı|bulunmaz|yapmaz)\b/i.test(satir);
+        if (pat.test(satir) && !olumsuz) {
+          console.log(`   ! ${ad}: ${f.replace(KOK, "")}:${i + 1}`);
+          console.log(`     ${satir.trim().slice(0, 90)}`);
+          n++;
+        }
+      }
+    });
+  }
+  console.log(n === 0 ? "   ✓ temiz — uygulamayı Vionte'nin yaptığı izlenimi yok" : `   ${n} ihlal`);
+  if (n > 0) hata++;
+}
+
+console.log("\n5) SONUÇ İÇERİĞİ YAYIN KAPILARI");
 {
   const src = readFileSync(join(KOK, "src/content/results.ts"), "utf8");
   const say = (re) => (src.match(re) || []).length;

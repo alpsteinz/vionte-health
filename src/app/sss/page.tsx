@@ -4,7 +4,7 @@ import { PageHero } from "@/components/ui/page-hero";
 import { Section } from "@/components/ui/section";
 import { Container } from "@/components/ui/container";
 import { FaqList } from "@/components/ui/accordion";
-import { MedicalReview } from "@/components/ui/medical-review";
+import { ContentInfo } from "@/components/ui/content-info";
 import { AiSummary } from "@/components/ui/ai-summary";
 import { JsonLd } from "@/components/ui/json-ld";
 import { breadcrumbSchema, faqSchema } from "@/lib/schema";
@@ -55,7 +55,7 @@ export default function Page() {
 
       <Container className="pb-20">
         <AiSummary path="/sss" title={title} />
-        <MedicalReview />
+        <ContentInfo />
       </Container>
       <JsonLd data={[faqSchema(all), breadcrumbSchema(trail)]} />
     </>

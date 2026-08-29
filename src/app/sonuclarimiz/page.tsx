@@ -5,9 +5,10 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { PageHero } from "@/components/ui/page-hero";
 import { Section, SectionHead } from "@/components/ui/section";
 import { Container } from "@/components/ui/container";
-import { MedicalReview } from "@/components/ui/medical-review";
+import { ContentInfo } from "@/components/ui/content-info";
 import { JsonLd } from "@/components/ui/json-ld";
 import { AnlasmaliMerkezKarti } from "@/components/sonuclar/anlasmali-merkez-karti";
+import { KarsilastirmaGalerisi } from "@/components/sonuclar/karsilastirma-galerisi";
 import { DanisanHikayesiKarti } from "@/components/sonuclar/danisan-hikayesi-karti";
 import { breadcrumbSchema } from "@/lib/schema";
 import {
@@ -78,8 +79,14 @@ export default function Page() {
           <SectionHead
             eyebrow="Anlaşmalı merkez sonuçları"
             title="Öncesi ve sonrası"
-            intro="Her kartta uygulamayı yapan merkezin adı belirtilir."
+            intro="Çizgiyi sürükleyerek karşılaştırabilirsiniz. Her kayıtta uygulamayı yapan merkezin adı belirtilir."
           />
+
+          {/* Sürüklemeli karşılaştırma — yalnızca iki görseli de olan kayıtlar */}
+          <div className="reveal mt-12">
+            <KarsilastirmaGalerisi kayitlar={merkezSonuclari} />
+          </div>
+
           <div className="rule-grid reveal mt-12 md:grid-cols-2 lg:grid-cols-3">
             {merkezSonuclari.map((kayit) => (
               <AnlasmaliMerkezKarti key={kayit.id} kayit={kayit} />
@@ -107,7 +114,7 @@ export default function Page() {
       ) : null}
 
       <Container className="pb-20">
-        <MedicalReview />
+        <ContentInfo />
       </Container>
       <JsonLd data={breadcrumbSchema(trail)} />
     </>

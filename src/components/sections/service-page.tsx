@@ -5,9 +5,8 @@ import { PageHero } from "@/components/ui/page-hero";
 import { Section, SectionHead } from "@/components/ui/section";
 import { Container } from "@/components/ui/container";
 import { FaqList } from "@/components/ui/accordion";
-import { MedicalReview } from "@/components/ui/medical-review";
+import { ContentInfo } from "@/components/ui/content-info";
 import { AiSummary } from "@/components/ui/ai-summary";
-import { PhotoPlaceholder } from "@/components/ui/photo-placeholder";
 import { JsonLd } from "@/components/ui/json-ld";
 import { Copy } from "@/components/ui/copy";
 import { LeadForm } from "./lead-form";
@@ -84,36 +83,16 @@ export function ServicePage({ service }: { service: Service }) {
         </div>
       </Section>
 
-      {/* 3 — İşlem adımları */}
+      {/* 3 — Ne zaman ne olur (uygulama adımları değil, danışan takvimi) */}
       <Section tone="navy">
-        <SectionHead eyebrow="Adımlar" title="İşlem nasıl ilerler" tone="dark" />
-        <ol className="rule-grid rule-grid-dark reveal mt-12 sm:grid-cols-2">
-          {service.steps.map((step, i) => (
-            <li key={step.title} className="bg-navy p-7">
-              <span className="font-serif text-[2.2rem] leading-none text-blue-light/50">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <h3 className="h4 mt-5 text-white">
-                <Copy text={step.title} />
-              </h3>
-              <p className="mt-3 text-[0.9375rem] leading-relaxed text-blue-light">
-                <Copy text={step.body} />
-              </p>
-            </li>
-          ))}
-        </ol>
-      </Section>
-
-      {/* 4 — Süre ve iyileşme takvimi */}
-      <Section tone="white">
-        <SectionHead eyebrow="Takvim" title="Süre ve iyileşme" />
-        <dl className="reveal mt-12 divide-y divide-line border-y border-line">
+        <SectionHead eyebrow="Takvim" title="Ne zaman ne olur" tone="dark" />
+        <dl className="reveal mt-12 divide-y divide-line-dark border-y border-line-dark">
           {service.timeline.map((row) => (
-            <div key={row.when} className="grid gap-2 py-5 sm:grid-cols-[160px_1fr] sm:gap-8">
-              <dt className="text-[0.8125rem] uppercase tracking-[0.12em] text-blue">
+            <div key={row.when} className="grid gap-2 py-5 sm:grid-cols-[200px_1fr] sm:gap-8">
+              <dt className="text-[0.8125rem] uppercase tracking-[0.12em] text-blue-light">
                 <Copy text={row.when} />
               </dt>
-              <dd className="text-[0.9375rem] leading-relaxed text-muted">
+              <dd className="text-[0.9375rem] leading-relaxed text-blue-light">
                 <Copy text={row.what} />
               </dd>
             </div>
@@ -121,7 +100,7 @@ export function ServicePage({ service }: { service: Service }) {
         </dl>
       </Section>
 
-      {/* 5 — Diğer tekniklerden farkı */}
+      {/* 4 — Diğer tekniklerden farkı */}
       {service.comparison ? (
         <Section tone="paper">
           <SectionHead
@@ -161,41 +140,9 @@ export function ServicePage({ service }: { service: Service }) {
         </Section>
       ) : null}
 
-      {/* 6 — Bu teknikle yapılmış sonuçlar */}
-      <Section tone={service.comparison ? "white" : "paper"}>
-        <SectionHead eyebrow="Sonuçlar" title={`${service.name} ile yapılmış uygulamalar`} />
-        <div className="rule-grid reveal mt-12 md:grid-cols-3">
-          {[1, 2, 3].map((n) => (
-            <figure key={n} className="bg-white">
-              <div className="grid grid-cols-2 gap-px bg-line">
-                <div className="relative bg-white">
-                  <PhotoPlaceholder label="Görsel bekleniyor" ratio="1/1" />
-                  <span className="absolute bottom-0 left-0 bg-navy px-2.5 py-1 text-[0.6875rem] uppercase tracking-[0.14em] text-white">
-                    Öncesi
-                  </span>
-                </div>
-                <div className="relative bg-white">
-                  <PhotoPlaceholder label="Görsel bekleniyor" ratio="1/1" />
-                  <span className="absolute bottom-0 left-0 bg-blue px-2.5 py-1 text-[0.6875rem] uppercase tracking-[0.14em] text-white">
-                    Sonrası
-                  </span>
-                </div>
-              </div>
-              <figcaption className="border-t border-line p-5 text-[0.8125rem] text-muted">
-                <Copy text="[0.000] greft · [00] yaş" /> · {service.name} ·{" "}
-                <Copy text="[00]. ay · [Şehir]" />
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-        <p className="measure reveal mt-6 text-[0.8125rem] leading-relaxed text-muted">
-          {site.disclaimers.results}
-        </p>
-      </Section>
-
-      {/* 7 — Tekniğe özel SSS */}
+      {/* 5 — Tekniğe özel SSS */}
       {service.faq.length > 0 ? (
-        <Section tone="paper">
+        <Section tone={service.comparison ? "paper" : "white"}>
           <div className="grid gap-12 lg:grid-cols-[380px_1fr] lg:gap-16">
             <SectionHead eyebrow="Sıkça sorulanlar" title={`${service.name} hakkında`} />
             <FaqList items={service.faq} className="reveal" />
@@ -203,15 +150,16 @@ export function ServicePage({ service }: { service: Service }) {
         </Section>
       ) : null}
 
-      {/* 8 — Form */}
+      {/* 6 — Form */}
       <Section tone="navy">
         <div className="grid gap-12 lg:grid-cols-[1fr_460px] lg:gap-16">
           <div className="reveal flex flex-col justify-center">
             <p className="eyebrow eyebrow-light">Ön değerlendirme</p>
             <h2 className="h2 mt-4 text-white">Size uygun mu, ölçelim</h2>
             <p className="measure mt-6 text-[1.0625rem] leading-relaxed text-blue-light">
-              {site.disclaimers.form} Uygunluk kararı muayene ve tahliller
-              sonrasında hekim tarafından verilir.
+              Ücretsiz saç analiziyle donör kapasitenizi ölçer, size uygun
+              tekniği ve anlaşmalı merkezi birlikte belirleriz.{" "}
+              {site.disclaimers.form}
             </p>
           </div>
           <div className="reveal">
@@ -220,10 +168,10 @@ export function ServicePage({ service }: { service: Service }) {
         </div>
       </Section>
 
-      {/* 9 — Tıbbi inceleme satırı */}
+      {/* 7 — Sayfa künyesi */}
       <Container className="pb-20">
         <AiSummary path={service.slug} title={service.h1} />
-        <MedicalReview />
+        <ContentInfo />
       </Container>
 
       <JsonLd

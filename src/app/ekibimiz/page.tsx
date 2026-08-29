@@ -3,10 +3,9 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { PageHero } from "@/components/ui/page-hero";
 import { Section, SectionHead } from "@/components/ui/section";
 import { Container } from "@/components/ui/container";
-import { PhotoPlaceholder } from "@/components/ui/photo-placeholder";
-import { MedicalReview } from "@/components/ui/medical-review";
+import { ContentInfo } from "@/components/ui/content-info";
 import { JsonLd } from "@/components/ui/json-ld";
-import { breadcrumbSchema, physicianSchema } from "@/lib/schema";
+import { breadcrumbSchema } from "@/lib/schema";
 import { team } from "@/content/home";
 
 const title = "Ekibimiz";
@@ -29,13 +28,13 @@ export default function Page() {
   return (
     <>
       <Breadcrumbs trail={trail} />
-      <PageHero eyebrow={team.eyebrow} title="Uygulamayı Kim Yapar?" lead={team.body} />
+      <PageHero eyebrow={team.eyebrow} title="Kimlerle Çalışıyoruz?" lead={team.body} />
 
       <Section tone="paper">
         <SectionHead
           eyebrow="Yapı"
           title={team.title}
-          intro="Bu yapı mevzuata uygundur ve olduğu gibi anlatılır. Kimlerin hangi aşamada görev aldığı ve hangi belgeye sahip olduğu aşağıda açıkça yazılıdır."
+          intro="Kimin hangi aşamada görev aldığı ve hangi belgeye sahip olduğu aşağıda açıkça yazılıdır. Uygulamayı Vionte Health yapmaz; anlaşmalı merkezdeki sertifikalı ekip yapar."
         />
 
         <dl className="reveal mt-12 divide-y divide-line border-y border-line">
@@ -56,29 +55,11 @@ export default function Page() {
         </blockquote>
       </Section>
 
-      <Section tone="white">
-        <SectionHead eyebrow="Ekip" title="Uygulama ekibi" />
-        <div className="rule-grid reveal mt-12 sm:grid-cols-2 lg:grid-cols-3">
-          {[1, 2, 3].map((n) => (
-            <figure key={n} className="bg-white">
-              <PhotoPlaceholder label="Fotoğraf bekleniyor" ratio="3/4" />
-              <figcaption className="border-t border-line p-6">
-                <p className="font-serif text-[1.2rem] text-navy">[Ad Soyad]</p>
-                <p className="mt-1.5 text-[0.875rem] text-muted">[Unvan / görev]</p>
-                <p className="mt-3 text-[0.8125rem] text-muted">
-                  [Bakanlık tescilli sertifika bilgisi]
-                </p>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </Section>
-
       <Container className="pb-20">
-        <MedicalReview />
+        <ContentInfo />
       </Container>
 
-      <JsonLd data={[physicianSchema(), breadcrumbSchema(trail)]} />
+      <JsonLd data={breadcrumbSchema(trail)} />
     </>
   );
 }

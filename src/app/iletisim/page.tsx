@@ -6,7 +6,7 @@ import { Section } from "@/components/ui/section";
 import { Container } from "@/components/ui/container";
 import { PhotoPlaceholder } from "@/components/ui/photo-placeholder";
 import { LeadForm } from "@/components/sections/lead-form";
-import { MedicalReview } from "@/components/ui/medical-review";
+import { ContentInfo } from "@/components/ui/content-info";
 import { JsonLd } from "@/components/ui/json-ld";
 import { breadcrumbSchema } from "@/lib/schema";
 import { ContactLink } from "@/components/ui/contact-link";
@@ -14,7 +14,7 @@ import { site } from "@/lib/site";
 
 const title = "İletişim";
 const description =
-  "Vionte Hair Transplant iletişim bilgileri: adres, telefon, WhatsApp, e-posta ve çalışma saatleri.";
+  "Vionte Health iletişim bilgileri: adres, telefon, WhatsApp, e-posta ve çalışma saatleri. Pendik/İstanbul.";
 
 export const metadata: Metadata = {
   title,
@@ -46,9 +46,9 @@ export default function Page() {
     <>
       <Breadcrumbs trail={trail} />
       <PageHero
-        eyebrow="Klinik"
+        eyebrow="İletişim"
         title="Bize Ulaşın"
-        lead="Ön değerlendirme için formu doldurabilir, WhatsApp'tan yazabilir veya doğrudan arayabilirsiniz. Formunuz yalnızca ön bilgilendirme içindir, tanı yerine geçmez."
+        lead="Ücretsiz saç analizi için formu doldurabilir, WhatsApp'tan yazabilir veya doğrudan arayabilirsiniz. Talepler sertifikalı saç ekim uzmanlarımız tarafından anında yanıtlanır."
       />
 
       <Section tone="paper">
@@ -81,7 +81,7 @@ export default function Page() {
             </dl>
 
             <div className="mt-10 border border-line">
-              <PhotoPlaceholder label="Harita — adres onaylandığında eklenecek" ratio="16/9" />
+              <PhotoPlaceholder label="Harita — Varyap Plaza, Pendik" ratio="16/9" />
             </div>
 
             <div className="mt-10 border border-line bg-white p-6 text-[0.875rem] leading-relaxed text-muted">
@@ -91,7 +91,11 @@ export default function Page() {
               </p>
               <p className="mt-2">
                 <strong className="font-medium text-ink">Ticari ünvan:</strong>{" "}
-                {site.legalName}
+                {site.legalName} ({site.legalForm})
+              </p>
+              <p className="mt-2">
+                <strong className="font-medium text-ink">Faaliyet:</strong>{" "}
+                {site.faaliyet}
               </p>
             </div>
           </div>
@@ -103,7 +107,7 @@ export default function Page() {
       </Section>
 
       <Container className="pb-20">
-        <MedicalReview />
+        <ContentInfo />
       </Container>
       <JsonLd data={breadcrumbSchema(trail)} />
     </>

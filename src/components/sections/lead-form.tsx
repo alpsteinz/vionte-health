@@ -6,8 +6,7 @@ import { Check, MessageCircle, Loader2 } from "lucide-react";
 import { NorwoodFigure } from "@/components/ui/norwood-figure";
 import { Button } from "@/components/ui/button";
 import { form as formCopy, norwoodLevels } from "@/content/home";
-import { Copy } from "@/components/ui/copy";
-import { site } from "@/lib/site";
+import { safeHref, site } from "@/lib/site";
 import { ContactLink } from "@/components/ui/contact-link";
 import { cn } from "@/lib/utils";
 
@@ -30,28 +29,44 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
 
   const selected = norwoodLevels.find((l) => l.id === level);
 
-  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+  /**
+   * Form WhatsApp'a düşer. Talepler sertifikalı saç ekim uzmanları
+   * tarafından anında yanıtlanır.
+   *
+   * KVKK açısından bu yapı, veriyi bir sunucuda toplamaktan daha korumalıdır:
+   * bilgiler kullanıcının cihazından doğrudan WhatsApp'a gider, arada
+   * saklanmaz. Açık rıza verilmediyse sağlık verisi (dökülme seviyesi)
+   * mesaja hiç eklenmez.
+   */
+  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    setStatus("gonderiliyor");
-    try {
-      const res = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ad: data.get("ad"),
-          telefon: data.get("telefon"),
-          kvkkIletisim: data.get("kvkkIletisim") === "on",
-          // Açık rıza yoksa sağlık verisi hiç gönderilmez
-          saglikVerisiRizasi: saglikRizasi,
-          norwood: saglikRizasi ? level : null,
-          fotografSayisi: saglikRizasi ? fotograflar.length : 0,
-        }),
-      });
-      setStatus(res.ok ? "tamam" : "hata");
-    } catch {
+    const hedef = safeHref(site.contact.whatsappHref);
+    if (!hedef) {
       setStatus("hata");
+      return;
     }
+
+    setStatus("gonderiliyor");
+
+    const satirlar = [
+      "Merhaba, ücretsiz saç analizi talep ediyorum.",
+      `Ad Soyad: ${data.get("ad")}`,
+      `Telefon: ${data.get("telefon")}`,
+    ];
+    if (saglikRizasi && selected) {
+      satirlar.push(`Dökülme seviyesi: Tip ${selected.roman}`);
+    }
+    if (saglikRizasi && fotograflar.length > 0) {
+      satirlar.push(`(${fotograflar.length} fotoğraf sohbette paylaşılacak)`);
+    }
+
+    window.open(
+      `${hedef}?text=${encodeURIComponent(satirlar.join("\n"))}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
+    setStatus("tamam");
   }
 
   if (status === "tamam") {
@@ -60,10 +75,11 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
         <div className="flex size-10 items-center justify-center bg-navy text-white">
           <Check className="size-5" strokeWidth={1.5} aria-hidden />
         </div>
-        <h3 className="h3 mt-6">Talebiniz alındı</h3>
+        <h3 className="h3 mt-6">WhatsApp&apos;a yönlendirildiniz</h3>
         <p className="measure mt-3 text-muted">
-          Uzmanımız sizi en kısa sürede arayacak. Daha hızlı yanıt için
-          WhatsApp&apos;tan da yazabilirsiniz.
+          Mesajınız hazır; WhatsApp penceresinden göndermeniz yeterli.
+          Talepler sertifikalı saç ekim uzmanlarımız tarafından anında
+          yanıtlanır. Pencere açılmadıysa aşağıdaki bağlantıyı kullanın.
         </p>
         <ContactLink
           href={site.contact.whatsappHref}
@@ -159,8 +175,8 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
               onChange={(e) => setFotograflar(Array.from(e.target.files ?? []))}
               className="mt-1.5 w-full border border-line bg-white px-3.5 py-2.5 text-[0.875rem] text-muted file:mr-3 file:border-0 file:bg-navy file:px-3 file:py-1.5 file:text-[0.75rem] file:uppercase file:tracking-[0.1em] file:text-white"
             />
-            <p className="mt-2 text-[0.8125rem] text-muted">
-              <Copy text="[Fotoğraflar için güvenli aktarım kanalı belirlenene kadar dosya gönderilmez; danışmanınız görüşmede talep eder.]" />
+            <p className="mt-2 text-[0.8125rem] text-muted">  Fotoğrafları WhatsApp sohbetinde paylaşabilirsiniz; bu formdan
+              dosya gönderilmez.
             </p>
           </div>
         </fieldset>

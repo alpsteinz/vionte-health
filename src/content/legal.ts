@@ -1,18 +1,19 @@
 import { site } from "@/lib/site";
 
 /**
- * Yasal metinler.
+ * Yasal metinler — TASLAK.
  *
- * UYARI: Aşağıdaki metinler yapı ve kapsam iskeletidir. Yayına almadan önce
- * KVKK ve sağlık mevzuatı konusunda çalışan bir hukukçu tarafından
- * gözden geçirilmelidir. [Köşeli parantez] içindeki alanlar veri sorumlusu
- * bilgileri gelmeden doldurulamaz.
+ * Bu metinler yapı ve kapsam iskeletidir ve hukuk danışmanı onayına
+ * gidecektir. Onay gelene kadar sayfaların üstünde görünür taslak uyarısı
+ * gösterilir (`taslak: true`).
  */
 
 export type LegalSection = { id: string; heading: string; body: string[]; list?: string[] };
 
 export type LegalDoc = {
   slug: string;
+  /** Hukuk danışmanı onayı bekliyor mu */
+  taslak?: boolean;
   name: string;
   h1: string;
   lead: string;
@@ -27,11 +28,15 @@ export type LegalDoc = {
  * VERBİS: şirket muafiyet kapsamında olduğu için yasal metinlerde VERBİS
  * kayıt numarası alanı yer ALMAZ. Bu alan sonradan da eklenmemelidir.
  */
-const veriSorumlusu = `Veri sorumlusu: ${site.kvkk.veriSorumlusu}. Ünvan: ${site.legalName}, ${site.contact.addressLine}. İletişim: ${site.contact.email} · ${site.contact.phoneLabel}.`;
+const veriSorumlusu = `Veri sorumlusu: ${site.kvkk.veriSorumlusu} (${site.legalForm}). Faaliyet: ${site.faaliyet}. Adres: ${site.contact.addressLine}. İletişim: ${site.contact.email} · ${site.contact.phoneLabel}.`;
+
+const verbisNotu =
+  "Veri sorumlusu, çalışan sayısı 10'dan az ve yıllık mali bilanço toplamı 10 milyon TL'nin altında olduğu için VERBİS kayıt yükümlülüğünden muaftır; bu nedenle bu metinde VERBİS kayıt numarası yer almaz.";
 
 export const legalDocs: LegalDoc[] = [
   {
     slug: "/kvkk-aydinlatma-metni",
+    taslak: true,
     name: "KVKK Aydınlatma Metni",
     h1: "KVKK Aydınlatma Metni",
     lead: "6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında, bu sitede toplanan kişisel verilerin hangi amaçla işlendiği, kimlere aktarıldığı ve haklarınızın neler olduğu aşağıda açıklanmaktadır.",
@@ -42,7 +47,7 @@ export const legalDocs: LegalDoc[] = [
       {
         id: "veri-sorumlusu",
         heading: "Veri sorumlusu",
-        body: [veriSorumlusu],
+        body: [veriSorumlusu, verbisNotu],
       },
       {
         id: "islenen-veriler",
@@ -77,7 +82,7 @@ export const legalDocs: LegalDoc[] = [
         id: "saklama",
         heading: "Saklama süresi",
         body: [
-          "[Saklama süresi ve imha politikası — klinik tarafından belirlenecek.]",
+          "[Saklama süresi ve imha politikası — hukuk danışmanı onayıyla belirlenecek.]",
         ],
       },
       {
@@ -109,6 +114,7 @@ export const legalDocs: LegalDoc[] = [
   },
   {
     slug: "/gizlilik-politikasi",
+    taslak: true,
     name: "Gizlilik Politikası",
     h1: "Gizlilik Politikası",
     lead: "Bu politika, viontehealth.com üzerinden toplanan bilgilerin nasıl kullanıldığını ve korunduğunu açıklar.",
@@ -156,6 +162,7 @@ export const legalDocs: LegalDoc[] = [
   },
   {
     slug: "/cerez-politikasi",
+    taslak: true,
     name: "Çerez Politikası",
     h1: "Çerez Politikası",
     lead: "Bu sitede zorunlu çerezler ve tercihinize bağlı ölçümleme çerezleri kullanılır. Çerez tercihinizi site üzerindeki bandan yönetebilirsiniz.",

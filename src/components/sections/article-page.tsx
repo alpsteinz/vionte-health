@@ -5,7 +5,7 @@ import { PageHero } from "@/components/ui/page-hero";
 import { Container } from "@/components/ui/container";
 import { Section, SectionHead } from "@/components/ui/section";
 import { FaqList } from "@/components/ui/accordion";
-import { MedicalReview } from "@/components/ui/medical-review";
+import { ContentInfo } from "@/components/ui/content-info";
 import { AiSummary } from "@/components/ui/ai-summary";
 import { JsonLd } from "@/components/ui/json-ld";
 import { Copy } from "@/components/ui/copy";
@@ -98,7 +98,7 @@ export function ArticlePage({ guide, trail }: { guide: Guide; trail: Crumb[] }) 
 
       <Container className="pb-20">
         <AiSummary path={guide.slug} title={guide.h1} />
-        <MedicalReview />
+        <ContentInfo />
       </Container>
 
       <JsonLd

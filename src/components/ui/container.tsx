@@ -1,5 +1,10 @@
 import { cn } from "@/lib/utils";
 
+/**
+ * İçerik kapsayıcısı.
+ *
+ * Kademeli genişlik `.shell` sınıfında, globals.css içinde tanımlıdır.
+ */
 export function Container({
   className,
   children,
@@ -8,7 +13,12 @@ export function Container({
   children: React.ReactNode;
 }) {
   return (
-    <div className={cn("mx-auto w-full max-w-[1180px] px-6", className)}>
+    <div
+      className={cn(
+        "shell",
+        className,
+      )}
+    >
       {children}
     </div>
   );

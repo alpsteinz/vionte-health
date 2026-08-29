@@ -29,20 +29,20 @@ const jost = Jost({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Vionte Hair Transplant — Saç Ekimi Kliniği, İstanbul",
-    template: "%s | Vionte Hair Transplant",
+    default: "Vionte Health — Saç Ekimi Danışmanlığı, İstanbul",
+    template: "%s | Vionte Health",
   },
   description:
-    "Vionte Hair Transplant, İstanbul'da Safir FUE ve DHI teknikleriyle saç ekimi uygulamaları sunar. Ücretsiz ön değerlendirme için form doldurun.",
+    "Vionte Health saç ekimi danışmanlık ve yönlendirme şirketidir. Dökülme tipinizi ve donör kapasitenizi ölçer, size uygun tekniğe ve anlaşmalı merkeze yönlendiririz. Saç analizi ücretsizdir.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: site.locale,
     url: site.url,
     siteName: site.name,
-    title: "Vionte Hair Transplant — Saç Ekimi Kliniği, İstanbul",
+    title: "Vionte Health — Saç Ekimi Danışmanlığı, İstanbul",
     description:
-      "İstanbul'da Safir FUE ve DHI teknikleriyle saç ekimi. Greft planı ölçüm sonuçları üzerine kurulur.",
+      "Saç ekimi danışmanlık ve yönlendirme. Ölçüme göre size uygun tekniğe ve anlaşmalı merkeze yönlendiririz. Saç analizi ücretsizdir.",
   },
   robots: { index: true, follow: true },
 };

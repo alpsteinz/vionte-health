@@ -1,4 +1,5 @@
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { DraftNotice } from "@/components/ui/draft-notice";
 import { PageHero } from "@/components/ui/page-hero";
 import { Section } from "@/components/ui/section";
 import { JsonLd } from "@/components/ui/json-ld";
@@ -14,6 +15,7 @@ export function LegalPage({ doc }: { doc: LegalDoc }) {
 
   return (
     <>
+      {doc.taslak ? <DraftNotice mesaj="Bu metin taslaktır ve hukuk danışmanı onayı beklemektedir." /> : null}
       <Breadcrumbs trail={trail} />
       <PageHero eyebrow="Yasal" title={doc.h1} lead={doc.lead} />
 

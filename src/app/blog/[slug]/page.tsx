@@ -4,7 +4,7 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { PageHero } from "@/components/ui/page-hero";
 import { Section } from "@/components/ui/section";
 import { Container } from "@/components/ui/container";
-import { MedicalReview } from "@/components/ui/medical-review";
+import { ContentInfo } from "@/components/ui/content-info";
 import { AiSummary } from "@/components/ui/ai-summary";
 import { JsonLd } from "@/components/ui/json-ld";
 import { articleSchema, breadcrumbSchema } from "@/lib/schema";
@@ -63,7 +63,7 @@ export default async function Page({ params }: Params) {
 
       <Container className="pb-20">
         <AiSummary path={`/blog/${post.slug}`} title={post.title} />
-        <MedicalReview />
+        <ContentInfo />
       </Container>
 
       <JsonLd

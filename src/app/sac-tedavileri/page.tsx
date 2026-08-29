@@ -4,7 +4,7 @@ import { services } from "@/content/services";
 
 const title = "Saç Tedavileri";
 const description =
-  "PRP, mezoterapi, eksozom, kök hücre ve saç analizi. Bu uygulamalar ekim sonrası iyileşme sürecinde ya da dökülmenin erken evrelerinde değerlendirilir.";
+  "PRP, mezoterapi, kök hücre, büyüme faktörü ve saç analizi. Bu uygulamalar ekim sonrası iyileşme sürecinde ya da dökülmenin erken evrelerinde değerlendirilir.";
 
 export const metadata: Metadata = {
   title,
@@ -26,7 +26,7 @@ export default function Page() {
       ]}
       eyebrow="Tedaviler"
       title="Saç Tedavileri Nelerdir?"
-      lead="PRP ve mezoterapi, ekim sonrası iyileşme sürecinde ya da dökülmenin erken evrelerinde ayrı bir tedavi planı olarak değerlendirilir. Bu uygulamalar ileri dökülmede saç ekiminin yerini almaz; hangisinin uygun olduğu saç analizi ve hekim muayenesiyle belirlenir."
+      lead="PRP, mezoterapi, kök hücre ve büyüme faktörü uygulamaları; ekim sonrası iyileşme sürecinde ya da dökülmenin erken evrelerinde ayrı bir tedavi planı olarak değerlendirilir. Bu uygulamalar ileri dökülmede saç ekiminin yerini almaz. Hangisinin uygun olduğunu ücretsiz saç analizi ve muayene belirler."
       items={items}
     />
   );

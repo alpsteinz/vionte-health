@@ -1,7 +1,23 @@
-# CONTENT.md — Vionte Hair Transplant
+# CONTENT.md — Vionte
 
 Onaylanmış metinler. AI kendi metin üretmez, buradakini kullanır.
 `[köşeli parantez]` içindekiler klinik sahibinden gelecek, uydurulmaz.
+
+## Konumlandırma
+
+**Vionte bir klinik değil, saç ekimi danışmanlık ve yönlendirme şirketidir.**
+Kendi kliniği yoktur; operasyonlar anlaşmalı merkezde sertifikalı saç ekim
+uzmanları tarafından yapılır.
+
+Dil kuralı — her metinde geçerli:
+
+| Yazılmaz | Yazılır |
+|---|---|
+| kliniğimiz | anlaşmalı merkez |
+| uyguluyoruz / yapıyoruz | yönlendiriyoruz |
+| operasyonumuz | operasyon (anlaşmalı merkezde) |
+| hekimimiz / doktorumuz | anlaşmalı merkezdeki hekim |
+| Tıbbi inceleme: Dr. X | İçerik sorumlusu: Mehtap Dizge |
 
 ## Ton
 
@@ -26,13 +42,14 @@ Kullanılmaz: "Hayatınızı Bugün Değiştirin", "Hayallerinizdeki Saça Kavu�
 
 ## Hero
 
-**H1:** Saç ekimi *bir planla* başlar.
+**H1:** Saç ekimi *doğru yönlendirmeyle* başlar.
 
-**Alt metin:** Her saç yapısı farklıdır. Ekim öncesi donör alan yoğunluğunuz,
-dökülme tipiniz ve saç telinizin kalınlığı ölçülür; greft planı bu ölçümler
-üzerine kurulur.
+**Alt metin:** Vionte bir klinik değil, saç ekimi danışmanlık ve yönlendirme
+şirketidir. Dökülme tipinizi ve donör kapasitenizi ölçer, size uygun tekniği
+ve anlaşmalı merkezi birlikte belirleriz. Operasyonu anlaşmalı merkezde
+sertifikalı saç ekim uzmanları yapar.
 
-**Sayaçlar:** 15+ Yıl tecrübe · 1000+ Uygulama · Safir FUE / DHI Teknikler
+**Sayaçlar:** 12 Yıl deneyim · 200+ Yıllık danışan · 2000+ Toplam danışan
 
 ## Form
 
@@ -88,8 +105,13 @@ ya da dökülmenin erken evrelerinde ayrı bir tedavi planı olarak değerlendir
 **Açılış:** Anestezi, iğne yerine basınçlı jet enjektör ile uygulanır. Bu yöntem
 anestezi aşamasındaki iğne batma hissini ortadan kaldırır.
 
-Not: Sayfa adı "İğnesiz Anestezi" olacak, "Ağrısız Saç Ekimi" değil. Yöntemin
-adı kullanılır, operasyonun tamamı için ağrısızlık taahhüdü verilmez.
+**H1:** İğnesiz Anestezi Nedir?
+**Sistem:** Dermojet basınçlı jet
+
+**Kural:** Sayfa adı "İğnesiz Anestezi" olur, "Ağrısız Saç Ekimi" DEĞİL.
+Yöntemin adı kullanılır; operasyonun tamamı için ağrısızlık taahhüdü
+verilmez. Bu bir mevzuat kısıtıdır — "tamamen ağrısız" AGENTS.md'nin yasak
+listesindedir.
 
 ## Fiyatlandırma
 
@@ -122,10 +144,30 @@ planlama bu yüzden uzun vadeli yapılır.
 4. **Takip** — İlk yıkama klinikte yapılır. 3., 6. ve 12. ay kontrolleriyle
    süreç izlenir.
 
+## Neden Vionte — ana farklılaşma
+
+**Etiket:** Neden Vionte
+**Başlık:** Danışanlarımızın yarısından çoğu bize referansla geliyor
+**Metin:** Reklamla değil, daha önce yönlendirdiğimiz kişilerin tavsiyesiyle.
+Bu, bizim için tek anlamlı ölçü: süreci yaşayan biri, aynı yolu bir yakınına
+önerecek kadar memnun kaldı mı?
+
+## Fiyat politikası
+
+Rakam verilmez, greft başına fiyatlandırma yapılmaz.
+
+**Gerekçe metni:** Saç ekimi fiyatı kişiseldir. Her vakanın ihtiyacı
+farklıdır; yapılacak yer, ekip ve teknik fiyatı etkiler.
+
+## Garanti
+
+**Metin:** Yazılı garanti belgesi verilmez. Saç ekimi sonucu kişinin donör
+kapasitesine ve iyileşme sürecine bağlıdır; garanti edilemez.
+
 ## Ekip
 
-**Etiket:** Uygulama ekibi
-**Başlık:** Sertifikalı ekip, hekim sorumluluğunda
+**Etiket:** Ekip
+**Başlık:** Sertifikalı saç ekim uzmanları
 
 **Metin:** Saç ekimi bir ekip işidir. Kanal açma aşamasını saç ekimi uygulayıcı
 sertifikasına sahip hekim yürütür; greft alımı ve yerleştirme, Sağlık Bakanlığı
@@ -136,9 +178,10 @@ hekim sorumluluğunda yapılır.
 o greftlerin hangi açıyla ve hangi yoğunlukta yerleştirildiği.
 
 **Liste:**
-- Sorumlu hekim — [Ad Soyad, unvan]
-- Uygulama ekibi — [Kişi sayısı, meslek grupları]
-- Sertifikasyon — [Bakanlık tescilli uygulayıcı / yardımcı uygulayıcı]
+- Sorumlu teknisyen — Mehtap Dizge, sertifikalı saç ekim uzmanı
+- Ekip — 12 yıllık deneyime sahip sertifikalı saç ekim uzmanları
+- Sertifikasyon — Sağlık Bakanlığı saç ekim sertifikası; ekipteki herkeste
+  Bakanlık tescilli yardımcı uygulayıcı sertifikası
 
 ## Sonuçlar
 
@@ -280,22 +323,25 @@ greftlerin hangi açıyla, hangi yönde ve hangi yoğunlukta yerleştirildiğidi
 **Etiket:** Klinik
 **Başlık:** Bize ulaşın
 
-- Adres: [Klinik adresi, İlçe/İstanbul]
-- Telefon: [0212 000 00 00]
-- WhatsApp: [0500 000 00 00]
-- E-posta: [info@viontehealth.com]
-- Çalışma saatleri: [Pzt–Cmt · 00:00–00:00]
+- Adres: Esenyalı Mah. Yanyol Cad. Varyap Plaza No:61 D:247 Pendik/İstanbul
+- Tel/WhatsApp: 0532 015 79 85
+- E-posta: info@viontehealth.com
+- Çalışma saatleri: Her gün · 09:00–17:00
+- Instagram: @viontehealth
+
+Formlar WhatsApp'a düşer; talepler teknisyenler tarafından anında yanıtlanır.
 
 ## Footer
 
-**Ticari ünvan:** [Ruhsatta yer alan tam ticari ünvan]
+**Ticari ünvan:** Mehtap Dizge (şahıs şirketi)
+**Faaliyet:** Tıp, dişçilik ve diğer insan sağlığı hizmetlerine yönelik aracılık hizmetleri
 
 **Tıbbi sorumluluk notu:** Bu sitedeki içerikler yalnızca bilgilendirme amaçlıdır,
 tanı ve tedavi yerine geçmez. Sağlık durumunuza ilişkin kararlar için hekiminize
 başvurun.
 
 **Veri sorumlusu:** Mehtap Dizge
-**İçerik sorumlusu:** [Ad Soyad · e-posta]
+**İçerik sorumlusu:** Mehtap Dizge · info@viontehealth.com
 
 Not: VERBİS kayıt numarası yazılmaz — şirket muafiyet kapsamında.
 **Son güncelleme:** [GG.AA.YYYY]
