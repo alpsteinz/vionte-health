@@ -34,7 +34,7 @@ export default function Page() {
         <SectionHead
           eyebrow="Yapı"
           title={team.title}
-          intro="Kimin hangi aşamada görev aldığı ve hangi belgeye sahip olduğu aşağıda açıkça yazılıdır. Uygulamayı Vionte yapmaz; anlaşmalı merkezdeki sertifikalı ekip yapar."
+          intro="Kimin hangi aşamada görev aldığı ve hangi belgeye sahip olduğu aşağıda açıkça yazılıdır. Uygulamayı Vionte Health yapmaz; anlaşmalı merkezdeki sertifikalı ekip yapar."
         />
 
         <dl className="reveal mt-12 divide-y divide-line border-y border-line">

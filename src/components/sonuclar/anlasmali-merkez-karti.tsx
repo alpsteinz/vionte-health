@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Building2 } from "lucide-react";
 import { Copy } from "@/components/ui/copy";
 import { PhotoPlaceholder } from "@/components/ui/photo-placeholder";
@@ -27,14 +28,36 @@ export function AnlasmaliMerkezKarti({ kayit }: { kayit: AnlasmaliMerkezSonucu }
   return (
     <figure className="flex flex-col bg-white">
       <div className="grid grid-cols-2 gap-px bg-line">
-        <div className="relative bg-white">
-          <PhotoPlaceholder label="Görsel bekleniyor" ratio="1/1" />
+        <div className="relative aspect-square bg-white">
+          {kayit.oncesiGorsel ? (
+            <Image
+              src={kayit.oncesiGorsel}
+              alt={kayit.gorselAlt ? `${kayit.gorselAlt} — öncesi` : "Uygulama öncesi"}
+              fill
+              loading="lazy"
+              sizes="(max-width: 768px) 50vw, 200px"
+              className="object-cover"
+            />
+          ) : (
+            <PhotoPlaceholder label="Görsel bekleniyor" ratio="1/1" />
+          )}
           <span className="absolute bottom-0 left-0 bg-navy px-2.5 py-1 text-[0.6875rem] uppercase tracking-[0.14em] text-white">
             Öncesi
           </span>
         </div>
-        <div className="relative bg-white">
-          <PhotoPlaceholder label="Görsel bekleniyor" ratio="1/1" />
+        <div className="relative aspect-square bg-white">
+          {kayit.sonrasiGorsel ? (
+            <Image
+              src={kayit.sonrasiGorsel}
+              alt={kayit.gorselAlt ? `${kayit.gorselAlt} — sonrası` : "Uygulama sonrası"}
+              fill
+              loading="lazy"
+              sizes="(max-width: 768px) 50vw, 200px"
+              className="object-cover"
+            />
+          ) : (
+            <PhotoPlaceholder label="Görsel bekleniyor" ratio="1/1" />
+          )}
           <span className="absolute bottom-0 left-0 bg-blue px-2.5 py-1 text-[0.6875rem] uppercase tracking-[0.14em] text-white">
             Sonrası
           </span>

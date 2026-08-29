@@ -74,7 +74,7 @@ export const guides: Guide[] = [
     slug: "/hasta-rehberi/operasyon-gunu",
     name: "Operasyon Günü",
     h1: "Saç Ekimi Operasyonu Günü Nasıl Geçer?",
-    lead: "Operasyon anlaşmalı merkezde, lokal anestezi altında yapılır ve ortalama 6–8 saat sürer. Aynı gün taburcu olursunuz; 3 gün sonra normal hayatınıza dönersiniz. Anlaşmalı merkezde kanal açma aşamasını saç ekimi uygulayıcı sertifikasına sahip hekim yürütür; greft alımı ve yerleştirme, Sağlık Bakanlığı tescilli yardımcı uygulayıcı sertifikasına sahip sağlık personeli tarafından hekim sorumluluğunda yapılır. Vionte bu aşamada uygulama yapmaz, süreci takip eder.",
+    lead: "Operasyon anlaşmalı merkezde, lokal anestezi altında yapılır ve ortalama 6–8 saat sürer. Aynı gün taburcu olursunuz; 3 gün sonra normal hayatınıza dönersiniz. Anlaşmalı merkezde kanal açma aşamasını saç ekimi uygulayıcı sertifikasına sahip hekim yürütür; greft alımı ve yerleştirme, Sağlık Bakanlığı tescilli yardımcı uygulayıcı sertifikasına sahip sağlık personeli tarafından hekim sorumluluğunda yapılır. Vionte Health bu aşamada uygulama yapmaz, süreci takip eder.",
     metaTitle: "Saç Ekimi Operasyon Günü",
     metaDescription:
       "Saç ekimi operasyonu günü nasıl geçer: anestezi, greft alımı, kanal açma, yerleştirme ve aynı gün taburculuk.",
@@ -91,7 +91,7 @@ export const guides: Guide[] = [
         id: "ekip",
         heading: "Uygulamayı kim yapar?",
         body: [
-          "Saç ekimi bir ekip işidir. Anlaşmalı merkezde kanal açma aşamasını saç ekimi uygulayıcı sertifikasına sahip hekim yürütür; greft alımı ve yerleştirme, Sağlık Bakanlığı tescilli yardımcı uygulayıcı sertifikasına sahip sağlık personeli tarafından hekim sorumluluğunda yapılır. Vionte bu aşamada uygulama yapmaz, süreci takip eder.",
+          "Saç ekimi bir ekip işidir. Anlaşmalı merkezde kanal açma aşamasını saç ekimi uygulayıcı sertifikasına sahip hekim yürütür; greft alımı ve yerleştirme, Sağlık Bakanlığı tescilli yardımcı uygulayıcı sertifikasına sahip sağlık personeli tarafından hekim sorumluluğunda yapılır. Vionte Health bu aşamada uygulama yapmaz, süreci takip eder.",
         ],
       },
       {
@@ -136,7 +136,7 @@ export const guides: Guide[] = [
         id: "kontroller",
         heading: "Kontroller",
         body: [
-          "İlk yıkama anlaşmalı merkezde yapılır. Süreç 3., 6. ve 12. ay kontrolleriyle izlenir; Vionte bu takibi yürütür.",
+          "İlk yıkama anlaşmalı merkezde yapılır. Süreç 3., 6. ve 12. ay kontrolleriyle izlenir; Vionte Health bu takibi yürütür.",
         ],
       },
       {

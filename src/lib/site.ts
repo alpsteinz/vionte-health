@@ -1,19 +1,19 @@
 /**
- * Vionte künyesi.
+ * Vionte Health künyesi.
  *
- * KONUMLANDIRMA — Vionte bir saç ekimi kliniği DEĞİLDİR.
+ * KONUMLANDIRMA — Vionte Health bir saç ekimi kliniği DEĞİLDİR.
  * Saç ekimi danışmanlık ve yönlendirme şirketidir. Vergi levhasındaki
  * faaliyet: "tıp, dişçilik ve diğer insan sağlığı hizmetlerine yönelik
  * aracılık hizmetleri". Şahıs şirketi — Mehtap Dizge.
  *
  * Kendi kliniği yoktur. Operasyonlar anlaşmalı hastanede, sertifikalı saç
  * ekim teknisyenleri tarafından yapılır. Sitede hiçbir yerde uygulamayı
- * Vionte'nin yaptığı izlenimi verilmez.
+ * Vionte Health'nin yaptığı izlenimi verilmez.
  */
 
 export const site = {
-  name: "Vionte",
-  shortName: "Vionte",
+  name: "Vionte Health",
+  shortName: "Vionte Health",
   /** Ne yaptığımızı tanımlayan ibare — "klinik" denmez */
   tagline: "Saç Ekimi Danışmanlığı",
   /** Şahıs şirketi */
@@ -73,7 +73,7 @@ export const site = {
 
   disclaimers: {
     /** Aracılık konumunu açıkça belirtir */
-    rol: "Vionte saç ekimi danışmanlık ve yönlendirme hizmeti verir; sağlık kuruluşu değildir ve uygulama yapmaz. Operasyonlar anlaşmalı merkezlerde, sertifikalı saç ekim uzmanları tarafından gerçekleştirilir.",
+    rol: "Vionte Health saç ekimi danışmanlık ve yönlendirme hizmeti verir; sağlık kuruluşu değildir ve uygulama yapmaz. Operasyonlar anlaşmalı merkezlerde, sertifikalı saç ekim uzmanları tarafından gerçekleştirilir.",
     medical:
       "Bu sitedeki içerikler yalnızca bilgilendirme amaçlıdır, tanı ve tedavi yerine geçmez. Sağlık durumunuza ilişkin kararlar için hekiminize başvurun.",
     results:

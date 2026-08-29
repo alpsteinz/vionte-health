@@ -29,18 +29,18 @@ const jost = Jost({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Vionte — Saç Ekimi Danışmanlığı, İstanbul",
-    template: "%s | Vionte Saç Ekimi Danışmanlığı",
+    default: "Vionte Health — Saç Ekimi Danışmanlığı, İstanbul",
+    template: "%s | Vionte Health",
   },
   description:
-    "Vionte saç ekimi danışmanlık ve yönlendirme şirketidir. Dökülme tipinizi ve donör kapasitenizi ölçer, size uygun tekniğe ve anlaşmalı merkeze yönlendiririz. Saç analizi ücretsizdir.",
+    "Vionte Health saç ekimi danışmanlık ve yönlendirme şirketidir. Dökülme tipinizi ve donör kapasitenizi ölçer, size uygun tekniğe ve anlaşmalı merkeze yönlendiririz. Saç analizi ücretsizdir.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: site.locale,
     url: site.url,
     siteName: site.name,
-    title: "Vionte — Saç Ekimi Danışmanlığı, İstanbul",
+    title: "Vionte Health — Saç Ekimi Danışmanlığı, İstanbul",
     description:
       "Saç ekimi danışmanlık ve yönlendirme. Ölçüme göre size uygun tekniğe ve anlaşmalı merkeze yönlendiririz. Saç analizi ücretsizdir.",
   },

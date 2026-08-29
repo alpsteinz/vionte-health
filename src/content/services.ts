@@ -390,7 +390,7 @@ export const services: Service[] = [
     slug: "/sac-tedavileri/sac-analizi",
     name: "Saç Analizi",
     h1: "Saç Analizi Nasıl Yapılır?",
-    lead: "Saç analizinde donör alan yoğunluğunuz, dökülme tipiniz ve saç telinizin kalınlığı ölçülür. Yönlendirme planı bu ölçümler üzerine kurulur; ölçüm yapılmadan verilen greft sayıları yalnızca yaklaşık bir aralık gösterir. Vionte'de saç analizi ücretsizdir.",
+    lead: "Saç analizinde donör alan yoğunluğunuz, dökülme tipiniz ve saç telinizin kalınlığı ölçülür. Yönlendirme planı bu ölçümler üzerine kurulur; ölçüm yapılmadan verilen greft sayıları yalnızca yaklaşık bir aralık gösterir. Vionte Health'de saç analizi ücretsizdir.",
     metaTitle: "Saç Analizi Nasıl Yapılır?",
     metaDescription:
       "Saç analizinde donör alan yoğunluğu, dökülme tipi ve saç teli kalınlığı ölçülür. Yönlendirme planı bu ölçümler üzerine kurulur.",

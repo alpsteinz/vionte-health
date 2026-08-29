@@ -13,7 +13,7 @@ export function Footer() {
       <Container>
         <div className="grid gap-12 py-16 md:py-20 lg:grid-cols-[1.1fr_2fr]">
           <div>
-            <Logo tone="light" />
+            <Logo tone="light" className="[&>span:last-child]:!inline" />
             <p className="measure mt-6 text-[0.9375rem] text-blue-light">
               Saç ekimi danışmanlık ve yönlendirme. Uygulama yapmayız;
               ölçüme göre size uygun tekniğe ve anlaşmalı merkeze

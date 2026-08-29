@@ -3,9 +3,9 @@ import { site } from "@/lib/site";
 /**
  * Danışmanlık sayfaları.
  *
- * Vionte'nin asıl konumlandırmasını taşıyan sayfalar: uygulama yapmıyoruz,
+ * Vionte Health'nin asıl konumlandırmasını taşıyan sayfalar: uygulama yapmıyoruz,
  * doğru yere yönlendiriyoruz. Bu sayfalar aynı zamanda ayrışma stratejisinin
- * merkezinde — rakipler kendi kliniğini övüyor, Vionte klinik nasıl seçilir
+ * merkezinde — rakipler kendi kliniğini övüyor, Vionte Health klinik nasıl seçilir
  * anlatıyor.
  */
 
@@ -27,18 +27,18 @@ export const danismanlikSayfalari: DanismanlikSayfasi[] = [
     slug: "/neden-danisman",
     name: "Neden Danışman?",
     h1: "Neden Klinik Değil de Danışman?",
-    lead: "Vionte bir saç ekimi kliniği değildir; saç ekimi danışmanlık ve yönlendirme şirketidir. Kendi kliniğimiz olmadığı için sizi kendi ameliyathanemize yönlendirme gibi bir çıkarımız da yok. İşimiz, ölçüme bakıp size uygun tekniği ve merkezi bulmak.",
+    lead: "Vionte Health bir saç ekimi kliniği değildir; saç ekimi danışmanlık ve yönlendirme şirketidir. Kendi kliniğimiz olmadığı için sizi kendi ameliyathanemize yönlendirme gibi bir çıkarımız da yok. İşimiz, ölçüme bakıp size uygun tekniği ve merkezi bulmak.",
     metaTitle: "Neden Klinik Değil de Danışman?",
     metaDescription:
-      "Vionte saç ekimi danışmanlık ve yönlendirme şirketidir. Kendi kliniği yoktur; operasyonlar anlaşmalı merkezlerde sertifikalı ekipler tarafından yapılır.",
+      "Vionte Health saç ekimi danışmanlık ve yönlendirme şirketidir. Kendi kliniği yoktur; operasyonlar anlaşmalı merkezlerde sertifikalı ekipler tarafından yapılır.",
     eyebrow: "Danışmanlık",
     sections: [
       {
         id: "ne-yapariz",
-        heading: "Vionte ne yapar, ne yapmaz",
+        heading: "Vionte Health ne yapar, ne yapmaz",
         body: [
-          "Vionte saç analizi yapar, dökülme tipinizi ve donör kapasitenizi ölçer, size uygun tekniği belirler ve anlaşmalı merkeze yönlendirir. Operasyon süresince ve sonrasında süreci takip eder.",
-          "Vionte uygulama yapmaz. Operasyonlar anlaşmalı merkezlerde, sertifikalı saç ekim uzmanları tarafından gerçekleştirilir. Vionte bir sağlık kuruluşu değildir.",
+          "Vionte Health saç analizi yapar, dökülme tipinizi ve donör kapasitenizi ölçer, size uygun tekniği belirler ve anlaşmalı merkeze yönlendirir. Operasyon süresince ve sonrasında süreci takip eder.",
+          "Vionte Health uygulama yapmaz. Operasyonlar anlaşmalı merkezlerde, sertifikalı saç ekim uzmanları tarafından gerçekleştirilir. Vionte Health bir sağlık kuruluşu değildir.",
         ],
         list: [
           "Yapar: ücretsiz saç analizi ve ölçüm",
@@ -51,7 +51,7 @@ export const danismanlikSayfalari: DanismanlikSayfasi[] = [
         id: "cikar-catismasi",
         heading: "Kendi kliniği olanla danışmanın farkı",
         body: [
-          "Kendi kliniği olan bir kurum, size hangi tekniği önerirse önersin, sonuçta kendi ameliyathanesine yönlendirir. Vionte'nin böyle bir bağı yok; hangi merkezin sizin vakanıza uygun olduğuna ölçüm karar verir.",
+          "Kendi kliniği olan bir kurum, size hangi tekniği önerirse önersin, sonuçta kendi ameliyathanesine yönlendirir. Vionte Health'nin böyle bir bağı yok; hangi merkezin sizin vakanıza uygun olduğuna ölçüm karar verir.",
           "Bunun bir sonucu da şu: bazı vakalarda cevabımız \"şu an ekim uygun değil\" oluyor. Kendi kliniğini doldurmak zorunda olan bir kurumun bunu söylemesi daha zordur.",
         ],
       },

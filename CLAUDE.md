@@ -201,6 +201,40 @@ kapsamındadır. Bu alan sonradan da eklenmemelidir.
 
 **Veri sorumlusu: Mehtap Dizge.**
 
+## Karşılaştırma slider'ı
+
+Öncesi–sonrası için sürüklemeli karşılaştırma çizgisi; dış katmanda çoklu
+vaka geçişi (`KarsilastirmaGalerisi`).
+
+- Görseller `loading="lazy"` — LCP'yi bozmaz, slider ilk ekranda yer almaz
+- Mobilde yatay kaydırma jesti **karşılaştırma çizgisini** sürükler,
+  galeriyi değil. Vaka geçişi ok düğmeleriyle yapılır; iki davranış aynı
+  jeste bağlanırsa slider mobilde kullanılamaz hale gelir
+- Klavye erişilebilir: ok tuşları, Home/End
+- Yalnızca `kaynak` dolu VE iki görseli de olan kayıtlar gösterilir;
+  koşul sağlanmazsa bileşen hiçbir şey render etmez
+
+## Google yorumları
+
+Yorumlar Google Places API (New) üzerinden **build sırasında sunucuda**
+çekilir; API anahtarı tarayıcıya gitmez. İki ortam değişkeni:
+
+```
+GOOGLE_PLACES_API_KEY
+GOOGLE_PLACE_ID
+```
+
+Tanımlı değilse site yorumsuz çalışır, sayfa bozulmaz. Uydurma yorum veya
+puan yayınlanmaz; `AggregateRating` şeması yalnızca gerçek veri varsa
+üretilir.
+
+## Görseller
+
+Görsel yükleme kuralları ve klasör yapısı `GORSELLER.md` dosyasındadır.
+Norwood görselleri `public/norwood/` altına konur ve `home.ts` içindeki
+seviyeye `gorsel:` yolu yazılır; yol verilmeyen seviye şematik çizimle
+görünmeye devam eder.
+
 ## Ayrışma stratejisi
 
 Rakipler (Dr. Terziler, Dr. Serkan Aygın, Smile Hair Clinic) abartılı iddia

@@ -1,7 +1,7 @@
 /**
  * Ana sayfa metinleri.
  *
- * DİL KURALI: Vionte uygulama yapmaz, yönlendirir. "Kliniğimiz",
+ * DİL KURALI: Vionte Health uygulama yapmaz, yönlendirir. "Kliniğimiz",
  * "uyguluyoruz", "operasyonumuz" gibi ifadeler kullanılmaz; yerine
  * "anlaşmalı merkez", "yönlendiriyoruz", "danışmanlık" geçer.
  */
@@ -11,7 +11,7 @@ export const hero = {
   titleLead: "Saç ekimi",
   titleEmphasis: "doğru yönlendirmeyle",
   titleTail: "başlar.",
-  body: "Vionte bir klinik değil, saç ekimi danışmanlık ve yönlendirme şirketidir. Dökülme tipinizi ve donör kapasitenizi ölçer, size uygun tekniği ve anlaşmalı merkezi birlikte belirleriz. Operasyonu anlaşmalı merkezde sertifikalı saç ekim uzmanları yapar.",
+  body: "Vionte Health bir klinik değil, saç ekimi danışmanlık ve yönlendirme şirketidir. Dökülme tipinizi ve donör kapasitenizi ölçer, size uygun tekniği ve anlaşmalı merkezi birlikte belirleriz. Operasyonu anlaşmalı merkezde sertifikalı saç ekim uzmanları yapar.",
   counters: [
     { value: "12", label: "Yıl deneyim" },
     { value: "200+", label: "Yıllık danışan" },
@@ -31,6 +31,14 @@ export type NorwoodLevel = {
   roman: string;
   title: string;
   description: string;
+  /**
+   * Klinik görseli. Dosya `public/norwood/` altına konur ve yolu buraya
+   * yazılır (örn. "/norwood/tip-3.webp"). Değer verildiği anda o seviye
+   * şematik çizim yerine gerçek görseli gösterir; kod değişikliği gerekmez.
+   * Boş bırakılan seviyeler şematik çizimle görünmeye devam eder.
+   */
+  gorsel?: string;
+  /** Şematik çizim parametreleri — görsel geldiğinde kullanılmaz */
   vertex: number;
   hairline: number;
 };
@@ -113,16 +121,16 @@ export const process = {
 
 /** Ana farklılaşma noktası — öne çıkarılır */
 export const referans = {
-  eyebrow: "Neden Vionte",
+  eyebrow: "Neden Vionte Health",
   title: "Danışanlarımızın yarısından çoğu bize referansla geliyor",
   body: "Reklamla değil, daha önce yönlendirdiğimiz kişilerin tavsiyesiyle. Bu, bizim için tek anlamlı ölçü: süreci yaşayan biri, aynı yolu bir yakınına önerecek kadar memnun kaldı mı?",
-  note: "Vionte uygulama yapmaz. Bağımsız bir danışman olarak sizi doğru merkeze ve doğru tekniğe yönlendirir, süreç boyunca yanınızda kalır.",
+  note: "Vionte Health uygulama yapmaz. Bağımsız bir danışman olarak sizi doğru merkeze ve doğru tekniğe yönlendirir, süreç boyunca yanınızda kalır.",
 };
 
 export const team = {
   eyebrow: "Ekip",
   title: "Sertifikalı saç ekim uzmanları",
-  body: "Vionte'nin kendi kliniği yoktur; operasyonlar anlaşmalı merkezlerde yapılır. Yönlendirme ve süreç takibi, 12 yıllık deneyime sahip sertifikalı saç ekim uzmanlarından oluşan ekip tarafından yürütülür.",
+  body: "Vionte Health'nin kendi kliniği yoktur; operasyonlar anlaşmalı merkezlerde yapılır. Yönlendirme ve süreç takibi, 12 yıllık deneyime sahip sertifikalı saç ekim uzmanlarından oluşan ekip tarafından yürütülür.",
   quote:
     "Greft sayısı tek başına bir başarı ölçüsü değil. Belirleyici olan, o greftlerin hangi açıyla ve hangi yoğunlukta yerleştirildiği.",
   roles: [

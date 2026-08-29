@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { NorwoodLevel } from "@/content/home";
 
 /**
@@ -102,6 +103,26 @@ function TopView({ level }: { level: NorwoodLevel }) {
 }
 
 export function NorwoodFigure({ level }: { level: NorwoodLevel }) {
+  /*
+   * Klinik kendi Norwood setini yüklediğinde `level.gorsel` dolar ve
+   * şematik çizim devre dışı kalır. Görsel gelmeyen seviyeler şemayla
+   * görünmeye devam eder, yani set kısmi de yüklenebilir.
+   */
+  if (level.gorsel) {
+    return (
+      <div className="relative aspect-square w-full max-w-[7.5rem]">
+        <Image
+          src={level.gorsel}
+          alt={`Norwood ${level.title} — dökülme deseni`}
+          fill
+          loading="lazy"
+          sizes="120px"
+          className="object-contain"
+        />
+      </div>
+    );
+  }
+
   return (
     // Hücre genişliğine göre ölçeklenir — dar ekranda taşmaz
     <div className="flex w-full items-center justify-center gap-1">
