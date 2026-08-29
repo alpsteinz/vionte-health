@@ -19,7 +19,11 @@ const KOK = new URL("..", import.meta.url).pathname;
 /** AGENTS.md — Yasaklar / İçerik */
 const yasakli = [
   ["Üstünlük iddiası", [/\ben iyi\b/i, /türkiye'?nin tek/i, /türkiye'?nin lider/i, /avrupa'?nın en/i, /\blider klinik/i, /dünyanın en/i]],
-  ["Sonuç/deneyim garantisi", [/garanti/i, /%\s*100 kalıcı/i, /sonsuza dek/i, /tamamen ağrısız/i, /ömür boyu/i, /ağrısız saç ekimi/i]],
+  ["Sonuç/deneyim garantisi", [
+    /garanti(li|liyiz|si var|\s+ediyoruz|\s+veriyoruz|\s+altında|\s+kapsamında)/i,
+    /\d+\s*yıl garanti/i,
+    /%\s*100 kalıcı/i, /sonsuza dek/i, /tamamen ağrısız/i, /ömür boyu/i, /ağrısız saç ekimi/i,
+  ]],
   ["Talep oluşturucu reklam", [/hayatınızı değiştir/i, /hayallerinizdeki/i, /yeniden doğ/i]],
   ["Fiyat vurgulu çağrı", [/indirim/i, /kampanya/i, /en uygun fiyat/i, /gizli ücret/i, /taksit/i]],
   ["Dayanaksız istatistik", [/%\s*9\d/, /başarı oran/i, /greft yaşam oran/i]],
@@ -48,11 +52,21 @@ let bulundu = 0;
 for (const [kategori, patterns] of yasakli) {
   for (const f of kaynaklar) {
     const metin = readFileSync(f, "utf8");
-    for (const satirNo of metin.split("\n").keys()) {
-      const satir = metin.split("\n")[satirNo];
-      if (satir.trimStart().startsWith("*") || satir.trimStart().startsWith("//")) continue;
+    const tumSatirlar = metin.split("\n");
+    for (const satirNo of tumSatirlar.keys()) {
+      // Yalnızca çift tırnak içindeki kullanıcıya görünen metni incele;
+      // değişken/anahtar adları ("garanti:", faqGaranti) taranmaz.
+      const ham = tumSatirlar[satirNo];
+      const satir = (ham.match(/"([^"\\]|\\.)*"/g) || []).join(" ");
+      if (!satir) continue;
+      const hamTrim = ham.trimStart();
+      if (hamTrim.startsWith("*") || hamTrim.startsWith("//") || hamTrim.startsWith("/*")) continue;
+      // Yasağı ANLATAN cümle ihlal değil: "yazılı garanti belgesi verilmez",
+      // "garanti edilemez", "tamamen ağrısız denmez" gibi.
+      const olumsuzlama =
+        /(verilmez|verilmiyor|edilemez|yapılmaz|yapılmıyor|kullanılmaz|denmez|değildir|\bdeğil\b|\byok\b|Hayır|olmamalı|OLMAMASINI|DEĞİL|yasak)/i.test(satir);
       for (const pat of patterns) {
-        if (pat.test(satir)) {
+        if (pat.test(satir) && !olumsuzlama) {
           console.log(`   ! ${kategori}: ${f.replace(KOK, "")}:${satirNo + 1}`);
           console.log(`     ${satir.trim().slice(0, 100)}`);
           bulundu++;

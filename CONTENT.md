@@ -105,13 +105,13 @@ ya da dökülmenin erken evrelerinde ayrı bir tedavi planı olarak değerlendir
 **Açılış:** Anestezi, iğne yerine basınçlı jet enjektör ile uygulanır. Bu yöntem
 anestezi aşamasındaki iğne batma hissini ortadan kaldırır.
 
-**H1 (klinik sahibi talebi):** İğnesiz Anestezi ve Ağrısız Saç Ekimi
+**H1:** İğnesiz Anestezi Nedir?
 **Sistem:** Dermojet basınçlı jet
 
-⚠️ Bu başlık, AGENTS.md'deki "tamamen ağrısız" yasağıyla gerginlik taşır.
-Gövde metninde ağrısızlık taahhüdü verilmez; yalnızca anestezi aşamasındaki
-batma hissinin ortadan kalktığı anlatılır. Mevzuat açısından yeniden
-değerlendirilmeli.
+**Kural:** Sayfa adı "İğnesiz Anestezi" olur, "Ağrısız Saç Ekimi" DEĞİL.
+Yöntemin adı kullanılır; operasyonun tamamı için ağrısızlık taahhüdü
+verilmez. Bu bir mevzuat kısıtıdır — "tamamen ağrısız" AGENTS.md'nin yasak
+listesindedir.
 
 ## Fiyatlandırma
 

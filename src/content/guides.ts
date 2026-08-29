@@ -29,7 +29,7 @@ export const guides: Guide[] = [
     name: "Operasyon Öncesi",
     h1: "Saç Ekimi Öncesi Nelere Dikkat Edilir?",
     lead: "Operasyon öncesi hazırlık, anlaşmalı merkezde muayene ve kan tahlilleriyle başlar. Bu aşamada donör alan yoğunluğu ölçülür, greft sayısı ve saç çizgisi birlikte planlanır; kullandığınız ilaçlar ve sistemik hastalıklarınız anlaşmalı merkezdeki ekiple paylaşılır.",
-    metaTitle: "Saç Ekimi Öncesi Hazırlık — Vionte Hair Transplant",
+    metaTitle: "Saç Ekimi Öncesi Hazırlık",
     metaDescription:
       "Saç ekimi öncesi muayene, kan tahlilleri ve greft planlaması. Hangi ilaçların bildirilmesi gerektiği ve operasyon öncesi hazırlık adımları.",
     sections: [
@@ -75,7 +75,7 @@ export const guides: Guide[] = [
     name: "Operasyon Günü",
     h1: "Saç Ekimi Operasyonu Günü Nasıl Geçer?",
     lead: "Operasyon anlaşmalı merkezde, lokal anestezi altında yapılır ve ortalama 6–8 saat sürer. Aynı gün taburcu olursunuz; 3 gün sonra normal hayatınıza dönersiniz. Anlaşmalı merkezde kanal açma aşamasını saç ekimi uygulayıcı sertifikasına sahip hekim yürütür; greft alımı ve yerleştirme, Sağlık Bakanlığı tescilli yardımcı uygulayıcı sertifikasına sahip sağlık personeli tarafından hekim sorumluluğunda yapılır. Vionte bu aşamada uygulama yapmaz, süreci takip eder.",
-    metaTitle: "Saç Ekimi Operasyon Günü — Vionte Hair Transplant",
+    metaTitle: "Saç Ekimi Operasyon Günü",
     metaDescription:
       "Saç ekimi operasyonu günü nasıl geçer: anestezi, greft alımı, kanal açma, yerleştirme ve aynı gün taburculuk.",
     sections: [
@@ -113,7 +113,7 @@ export const guides: Guide[] = [
     name: "Operasyon Sonrası",
     h1: "Saç Ekimi Sonrası Süreç Nasıl İlerler?",
     lead: "Operasyondan 2–4 hafta sonra ekilen saçların büyük bölümü dökülür. Buna şok dökülme denir ve beklenen bir süreçtir; kökler yerinde kalır. İlk saçlar 3. ayda çıkar, sonuç 12. ayda tamamlanır.",
-    metaTitle: "Saç Ekimi Sonrası Süreç — Vionte Hair Transplant",
+    metaTitle: "Saç Ekimi Sonrası Süreç",
     metaDescription:
       "Saç ekimi sonrası şok dökülme, yeni çıkış ve 12 aylık sonuç süreci. İlk günler, kontroller ve dikkat edilmesi gerekenler.",
     sections: [
@@ -165,7 +165,7 @@ export const guides: Guide[] = [
     name: "Saç Yıkama",
     h1: "Saç Ekimi Sonrası Saç Nasıl Yıkanır?",
     lead: "İlk yıkama anlaşmalı merkezde yapılır ve size uygulamalı olarak gösterilir. Sonraki yıkamaları evde sürdürürsünüz; amaç kabukların zamanla ve ovalamadan kalkmasıdır.",
-    metaTitle: "Saç Ekimi Sonrası Saç Yıkama — Vionte Hair Transplant",
+    metaTitle: "Saç Ekimi Sonrası Saç Yıkama",
     metaDescription:
       "Saç ekimi sonrası ilk yıkama klinikte yapılır. Evde yıkama adımları, kabuklanma süreci ve dikkat edilmesi gerekenler.",
     sections: [
@@ -198,7 +198,7 @@ export const guides: Guide[] = [
     name: "Sterilizasyon ve Hijyen",
     h1: "Saç Ekiminde Sterilizasyon Nasıl Sağlanır?",
     lead: "Saç ekimi küçük cerrahi işlemler grubundadır ve tüm cerrahi işlemler gibi komplikasyon riski taşır. En bilinenleri enfeksiyon ve nekrozdur. Bu risk, işlemin yapıldığı yerin sağlık kuruluşu olup olmamasına ve uygulayan ekibin sertifikasyon ve deneyimine göre değişir.",
-    metaTitle: "Sterilizasyon ve Hijyen — Vionte Hair Transplant",
+    metaTitle: "Sterilizasyon ve Hijyen",
     metaDescription:
       "Saç ekiminde sterilizasyon süreci, tek kullanımlık malzeme kullanımı ve enfeksiyon riskini belirleyen etkenler.",
     sections: [
@@ -229,7 +229,7 @@ export const guides: Guide[] = [
     name: "Fiyatlandırma Nasıl Belirlenir",
     h1: "Saç Ekimi Fiyatı Nasıl Belirlenir?",
     lead: "Fiyat, greft sayısı ve uygulanacak tekniğe göre belirlenir. Muayene sonrası verilen teklif, operasyon ve kontrol süreçlerinin tamamını kapsar. Teklifte yer almayan ek bir ücret talep edilmez.",
-    metaTitle: "Saç Ekimi Fiyatı Nasıl Belirlenir? — Vionte Hair Transplant",
+    metaTitle: "Saç Ekimi Fiyatı Nasıl Belirlenir?",
     metaDescription:
       "Saç ekimi fiyatı greft sayısı ve uygulanacak tekniğe göre belirlenir. Fiyatı etkileyen faktörler ve teklifin kapsamı.",
     sections: [

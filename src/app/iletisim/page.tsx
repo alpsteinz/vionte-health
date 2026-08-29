@@ -14,7 +14,7 @@ import { site } from "@/lib/site";
 
 const title = "İletişim";
 const description =
-  "Vionte Hair Transplant iletişim bilgileri: adres, telefon, WhatsApp, e-posta ve çalışma saatleri.";
+  "Vionte iletişim bilgileri: adres, telefon, WhatsApp, e-posta ve çalışma saatleri. Pendik/İstanbul.";
 
 export const metadata: Metadata = {
   title,

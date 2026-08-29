@@ -242,17 +242,13 @@ export const services: Service[] = [
     slug: "/sac-ekimi/ignesiz-anestezi",
     name: "İğnesiz Anestezi",
     /*
-     * NOT: Sayfa adı klinik sahibinin talebiyle "İğnesiz Anestezi ve Ağrısız
-     * Saç Ekimi" olarak belirlendi. AGENTS.md'deki yasak listesinde
-     * "tamamen ağrısız" ifadesi yer alıyor ve CONTENT.md daha önce sayfa
-     * adının "Ağrısız Saç Ekimi" OLMAMASINI kural olarak yazmıştı.
-     * Bu bilinçli bir sapmadır; gövde metninde ağrısızlık taahhüdü
-     * verilmiyor, yalnızca anestezi aşamasındaki batma hissinin ortadan
-     * kalktığı anlatılıyor. Mevzuat açısından yeniden değerlendirilmeli.
+     * Sayfa adı yalnızca "İğnesiz Anestezi" olur — "Ağrısız Saç Ekimi"
+     * DEĞİL. Yöntemin adı kullanılır; operasyonun tamamı için ağrısızlık
+     * taahhüdü verilmez (AGENTS.md yasak listesi: "tamamen ağrısız").
      */
-    h1: "İğnesiz Anestezi ve Ağrısız Saç Ekimi",
+    h1: "İğnesiz Anestezi Nedir?",
     lead: "Anestezi, iğne yerine Dermojet basınçlı jet sistemiyle uygulanır. Bu yöntem anestezi aşamasındaki iğne batma hissini ortadan kaldırır. Operasyon zaten lokal anestezi altında yapıldığı için işlem boyunca ağrı hissedilmez.",
-    metaTitle: "İğnesiz Anestezi ve Ağrısız Saç Ekimi",
+    metaTitle: "İğnesiz Anestezi Nedir? Dermojet Sistemi",
     metaDescription:
       "Saç ekiminde anestezi, iğne yerine Dermojet basınçlı jet sistemiyle uygulanabilir. Yöntemin ne olduğu, kimlere uygulandığı ve sınırları.",
     eyebrow: "Uygulama",

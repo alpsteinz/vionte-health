@@ -11,7 +11,7 @@ import { reviews } from "@/content/home";
 
 const title = "Hasta Yorumları";
 const description =
-  "Vionte Hair Transplant hakkında hasta yorumları ve Google değerlendirmeleri.";
+  "Vionte danışanlarının yorumları ve Google değerlendirmeleri.";
 
 export const metadata: Metadata = {
   title,

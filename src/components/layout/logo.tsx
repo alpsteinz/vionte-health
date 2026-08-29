@@ -15,7 +15,7 @@ export function Logo({
   return (
     <Link
       href="/"
-      aria-label="Vionte Hair Transplant — ana sayfa"
+      aria-label="Vionte — ana sayfa"
       className={cn("group flex shrink-0 items-baseline gap-2.5 whitespace-nowrap", className)}
     >
       <span
@@ -32,7 +32,7 @@ export function Logo({
           tone === "light" ? "text-blue-light" : "text-muted",
         )}
       >
-        Hair Transplant
+        Saç Ekimi Danışmanlığı
       </span>
     </Link>
   );
