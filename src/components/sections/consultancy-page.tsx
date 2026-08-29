@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { PageHero } from "@/components/ui/page-hero";
 import { Section } from "@/components/ui/section";
@@ -21,7 +22,32 @@ export function ConsultancyPage({ sayfa }: { sayfa: DanismanlikSayfasi }) {
   return (
     <>
       <Breadcrumbs trail={trail} />
-      <PageHero eyebrow={sayfa.eyebrow} title={sayfa.h1} lead={sayfa.lead} />
+      <PageHero
+        eyebrow={sayfa.eyebrow}
+        title={sayfa.h1}
+        lead={sayfa.lead}
+        aside={
+          sayfa.gorsel ? (
+            <figure className="border border-line bg-white p-3">
+              <div className="relative aspect-[3/4] w-full overflow-hidden">
+                <Image
+                  src={sayfa.gorsel.src}
+                  alt={sayfa.gorsel.alt}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 340px"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              {sayfa.gorsel.kunye ? (
+                <figcaption className="px-2 pb-1 pt-3.5 text-[0.8125rem] text-muted">
+                  {sayfa.gorsel.kunye}
+                </figcaption>
+              ) : null}
+            </figure>
+          ) : undefined
+        }
+      />
 
       <Section tone="paper">
         <div className="grid gap-12 lg:grid-cols-[236px_minmax(0,68ch)] lg:justify-center lg:gap-20">

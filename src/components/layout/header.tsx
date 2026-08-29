@@ -49,7 +49,7 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur-sm">
       <Container>
         <div className="flex h-[68px] items-center justify-between gap-6 md:h-[76px]">
-          <Logo />
+          <Logo priority />
 
           <nav aria-label="Ana menü" className="hidden lg:block">
             <ul className="flex items-center gap-1">
