@@ -8,16 +8,24 @@ import { NextResponse } from "next/server";
  * kadar burada yalnızca doğrulama yapılır; kişisel veri kalıcı olarak
  * saklanmaz ve dışarı gönderilmez.
  *
- * Entegrasyon noktası aşağıda işaretli. Seçenekler: CRM webhook, e-posta
- * (SMTP/Resend) veya WhatsApp Business API. KVKK gereği aktarım yapılacak
- * yerin aydınlatma metninde belirtilmesi gerekir.
+ * KVKK — iki ayrı onay:
+ *   kvkkIletisim      Zorunlu. İletişim bilgilerinin işlenmesi.
+ *   saglikVerisiRizasi İsteğe bağlı açık rıza. Verilmediyse dökülme seviyesi
+ *                     ve fotoğraf bilgisi HİÇ kabul edilmez — istemci
+ *                     göndermese de sunucu tarafında da düşürülür.
+ *
+ * Fotoğraf dosyaları bu uç noktada kabul edilmez; sağlık verisi niteliğindeki
+ * görseller için güvenli aktarım ve saklama kanalı belirlenmeden dosya
+ * alınmaz.
  */
 
 type LeadPayload = {
   ad?: unknown;
   telefon?: unknown;
   norwood?: unknown;
-  kvkk?: unknown;
+  kvkkIletisim?: unknown;
+  saglikVerisiRizasi?: unknown;
+  fotografSayisi?: unknown;
 };
 
 const NORWOOD_IDS = ["tip-1", "tip-2", "tip-3", "tip-4", "tip-5", "tip-6"];
@@ -32,7 +40,6 @@ export async function POST(request: Request) {
 
   const ad = typeof body.ad === "string" ? body.ad.trim() : "";
   const telefon = typeof body.telefon === "string" ? body.telefon.trim() : "";
-  const norwood = typeof body.norwood === "string" ? body.norwood : "";
 
   if (ad.length < 2 || ad.length > 80) {
     return NextResponse.json({ hata: "Ad Soyad geçersiz." }, { status: 422 });
@@ -43,19 +50,30 @@ export async function POST(request: Request) {
     return NextResponse.json({ hata: "Telefon numarası geçersiz." }, { status: 422 });
   }
 
-  if (body.kvkk !== true) {
+  if (body.kvkkIletisim !== true) {
     return NextResponse.json(
-      { hata: "KVKK onayı olmadan form işlenemez." },
+      { hata: "İletişim bilgilerinin işlenmesi için onay gerekiyor." },
       { status: 422 },
     );
   }
 
-  if (norwood && !NORWOOD_IDS.includes(norwood)) {
-    return NextResponse.json({ hata: "Geçersiz seçim." }, { status: 422 });
+  // Açık rıza yoksa sağlık verisi hiç işlenmez.
+  const saglikRizasi = body.saglikVerisiRizasi === true;
+  let norwood: string | null = null;
+
+  if (saglikRizasi) {
+    const gelen = typeof body.norwood === "string" ? body.norwood : "";
+    if (gelen && !NORWOOD_IDS.includes(gelen)) {
+      return NextResponse.json({ hata: "Geçersiz seçim." }, { status: 422 });
+    }
+    norwood = gelen || null;
   }
 
+  void norwood;
+
   // TODO(klinik): lead buradan hedef sisteme aktarılacak.
-  // Hedef belirlenene kadar veri hiçbir yere yazılmıyor.
+  // Sağlık verisi (norwood) yalnızca saglikRizasi true ise aktarılabilir ve
+  // aktarım yapılacak yer KVKK aydınlatma metninde belirtilmelidir.
 
   return NextResponse.json({ durum: "alindi" });
 }

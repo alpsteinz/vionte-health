@@ -1,4 +1,5 @@
 import { Check, X } from "lucide-react";
+import { DraftNotice } from "@/components/ui/draft-notice";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { PageHero } from "@/components/ui/page-hero";
 import { Section, SectionHead } from "@/components/ui/section";
@@ -24,6 +25,7 @@ export function ServicePage({ service }: { service: Service }) {
 
   return (
     <>
+      {service.draftMedicalCopy ? <DraftNotice /> : null}
       <Breadcrumbs trail={trail} />
 
       {/* 1 — Teknik nedir: doğrudan cevap */}
@@ -85,13 +87,13 @@ export function ServicePage({ service }: { service: Service }) {
       {/* 3 — İşlem adımları */}
       <Section tone="navy">
         <SectionHead eyebrow="Adımlar" title="İşlem nasıl ilerler" tone="dark" />
-        <ol className="rule-grid rule-grid-dark reveal mt-12 sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="rule-grid rule-grid-dark reveal mt-12 sm:grid-cols-2">
           {service.steps.map((step, i) => (
             <li key={step.title} className="bg-navy p-7">
               <span className="font-serif text-[2.2rem] leading-none text-blue-light/50">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <h3 className="mt-5 font-serif text-[1.25rem] text-white">
+              <h3 className="h4 mt-5 text-white">
                 <Copy text={step.title} />
               </h3>
               <p className="mt-3 text-[0.9375rem] leading-relaxed text-blue-light">

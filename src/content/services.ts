@@ -12,6 +12,14 @@ export type ComparisonRow = { label: string; a: string; b: string };
 
 export type Service = {
   slug: string;
+  /**
+   * Sayfa, tıbbi inceleyenin onayından geçmemiş taslak anlatım içeriyorsa true.
+   * Sayfanın üstünde görünür "Taslak içerik" uyarısı gösterilir.
+   *
+   * Yeni yazılan her tıbbi anlatım, onaydan geçene kadar bu bayrakla eklenir
+   * (AGENTS.md — "AI taslak için kullanılır, yayın için değil").
+   */
+  draftMedicalCopy?: boolean;
   /** Menü/breadcrumb adı */
   name: string;
   /** H1 — arama sorusu biçiminde */

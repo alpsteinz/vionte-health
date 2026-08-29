@@ -58,11 +58,15 @@ hedeflenirse ayrı domain/platform gerekir. Genel web tasarım rehberlerinin
 - Formda açık KVKK onay kutusu
 - İçeriğin son güncelleme tarihi + içerik sorumlusuna ulaşılabilecek iletişim
 - Site adı/ünvanı, Bakanlıkça verilmiş ruhsattaki ünvanla uyumlu
+- Sonuç içeriği üç tiptedir; her tipin yayın kapısı sağlanmadan render edilmez
+- Stok görsel yalnızca "Temsili görsel" ibaresiyle yayınlanır (`StokGorsel`)
+- Formda iki ayrı KVKK onayı: iletişim (zorunlu) + sağlık verisi (açık rıza, isteğe bağlı)
 - Öncesi–sonrası görselleri yalnızca imzalı hasta onam formu varsa
 - Görsellerin yanında "sonuçlar kişiye göre değişir" ibaresi
 - Her hizmet ve blog sayfasında "Tıbbi inceleme: Dr. X — tarih"
 
 **Zorunlu değil:** Vergi no / MERSİS no (online satış yok), ruhsat belgesi görseli.
+**Bulunmayacak:** VERBİS kayıt numarası — şirket muafiyet kapsamında.
 
 ## Klinik gerçekleri
 
@@ -78,6 +82,61 @@ sertifikalı hekim yapar. Greft alımı ve yerleştirme, Sağlık Bakanlığı t
 "yardımcı uygulayıcı" sertifikasına sahip sağlık personeli tarafından hekim
 sorumluluğunda yapılır. Bu yapı mevzuata uygundur ve olduğu gibi anlatılır —
 "her şeyi doktor yapar" gibi abartıya gerek yok.
+
+## Sonuç içeriği — üç tip, üç bileşen
+
+Sonuç gösterimi tek bir kalıpla yapılmaz. Üç ayrı tip vardır, her birinin
+kendi yayın kapısı ve kendi bileşeni bulunur. Kapı sağlanmazsa kart **render
+edilmez** — eksik onam veya eksik kaynakla görsel yayına çıkamaz.
+
+**Tip 1 — Anlaşmalı merkez sonucu.** Görselli.
+- Zorunlu alan: `kaynak` (uygulamayı yapan merkezin adı)
+- Kart üzerinde görünür "Uygulama: [merkez adı]" etiketi bulunur
+- `kaynak` boşsa kart render edilmez, build sırasında uyarı verilir
+- Ek alanlar: yaş, Norwood seviyesi, greft, teknik, sonuç ayı
+
+**Tip 2 — Danışan hikayesi.** Görselli veya görselsiz, anlatı formatında.
+- Anlatı sırası: başlangıç durumu → yönlendirme gerekçesi → süreç → sonuç
+- Zorunlu alan: `yaziliIzin` (boolean). `false` ise render edilmez
+- Görsel varsa `kaynak` etiketi de zorunludur
+
+**Tip 3 — Fotoğrafsız vaka.** Görsel yok, onam gerekmez.
+- Alanlar: yaş, Norwood seviyesi, donör durumu, greft sayısı, teknik,
+  sonuç ayı, yönlendirme gerekçesi (neden bu teknik, neden bu merkez)
+- **Sitenin şu an yayına girebilecek tek sonuç tipi budur.** Ana sayfa ve
+  `/vakalar` bu tiple başlar.
+
+Kod karşılıkları: `src/content/results.ts`, `src/components/sonuclar/`.
+
+## Temsili görseller
+
+Stok görsel kullanılan **her yerde** görselin üstünde veya içinde
+"Temsili görsel" ibaresi bulunur. 12–13px, yeterli kontrast, okunabilir.
+
+İbare olmadan stok görsel yerleştirilemez: `StokGorsel` bileşeni `ibare`
+alanını **zorunlu prop** olarak ister. Stok görsel yalnızca bu bileşenle
+yerleştirilir. Gerçek klinik fotoğrafı için bu bileşen kullanılmaz.
+
+## KVKK formu — iki ayrı onay
+
+Formda tek bir onay kutusu yeterli değildir. İki ayrı kutu bulunur:
+
+1. **İletişim bilgilerinin işlenmesi** — zorunlu. Form bu onay olmadan
+   gönderilemez.
+2. **Sağlık verisi için ayrı açık rıza** (dökülme seviyesi, fotoğraf) —
+   zorunlu **değil**.
+
+İkinci kutu işaretlenmezse form yine gönderilebilir; yalnızca Norwood seçici
+ve fotoğraf yükleme alanı devre dışı kalır. Açık rıza form gönderiminin şartı
+yapılmaz — KVKK'da rıza özgür iradeyle verilmelidir. Sunucu tarafında da rıza
+yoksa sağlık verisi kabul edilmez.
+
+## VERBİS
+
+Yasal metinlerde **VERBİS kayıt numarası alanı bulunmaz**; şirket muafiyet
+kapsamındadır. Bu alan sonradan da eklenmemelidir.
+
+**Veri sorumlusu: Mehtap Dizge.**
 
 ## Ayrışma stratejisi
 

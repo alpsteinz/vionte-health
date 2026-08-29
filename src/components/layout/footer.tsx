@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { InstagramIcon } from "@/components/ui/instagram-icon";
+import { ContactLink } from "@/components/ui/contact-link";
 import { Container } from "@/components/ui/container";
 import { Logo } from "./logo";
 import { navigation, legalNavigation } from "@/lib/navigation";
@@ -25,15 +26,15 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-3">
                 <Phone className="mt-1 size-4 shrink-0" strokeWidth={1.5} aria-hidden />
-                <a href={site.contact.phoneHref} className="transition-colors hover:text-white">
+                <ContactLink href={site.contact.phoneHref} className="transition-colors hover:text-white">
                   {site.contact.phoneLabel}
-                </a>
+                </ContactLink>
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="mt-1 size-4 shrink-0" strokeWidth={1.5} aria-hidden />
-                <a href={`mailto:${site.contact.email}`} className="transition-colors hover:text-white">
+                <ContactLink href={`mailto:${site.contact.email}`} className="transition-colors hover:text-white">
                   {site.contact.email}
-                </a>
+                </ContactLink>
               </li>
               <li className="flex items-start gap-3">
                 <Clock className="mt-1 size-4 shrink-0" strokeWidth={1.5} aria-hidden />

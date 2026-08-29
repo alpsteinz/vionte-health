@@ -44,24 +44,22 @@ export function CookieConsent() {
       className="fixed inset-x-0 bottom-[60px] z-40 border-t border-line bg-white md:bottom-0"
     >
       <Container>
-        <div className="flex flex-col gap-5 py-5 lg:flex-row lg:items-center lg:justify-between">
-          <p className="measure text-sm text-muted">
-            Bu sitede, siteyi kullanımınızı ölçmek ve deneyimi iyileştirmek için
-            çerezler kullanılıyor. Ayrıntılar için{" "}
+        <div className="flex flex-col gap-3 py-3.5 lg:flex-row lg:items-center lg:justify-between lg:gap-6 lg:py-4">
+          <p className="measure text-[0.8125rem] leading-relaxed text-muted">
+            Site kullanımını ölçmek için çerez kullanıyoruz.{" "}
             <Link href="/cerez-politikasi" className="text-blue underline underline-offset-4">
               Çerez Politikası
             </Link>{" "}
-            ve{" "}
+            ·{" "}
             <Link href="/kvkk-aydinlatma-metni" className="text-blue underline underline-offset-4">
               KVKK Aydınlatma Metni
             </Link>
-            .
           </p>
-          <div className="flex shrink-0 gap-3">
-            <Button variant="outline" size="sm" onClick={() => decide("zorunlu")}>
+          <div className="flex shrink-0 gap-2">
+            <Button variant="outline" size="sm" className="flex-1 lg:flex-none" onClick={() => decide("zorunlu")}>
               Yalnızca zorunlu
             </Button>
-            <Button size="sm" onClick={() => decide("kabul")}>
+            <Button size="sm" className="flex-1 lg:flex-none" onClick={() => decide("kabul")}>
               Kabul et
             </Button>
           </div>

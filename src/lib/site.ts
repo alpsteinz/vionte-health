@@ -39,6 +39,16 @@ export const site = {
     applications: "1000+",
   },
 
+  /** KVKK veri sorumlusu */
+  kvkk: {
+    veriSorumlusu: "Mehtap Dizge",
+    /**
+     * VERBİS kaydı: şirket muafiyet kapsamında olduğu için yasal metinlerde
+     * VERBİS kayıt numarası alanı BULUNMAZ. Bu alan eklenmemelidir.
+     */
+    verbisMuafiyeti: true,
+  },
+
   editorial: {
     /** Zorunlu: içeriğin son güncelleme tarihi */
     lastUpdated: "[GG.AA.YYYY]",
@@ -71,4 +81,16 @@ export const site = {
 /** [placeholder] biçimindeki değerler için — yayın öncesi kontrol kolaylığı */
 export function isPlaceholder(value: string): boolean {
   return value.trim().startsWith("[") && value.trim().endsWith("]");
+}
+
+/**
+ * Yer tutucu bir adres için href üretmez.
+ *
+ * `[tel:+90...]` gibi bir değer href olarak verildiğinde bağlantı sessizce
+ * çalışmaz — kullanıcı dokunur, hiçbir şey olmaz. Bilgiler girilene kadar
+ * bu bağlantılar link olarak değil, devre dışı olarak görünsün diye
+ * undefined dönülüyor.
+ */
+export function safeHref(value: string): string | undefined {
+  return isPlaceholder(value) ? undefined : value;
 }

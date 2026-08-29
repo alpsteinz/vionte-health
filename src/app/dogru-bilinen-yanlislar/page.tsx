@@ -40,7 +40,7 @@ export default function Page() {
         <div className="mx-auto max-w-[75ch] divide-y divide-line border-y border-line">
           {myths.map((myth) => (
             <article key={myth.slug} id={myth.slug} className="scroll-mt-28 py-10">
-              <h2 className="flex items-start gap-3 font-serif text-[clamp(1.35rem,2.4vw,1.8rem)] leading-snug text-navy">
+              <h2 className="flex items-start gap-3 font-serif text-[clamp(1.35rem,2.4vw,1.8rem)] text-navy">
                 <X className="mt-1.5 size-5 shrink-0 text-[#b3261e]" strokeWidth={2} aria-hidden />
                 <span>“{myth.claim}”</span>
               </h2>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { DraftNotice } from "@/components/ui/draft-notice";
 import { Breadcrumbs, type Crumb } from "@/components/ui/breadcrumbs";
 import { PageHero } from "@/components/ui/page-hero";
 import { Container } from "@/components/ui/container";
@@ -20,6 +21,7 @@ import type { Guide } from "@/content/guides";
 export function ArticlePage({ guide, trail }: { guide: Guide; trail: Crumb[] }) {
   return (
     <>
+      {guide.draftMedicalCopy ? <DraftNotice /> : null}
       <Breadcrumbs trail={trail} />
       <PageHero title={guide.h1} lead={guide.lead} eyebrow="Hasta rehberi" />
 
@@ -45,7 +47,7 @@ export function ArticlePage({ guide, trail }: { guide: Guide; trail: Crumb[] }) 
           <article>
             {guide.sections.map((section) => (
               <section key={section.id} id={section.id} className="scroll-mt-28 border-b border-line pb-10 last:border-0 [&+&]:pt-10">
-                <h2 className="font-serif text-[clamp(1.5rem,2.6vw,2rem)] leading-snug text-navy">
+                <h2 className="font-serif text-[clamp(1.5rem,2.6vw,2rem)] text-navy">
                   {section.heading}
                 </h2>
                 {section.body.map((paragraph) => (

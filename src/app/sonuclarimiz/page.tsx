@@ -1,17 +1,26 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight, ShieldCheck } from "lucide-react";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { PageHero } from "@/components/ui/page-hero";
-import { Section } from "@/components/ui/section";
+import { Section, SectionHead } from "@/components/ui/section";
 import { Container } from "@/components/ui/container";
-import { PhotoPlaceholder } from "@/components/ui/photo-placeholder";
 import { MedicalReview } from "@/components/ui/medical-review";
 import { JsonLd } from "@/components/ui/json-ld";
+import { AnlasmaliMerkezKarti } from "@/components/sonuclar/anlasmali-merkez-karti";
+import { DanisanHikayesiKarti } from "@/components/sonuclar/danisan-hikayesi-karti";
 import { breadcrumbSchema } from "@/lib/schema";
+import {
+  anlasmaliMerkezSonuclari,
+  anlasmaliYayinlanabilir,
+  danisanHikayeleri,
+  hikayeYayinlanabilir,
+} from "@/content/results";
 import { site } from "@/lib/site";
 
 const title = "Sonuçlarımız";
 const description =
-  "İzni alınmış kişilere ait uygulama kayıtları; her kartta greft sayısı, yaş, teknik ve kaçıncı ay bilgisi yer alır. Sonuçlar kişiye göre değişir.";
+  "Görselli sonuçlar ve danışan hikayeleri. Her görselin yanında uygulamayı yapan merkez belirtilir; hikayeler yalnızca yazılı izinle yayınlanır.";
 
 export const metadata: Metadata = {
   title,
@@ -25,51 +34,77 @@ const trail = [
   { name: "Sonuçlarımız", href: "/sonuclarimiz" },
 ];
 
-/**
- * Öncesi–sonrası görselleri yalnızca imzalı hasta onam formu varsa yayınlanır.
- * (AGENTS.md — zorunlu unsurlar). Onam formları gelene kadar kartlar boş kalır.
- */
-const cases = Array.from({ length: 6 }, (_, i) => ({ id: `vaka-${i + 1}` }));
-
 export default function Page() {
+  const merkezSonuclari = anlasmaliMerkezSonuclari.filter(anlasmaliYayinlanabilir);
+  const hikayeler = danisanHikayeleri.filter(hikayeYayinlanabilir);
+  const bosDurum = merkezSonuclari.length === 0 && hikayeler.length === 0;
+
   return (
     <>
       <Breadcrumbs trail={trail} />
       <PageHero
         eyebrow="Sonuçlar"
-        title="Öncesi ve Sonrası"
-        lead="Her kartta greft sayısı, yaş, uygulanan teknik, kaçıncı ay olduğu ve şehir bilgisi yer alır. Bu veriler olmadan bir öncesi–sonrası görseli tek başına bir şey anlatmaz."
+        title="Görselli Sonuçlar ve Danışan Hikayeleri"
+        lead="Bir uygulama görseli, kimin yaptığı bilinmeden bir şey anlatmaz. Bu sayfadaki her görselin yanında uygulamayı yapan merkezin adı yer alır; danışan hikayeleri ise yalnızca yazılı izin alınmış kayıtlardan oluşur."
       />
 
-      <Section tone="paper">
-        <div className="rule-grid sm:grid-cols-2 lg:grid-cols-3">
-          {cases.map((item) => (
-            <figure key={item.id} className="bg-white">
-              <div className="grid grid-cols-2 gap-px bg-line">
-                <div className="relative bg-white">
-                  <PhotoPlaceholder label="Görsel bekleniyor" ratio="1/1" />
-                  <span className="absolute bottom-0 left-0 bg-navy px-2.5 py-1 text-[0.6875rem] uppercase tracking-[0.14em] text-white">
-                    Öncesi
-                  </span>
-                </div>
-                <div className="relative bg-white">
-                  <PhotoPlaceholder label="Görsel bekleniyor" ratio="1/1" />
-                  <span className="absolute bottom-0 left-0 bg-blue px-2.5 py-1 text-[0.6875rem] uppercase tracking-[0.14em] text-white">
-                    Sonrası
-                  </span>
-                </div>
-              </div>
-              <figcaption className="border-t border-line p-5 text-[0.8125rem] text-muted">
-                [0.000] greft · [00] yaş · [Safir FUE/DHI] · [00]. ay · [Şehir]
-              </figcaption>
-            </figure>
-          ))}
-        </div>
+      {bosDurum ? (
+        <Section tone="paper">
+          <div className="max-w-[62ch] border border-line bg-white p-8">
+            <ShieldCheck className="size-6 text-blue" strokeWidth={1.5} aria-hidden />
+            <h2 className="h3 mt-5">Henüz yayınlanmış görsel yok</h2>
+            <p className="mt-4 text-[0.9375rem] leading-relaxed text-muted">
+              Görselli sonuçlar iki koşul sağlanmadan yayınlanmıyor: uygulamayı
+              yapan merkezin adı ve danışandan alınmış imzalı yazılı izin. Bu
+              koşullar tamamlanana kadar sayfa boş kalır.
+            </p>
+            <p className="mt-4 text-[0.9375rem] leading-relaxed text-muted">
+              Bu arada vakaları ölçüm verisiyle inceleyebilirsiniz: donör
+              durumu, greft sayısı, uygulanan teknik ve yönlendirme gerekçesi.
+            </p>
+            <Link
+              href="/vakalar"
+              className="mt-7 inline-flex items-center gap-2 text-[0.8125rem] uppercase tracking-[0.1em] text-blue transition-colors hover:text-navy"
+            >
+              Fotoğrafsız vakalar
+              <ArrowRight className="size-4" strokeWidth={1.5} aria-hidden />
+            </Link>
+          </div>
+        </Section>
+      ) : null}
 
-        <p className="measure mt-8 text-[0.875rem] leading-relaxed text-muted">
-          {site.disclaimers.results}
-        </p>
-      </Section>
+      {merkezSonuclari.length > 0 ? (
+        <Section tone="paper">
+          <SectionHead
+            eyebrow="Anlaşmalı merkez sonuçları"
+            title="Öncesi ve sonrası"
+            intro="Her kartta uygulamayı yapan merkezin adı belirtilir."
+          />
+          <div className="rule-grid reveal mt-12 md:grid-cols-2 lg:grid-cols-3">
+            {merkezSonuclari.map((kayit) => (
+              <AnlasmaliMerkezKarti key={kayit.id} kayit={kayit} />
+            ))}
+          </div>
+          <p className="measure mt-8 text-[0.875rem] leading-relaxed text-muted">
+            {site.disclaimers.results}
+          </p>
+        </Section>
+      ) : null}
+
+      {hikayeler.length > 0 ? (
+        <Section tone="white">
+          <SectionHead
+            eyebrow="Danışan hikayeleri"
+            title="Başlangıçtan sonuca"
+            intro="Yalnızca yazılı izin alınmış kayıtlar yayınlanır."
+          />
+          <div className="rule-grid reveal mt-12 md:grid-cols-2">
+            {hikayeler.map((kayit) => (
+              <DanisanHikayesiKarti key={kayit.id} kayit={kayit} />
+            ))}
+          </div>
+        </Section>
+      ) : null}
 
       <Container className="pb-20">
         <MedicalReview />

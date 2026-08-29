@@ -10,13 +10,13 @@ export function Process() {
         tone="dark"
       />
 
-      <ol className="rule-grid rule-grid-dark reveal mt-12 sm:grid-cols-2 lg:grid-cols-4">
+      <ol className="rule-grid rule-grid-dark reveal mt-12 sm:grid-cols-2">
         {process.steps.map((step, i) => (
           <li key={step.title} className="bg-navy p-7 md:p-8">
             <span className="font-serif text-[2.2rem] leading-none text-blue-light/50">
               {String(i + 1).padStart(2, "0")}
             </span>
-            <h3 className="mt-5 font-serif text-[1.3rem] text-white">{step.title}</h3>
+            <h3 className="h4 mt-5 text-white">{step.title}</h3>
             <p className="mt-3 text-[0.9375rem] leading-relaxed text-blue-light">
               {step.body}
             </p>

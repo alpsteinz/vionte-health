@@ -9,6 +9,8 @@ export type GuideSection = { id: string; heading: string; body: string[]; list?:
 
 export type Guide = {
   slug: string;
+  /** Tıbbi inceleyenin onayından geçmemiş taslak anlatım içeriyor mu */
+  draftMedicalCopy?: boolean;
   name: string;
   h1: string;
   lead: string;

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Jost } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { TopBar } from "@/components/layout/top-bar";
 import { Header } from "@/components/layout/header";
@@ -72,6 +73,13 @@ export default function RootLayout({
         <CookieConsent />
         <JsonLd data={clinicSchema()} />
         <RevealScript />
+        {/*
+         * Speed Insights betiği /_vercel/speed-insights/script.js adresinden
+         * yüklenir; bu uç nokta yalnızca Vercel altyapısında vardır. Lokal
+         * ve diğer ortamlarda 404 verip konsolu kirletmemesi için yalnızca
+         * Vercel'de render ediliyor.
+         */}
+        {process.env.VERCEL ? <SpeedInsights /> : null}
       </body>
     </html>
   );
