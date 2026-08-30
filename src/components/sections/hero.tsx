@@ -18,17 +18,26 @@ export function Hero() {
     <section className="border-b border-line bg-white">
       <Container>
         {/*
-         * Izgara iki sütun: sol (metin + veri), sağ (form).
-         * Mobilde doğal sıra: metin → hızlı eylemler → form → veri —
-         * reklam trafiği için forma ulaşma mesafesi kısalır.
-         * Masaüstünde iki sütun üstten hizalanır (items-start). Form daha
-         * uzun olsa da sol sütun kendi içeriğine göre akar; aradaki fark
-         * grid-rows ile bir satırın dibine "self-end" yapıştırılmıyor —
-         * önceki sürümde form uzadıkça (Norwood + açık rıza alanı) bu
-         * boşluk 400px'e kadar çıkıyordu.
+         * Izgara iki sütun: sol (metin + veri, TEK grid hücresi), sağ (form).
+         *
+         * ÖNEMLİ: sol içerik iki AYRI grid hücresi (metin, veri) olarak
+         * `order` ile sıralanmaya çalışıldığında CSS Grid'in "sparse"
+         * auto-placement algoritması formu metnin YANINA değil ALTINA
+         * yerleştiriyordu — üstteki satır formun tam yüksekliğine göre
+         * büyüyor ama boş kalıyordu (metin altında, form boyunca süren
+         * bir boşluk). Bu, `order` + explicit `col-start` kombinasyonunun
+         * placement cursor'unu ileri taşıyıp geri sarmamasından kaynaklanır.
+         *
+         * Çözüm: sol içerik masaüstünde TEK bir grid hücresi (kendi içinde
+         * flex-col ile metin→veri dizili). Böylece grid'de yalnızca 2 hücre
+         * var, satır belirsizliği yok. Mobilde bu sarmalayıcı `contents`
+         * olur (kendi kutusu kaybolur), içindeki metin/veri kök flex'in
+         * doğrudan çocuğu gibi davranır ve `order` ile form'un önüne/
+         * arkasına serbestçe taşınabilir — mobil sıra: metin → form → veri.
          */}
-        <div className="grid gap-10 py-10 md:py-16 lg:grid-cols-[1fr_460px] lg:items-start lg:gap-x-16 lg:py-24 2xl:grid-cols-[1fr_520px] 2xl:gap-x-24 2xl:py-32">
-          <div className="lg:order-1">
+        <div className="flex flex-col gap-10 py-10 md:py-16 lg:grid lg:grid-cols-[1fr_460px] lg:items-start lg:gap-x-16 lg:gap-y-0 lg:py-24 2xl:grid-cols-[1fr_520px] 2xl:gap-x-24 2xl:py-32">
+          <div className="contents lg:flex lg:flex-col lg:order-1">
+            <div className="order-1">
             <p className="eyebrow">{hero.eyebrow}</p>
             <h1 className="h1 mt-5 md:mt-6">
               {hero.titleLead}{" "}
@@ -64,12 +73,8 @@ export function Hero() {
             </p>
           </div>
 
-          <div id="form" className="order-2 scroll-mt-24 lg:order-2">
-            <LeadForm />
-          </div>
-
-          {/* Veri bloğu: metnin hemen altında, sabit boşlukla — artık forma bağlı değil */}
-          <div className="order-3 mt-2 lg:order-1 lg:col-start-1 lg:mt-14">
+          {/* Veri bloğu: metnin hemen altında, sabit boşlukla — forma bağlı değil */}
+          <div className="order-3 mt-2 lg:mt-14">
             <dl className="grid max-w-lg grid-cols-3 gap-px border border-line bg-line">
               {hero.counters.map((counter) => (
                 <div key={counter.label} className="flex flex-col bg-white px-4 py-5">
@@ -111,6 +116,11 @@ export function Hero() {
                 ))}
               </ul>
             </nav>
+            </div>
+          </div>
+
+          <div id="form" className="order-2 scroll-mt-24 lg:order-2">
+            <LeadForm />
           </div>
         </div>
       </Container>
