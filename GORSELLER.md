@@ -115,14 +115,43 @@ parça da yükleyebilirsiniz.
 
 ---
 
-## 4. Ekip fotoğrafları
+## 4. Logo
+
+**Nereye:** `public/logo/`
+
+Dosyalar hazır ve siteye bağlı:
+
+| Dosya | Ne için |
+|---|---|
+| `vionte-logo.svg` | Ana logo (dikey kilit, "HAIR TRANSPLANT" satırı çıkarılmış) |
+| `vionte-logo-beyaz.svg` | Koyu zemin için beyaz varyant |
+| `vionte-logo-orijinal.svg` | Yüklenen ham dosya, dokunulmadı |
+| `vionte-logo-yatay.webp` | **Header** — işaret solda, VIONTE sağda |
+| `vionte-logo-yatay-beyaz.webp` | **Footer** (lacivert zemin) |
+| `vionte-logo-isaret.png` | Yalnızca V işareti |
+| `src/app/icon.png` | Favicon — lacivert zemin, beyaz işaret |
+| `src/app/opengraph-image.png` | Sosyal medya paylaşım kartı |
+
+Header'da yatay kilit kullanılıyor: dikey kilit 36px yüksekliğe sığdırıldığında
+kelime markası okunamıyordu. WebP tercih edildi çünkü kaynak SVG 322 KB
+(31 gömülü raster içeriyor) ve header ilk ekranda — yatay kilit 11 KB.
+
+**Logo değişirse:** yeni SVG'yi `public/logo/vionte-logo-orijinal.svg` olarak
+koyup bana söyleyin; türevleri yeniden üretirim.
+
+## 5. Ekip fotoğrafları
 
 **Nereye:** `public/ekip/`
 **Ölçü:** Dikey 3:4, en az 600×800px.
 
+Bağlı olanlar:
+
+- `mehtap-dizge.webp` → `/ekibimiz` ana görseli
+- `mehtap-dizge-2.webp` → `/neden-danisman` sayfası
+
 ---
 
-## 5. Stok (temsili) görsel kullanacaksanız
+## 6. Stok (temsili) görsel kullanacaksanız
 
 Stok görsel **yalnızca** `StokGorsel` bileşeniyle yerleştirilir ve
 üzerinde **"Temsili görsel"** ibaresi zorunludur:

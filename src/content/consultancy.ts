@@ -13,6 +13,8 @@ export type Bolum = { id: string; heading: string; body: string[]; list?: string
 
 export type DanismanlikSayfasi = {
   slug: string;
+  /** Sayfa girişinin yanında gösterilecek görsel (isteğe bağlı) */
+  gorsel?: { src: string; alt: string; kunye?: string };
   name: string;
   h1: string;
   lead: string;
@@ -26,6 +28,11 @@ export const danismanlikSayfalari: DanismanlikSayfasi[] = [
   {
     slug: "/neden-danisman",
     name: "Neden Danışman?",
+    gorsel: {
+      src: "/ekip/mehtap-dizge-2.webp",
+      alt: "Mehtap Dizge — sertifikalı saç ekim uzmanı, sorumlu teknisyen",
+      kunye: "Mehtap Dizge · Sertifikalı saç ekim uzmanı",
+    },
     h1: "Neden Klinik Değil de Danışman?",
     lead: "Vionte Health bir saç ekimi kliniği değildir; saç ekimi danışmanlık ve yönlendirme şirketidir. Kendi kliniğimiz olmadığı için sizi kendi ameliyathanemize yönlendirme gibi bir çıkarımız da yok. İşimiz, ölçüme bakıp size uygun tekniği ve merkezi bulmak.",
     metaTitle: "Neden Klinik Değil de Danışman?",
