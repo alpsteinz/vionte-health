@@ -18,14 +18,17 @@ export function Hero() {
     <section className="border-b border-line bg-white">
       <Container>
         {/*
-         * Izgara üç parçalı: metin (A), form (B), veri (C).
-         * Mobilde doğal sıra A → B → C, yani form sayaçlardan önce gelir —
+         * Izgara iki sütun: sol (metin + veri), sağ (form).
+         * Mobilde doğal sıra: metin → hızlı eylemler → form → veri —
          * reklam trafiği için forma ulaşma mesafesi kısalır.
-         * Masaüstünde form sağ sütunda iki satır boyunca uzanır, veri bloğu
-         * sol sütunun altına oturur.
+         * Masaüstünde iki sütun üstten hizalanır (items-start). Form daha
+         * uzun olsa da sol sütun kendi içeriğine göre akar; aradaki fark
+         * grid-rows ile bir satırın dibine "self-end" yapıştırılmıyor —
+         * önceki sürümde form uzadıkça (Norwood + açık rıza alanı) bu
+         * boşluk 400px'e kadar çıkıyordu.
          */}
-        <div className="grid gap-10 py-10 md:py-16 lg:grid-cols-[1fr_460px] lg:grid-rows-[auto_1fr] lg:gap-x-16 lg:gap-y-0 lg:py-24 2xl:grid-cols-[1fr_520px] 2xl:gap-x-24 2xl:py-32">
-          <div className="lg:col-start-1 lg:row-start-1">
+        <div className="grid gap-10 py-10 md:py-16 lg:grid-cols-[1fr_460px] lg:items-start lg:gap-x-16 lg:py-24 2xl:grid-cols-[1fr_520px] 2xl:gap-x-24 2xl:py-32">
+          <div className="lg:order-1">
             <p className="eyebrow">{hero.eyebrow}</p>
             <h1 className="h1 mt-5 md:mt-6">
               {hero.titleLead}{" "}
@@ -61,14 +64,12 @@ export function Hero() {
             </p>
           </div>
 
-          <div
-            id="form"
-            className="scroll-mt-24 lg:col-start-2 lg:row-span-2 lg:row-start-1"
-          >
+          <div id="form" className="order-2 scroll-mt-24 lg:order-2">
             <LeadForm />
           </div>
 
-          <div className="lg:col-start-1 lg:row-start-2 lg:self-end lg:pt-16">
+          {/* Veri bloğu: metnin hemen altında, sabit boşlukla — artık forma bağlı değil */}
+          <div className="order-3 mt-2 lg:order-1 lg:col-start-1 lg:mt-14">
             <dl className="grid max-w-lg grid-cols-3 gap-px border border-line bg-line">
               {hero.counters.map((counter) => (
                 <div key={counter.label} className="flex flex-col bg-white px-4 py-5">

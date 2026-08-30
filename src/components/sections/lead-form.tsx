@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useId, useRef, useState } from "react";
 import Link from "next/link";
 import { Check, MessageCircle, Loader2 } from "lucide-react";
 import { NorwoodFigure } from "@/components/ui/norwood-figure";
@@ -25,7 +25,9 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
    *     devre dışı kalır, form yine gönderilebilir.
    */
   const [saglikRizasi, setSaglikRizasi] = useState(false);
-  const [fotograflar, setFotograflar] = useState<File[]>([]);
+  /** Rıza verilmeden seviye seçildiğinde kutuya dikkat çekmek için */
+  const [rizaUyarisi, setRizaUyarisi] = useState(false);
+  const rizaKutusu = useRef<HTMLInputElement>(null);
 
   const selected = norwoodLevels.find((l) => l.id === level);
 
@@ -56,9 +58,6 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
     ];
     if (saglikRizasi && selected) {
       satirlar.push(`Dökülme seviyesi: Tip ${selected.roman}`);
-    }
-    if (saglikRizasi && fotograflar.length > 0) {
-      satirlar.push(`(${fotograflar.length} fotoğraf sohbette paylaşılacak)`);
     }
 
     window.open(
@@ -117,8 +116,14 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
       </div>
 
       <form onSubmit={onSubmit} noValidate={false}>
-        {/* Sağlık verisi alanları — açık rıza verilmeden devre dışı */}
-        <fieldset disabled={!saglikRizasi} className="disabled:opacity-45">
+        {/*
+         * Norwood seçici her zaman tam görünür. Şemaları göstermek bir
+         * veri işleme değildir; işlenen şey kullanıcının SEÇİMİdir.
+         * Bu yüzden seçim serbest, ama seçim ancak açık rıza verilirse
+         * mesaja eklenir — rıza verilmeden seçim yapıldığında kullanıcı
+         * uyarılır ve rıza kutusuna odaklanılır.
+         */}
+        <fieldset>
           <legend className="eyebrow">{formCopy.norwoodLabel}</legend>
           <div
             role="radiogroup"
@@ -133,12 +138,18 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
                   type="button"
                   role="radio"
                   aria-checked={active}
-                  onClick={() => setLevel(lvl.id)}
+                  onClick={() => {
+                    setLevel(lvl.id);
+                    if (!saglikRizasi) {
+                      setRizaUyarisi(true);
+                      rizaKutusu.current?.focus();
+                    }
+                  }}
                   className={cn(
                     "flex flex-col items-center gap-1.5 px-1.5 py-2.5 transition-colors duration-200 sm:gap-2 sm:px-2 sm:py-3",
                     active
                       ? "bg-navy text-blue-light"
-                      : "bg-white text-navy enabled:hover:bg-paper",
+                      : "bg-white text-navy hover:bg-paper",
                   )}
                 >
                   <NorwoodFigure level={lvl} />
@@ -154,31 +165,19 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
               );
             })}
           </div>
-          <p className="mt-3 min-h-[2.5rem] text-[0.875rem] text-muted" aria-live="polite">
-            {!saglikRizasi
-              ? "Dökülme seviyesi ve fotoğraf sağlık verisidir. Paylaşmak isterseniz aşağıdaki açık rıza kutusunu işaretleyin."
+          <p
+            className={cn(
+              "mt-3 min-h-[2.5rem] text-[0.875rem]",
+              rizaUyarisi && !saglikRizasi ? "text-[#8a6a13]" : "text-muted",
+            )}
+            aria-live="polite"
+          >
+            {level && !saglikRizasi
+              ? "Seçiminiz sağlık verisidir. İletebilmemiz için aşağıdaki açık rıza kutusunu işaretleyin."
               : selected
                 ? selected.description
                 : formCopy.norwoodEmpty}
           </p>
-
-          <div className="mt-4">
-            <label htmlFor={`${uid}-foto`} className="block text-[0.8125rem] text-muted">
-              Fotoğraf (isteğe bağlı)
-            </label>
-            <input
-              id={`${uid}-foto`}
-              name="fotograf"
-              type="file"
-              accept="image/*"
-              multiple
-              onChange={(e) => setFotograflar(Array.from(e.target.files ?? []))}
-              className="mt-1.5 w-full border border-line bg-white px-3.5 py-2.5 text-[0.875rem] text-muted file:mr-3 file:border-0 file:bg-navy file:px-3 file:py-1.5 file:text-[0.75rem] file:uppercase file:tracking-[0.1em] file:text-white"
-            />
-            <p className="mt-2 text-[0.8125rem] text-muted">  Fotoğrafları WhatsApp sohbetinde paylaşabilirsiniz; bu formdan
-              dosya gönderilmez.
-            </p>
-          </div>
         </fieldset>
 
         <div className="mt-4 grid gap-3 sm:grid-cols-2 sm:gap-4">
@@ -235,24 +234,29 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
 
         {/* 2) İsteğe bağlı: sağlık verisi için ayrı açık rıza.
             Gönderimin şartı değildir — rıza özgür iradeyle verilir. */}
-        <label className="mt-3.5 flex cursor-pointer items-start gap-3 border border-line bg-paper p-3.5 text-[0.8125rem] leading-relaxed text-muted">
+        <label
+          className={cn(
+            "mt-3.5 flex cursor-pointer items-start gap-3 border p-3.5 text-[0.8125rem] leading-relaxed text-muted transition-colors",
+            rizaUyarisi && !saglikRizasi
+              ? "border-[#c9a227] bg-[#fdf8ec]"
+              : "border-line bg-paper",
+          )}
+        >
           <input
+            ref={rizaKutusu}
             type="checkbox"
             name="saglikVerisi"
             checked={saglikRizasi}
             onChange={(e) => {
               setSaglikRizasi(e.target.checked);
-              if (!e.target.checked) {
-                setLevel(null);
-                setFotograflar([]);
-              }
+              if (e.target.checked) setRizaUyarisi(false);
             }}
             className="mt-0.5 size-[1.15rem] shrink-0 accent-[#2e6da8]"
           />
           <span>
-            Dökülme seviyem ve paylaşacağım fotoğraflar{" "}
+            Dökülme seviyem{" "}
             <strong className="font-medium text-ink">sağlık verisidir</strong>.
-            Bu verilerin ön değerlendirme amacıyla işlenmesine açık rıza
+            Bu verinin ön değerlendirme amacıyla işlenmesine açık rıza
             veriyorum.{" "}
             <span className="text-muted/80">
               İsteğe bağlıdır; işaretlemeseniz de formu gönderebilirsiniz.
@@ -281,7 +285,10 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
           </p>
         ) : null}
 
-        <p className="mt-4 text-[0.8125rem] text-muted">{site.disclaimers.form}</p>
+        <p className="mt-4 text-[0.8125rem] leading-relaxed text-muted">
+          {site.disclaimers.form} Fotoğraflarınızı WhatsApp sohbetinde
+          paylaşabilirsiniz.
+        </p>
       </form>
     </div>
   );
