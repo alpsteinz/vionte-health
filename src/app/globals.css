@@ -165,6 +165,23 @@
     background-color: var(--color-line-dark);
     border-color: var(--color-line-dark);
   }
+
+  /*
+   * Hero zemin dokusu — şu an klinik fotoğrafı yok. Koyu lacivert zemin
+   * üzerine çok hafif diyagonal çizgi deseni. Görsel geldiğinde hero.tsx
+   * içindeki `heroBackground.gorsel` doldurulur ve bu doku görselin
+   * altında (üstte koyulaştırma katmanıyla) kalmaya devam eder — tek
+   * yerden yönetilen tek geçiş noktası burasıdır.
+   */
+  .hero-texture {
+    background-image: repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.035) 0px,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px,
+      transparent 15px
+    );
+  }
 }
 
 @layer utilities {

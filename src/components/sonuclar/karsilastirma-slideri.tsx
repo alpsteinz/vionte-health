@@ -36,8 +36,8 @@ export function KarsilastirmaSlideri({
   sonrasi: string;
   oncesiAlt: string;
   sonrasiAlt: string;
-  /** Uygulamayı yapan merkez — görselli sonuçta zorunlu */
-  kaynak: string;
+  /** Uygulamayı yapan merkez — doluysa kartta etiket olarak gösterilir */
+  kaynak?: string;
   className?: string;
 }) {
   const uid = useId();
@@ -156,7 +156,7 @@ export function KarsilastirmaSlideri({
           aria-valuemin={0}
           aria-valuemax={100}
           aria-valuenow={Math.round(oran)}
-          aria-controls={uid}
+          aria-controls={kaynak ? uid : undefined}
           onKeyDown={(e) => {
             if (e.key === "ArrowLeft") setOran((o) => Math.max(0, o - 2));
             else if (e.key === "ArrowRight") setOran((o) => Math.min(100, o + 2));
@@ -172,10 +172,11 @@ export function KarsilastirmaSlideri({
         </button>
       </div>
 
-      {/* Kaynak etiketi — görselli sonuçta zorunlu */}
-      <figcaption id={uid} className="border-t border-line bg-paper px-5 py-3 text-[0.8125rem] text-ink">
-        <span className="text-muted">Uygulama:</span> {kaynak}
-      </figcaption>
+      {kaynak ? (
+        <figcaption id={uid} className="border-t border-line bg-paper px-5 py-3 text-[0.8125rem] text-ink">
+          <span className="text-muted">Uygulama:</span> {kaynak}
+        </figcaption>
+      ) : null}
     </figure>
   );
 }

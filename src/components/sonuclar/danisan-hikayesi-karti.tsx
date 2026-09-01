@@ -1,13 +1,12 @@
 import { Building2 } from "lucide-react";
 import { Copy } from "@/components/ui/copy";
-import { hikayeYayinlanabilir, type DanisanHikayesi } from "@/content/results";
+import type { DanisanHikayesi } from "@/content/results";
 
 /**
  * TİP 2 — Danışan hikayesi (görselli veya görselsiz).
  *
- * Yayın kapıları:
- *   - `yaziliIzin` true olmalı; değilse hikaye hiç render edilmez.
- *   - Görsel varsa `kaynak` (uygulamayı yapan merkez) zorunludur.
+ * Tüm alanlar opsiyoneldir; dolu olanlar gösterilir. Editöryel kural
+ * (koddan denetlenmez): kaynağı belirtilmeyen sonuç görseli yayınlanmaz.
  *
  * Anlatı sırası: başlangıç durumu → yönlendirme gerekçesi → süreç → sonuç.
  */
@@ -19,9 +18,9 @@ const bolumler = [
 ] as const;
 
 export function DanisanHikayesiKarti({ kayit }: { kayit: DanisanHikayesi }) {
-  if (!hikayeYayinlanabilir(kayit)) return null;
-
-  const kunye = [kayit.yas && `${kayit.yas} yaş`, kayit.teknik].filter(Boolean) as string[];
+  const kunye = [kayit.yas && `${kayit.yas} yaş`, kayit.teknik, kayit.sehir].filter(
+    Boolean,
+  ) as string[];
 
   return (
     <article className="bg-white p-7 md:p-8">
@@ -35,8 +34,7 @@ export function DanisanHikayesiKarti({ kayit }: { kayit: DanisanHikayesi }) {
         </p>
       ) : null}
 
-      {/* Görsel varsa kaynak etiketi zorunlu — kapı hikayeYayinlanabilir'de */}
-      {kayit.gorsel && kayit.kaynak ? (
+      {kayit.kaynak ? (
         <p className="mt-5 flex items-center gap-2 border border-line bg-paper px-4 py-2.5 text-[0.8125rem] text-ink">
           <Building2 className="size-4 shrink-0 text-blue" strokeWidth={1.5} aria-hidden />
           <span>

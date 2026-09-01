@@ -1,7 +1,7 @@
-import Link from "next/link";
 import { MessageCircle, Phone, CalendarCheck } from "lucide-react";
 import { ContactLink } from "@/components/ui/contact-link";
 import { site } from "@/lib/site";
+import { whatsappCta } from "@/lib/whatsapp";
 
 /** Sabit WhatsApp butonu (masaüstü) + mobilde alt bar */
 export function StickyActions() {
@@ -32,13 +32,14 @@ export function StickyActions() {
           <MessageCircle className="size-4" strokeWidth={1.5} aria-hidden />
           WhatsApp
         </ContactLink>
-        <Link
-          href="/#form"
+        <ContactLink
+          href={whatsappCta.mobileBar}
+          external
           className="flex flex-col items-center gap-1 py-3 text-[0.6875rem] uppercase tracking-[0.12em] text-white"
         >
           <CalendarCheck className="size-4" strokeWidth={1.5} aria-hidden />
           Form
-        </Link>
+        </ContactLink>
       </div>
     </>
   );

@@ -18,6 +18,11 @@ const button = cva(
         outlineLight:
           "border border-line-dark text-white hover:border-blue-light hover:bg-blue-light hover:text-navy",
         whatsapp: "bg-[#1f7a4d] text-white hover:bg-[#186139]",
+        /* Bölüm sonu ikincil CTA — birincil WhatsApp butonundan bilinçli olarak daha hafif */
+        whatsappOutline:
+          "border border-[#1f7a4d] text-[#1f7a4d] hover:bg-[#1f7a4d] hover:text-white",
+        whatsappOutlineLight:
+          "border border-white/30 text-white hover:border-[#1f7a4d] hover:bg-[#1f7a4d]",
       },
       size: {
         md: "px-6 py-3.5",

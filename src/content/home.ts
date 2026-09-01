@@ -6,18 +6,32 @@
  * "anlaşmalı merkez", "yönlendiriyoruz", "danışmanlık" geçer.
  */
 
+import { site } from "@/lib/site";
+
 export const hero = {
   eyebrow: "İstanbul · Saç Ekimi Danışmanlığı",
   titleLead: "Saç ekimi",
   titleEmphasis: "doğru yönlendirmeyle",
   titleTail: "başlar.",
-  body: "Vionte Health bir klinik değil, saç ekimi danışmanlık ve yönlendirme şirketidir. Dökülme tipinizi ve donör kapasitenizi ölçer, size uygun tekniği ve anlaşmalı merkezi birlikte belirleriz. Operasyonu anlaşmalı merkezde sertifikalı saç ekim uzmanları yapar.",
-  counters: [
-    { value: "12", label: "Yıl deneyim" },
-    { value: "200+", label: "Yıllık danışan" },
-    { value: "2000+", label: "Toplam danışan" },
-  ],
+  /** Ana başlığın altında, daha ince ağırlıkla dizilen alt başlık */
+  subtitle: "Klinik değil; ölçüme dayalı danışmanlık ve yönlendirme.",
+  /** 1-2 satırlık kısa açıklama — hero'da form olmadığı için gövde metni kısa tutulur */
+  body: "Dökülme tipinizi ve donör kapasitenizi ölçer, size uygun tekniği ve anlaşmalı merkezi birlikte belirleriz.",
+  /**
+   * Butonun altındaki güven şeridi. Rakamlar `site.stats` ile birebir
+   * uyumlu olmalı — AGENTS.md'deki sabit verilerden (12 yıl, 200+/yıl,
+   * 2000+ toplam) sapma yasak.
+   */
+  trustStrip: `${site.stats.experienceYears} yıl deneyim · ${site.stats.totalClients} danışan · danışanların yarısından çoğu referansla geliyor`,
 };
+
+/**
+ * Hero zemin görseli — tek kontrol noktası. Şu an uygun bir fotoğraf yok;
+ * boş bırakıldığında hero.tsx koyu lacivert zemin + hafif doku (`.hero-texture`)
+ * kullanır. Görsel geldiğinde yalnızca bu yola dosya yolu yazılır
+ * (örn. "/hero/zemin.webp"), başka hiçbir yer değişmez.
+ */
+export const heroBackground: { gorsel?: string } = {};
 
 export const form = {
   title: "Ücretsiz saç analizi",
