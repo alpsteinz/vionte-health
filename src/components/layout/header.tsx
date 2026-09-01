@@ -5,11 +5,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Container } from "@/components/ui/container";
-import { ButtonLink } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { ContactLink } from "@/components/ui/contact-link";
 import { Logo } from "./logo";
 import { navigation } from "@/lib/navigation";
 import { site } from "@/lib/site";
+import { whatsappCta } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
 
 export function Header() {
@@ -99,9 +100,13 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <ButtonLink href="/#form" size="sm" className="hidden sm:inline-flex">
+            <ContactLink
+              href={whatsappCta.header}
+              external
+              className={cn(buttonVariants({ size: "sm" }), "hidden sm:inline-flex")}
+            >
               {site.cta.primary}
-            </ButtonLink>
+            </ContactLink>
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
@@ -183,9 +188,13 @@ export function Header() {
             })}
           </ul>
 
-          <ButtonLink href="/#form" className="mt-8 w-full">
+          <ContactLink
+            href={whatsappCta.header}
+            external
+            className={cn(buttonVariants(), "mt-8 w-full")}
+          >
             {site.cta.primary}
-          </ButtonLink>
+          </ContactLink>
 
           <div className="mt-6 space-y-1 text-sm text-muted">
             <p>{site.contact.addressLine}</p>

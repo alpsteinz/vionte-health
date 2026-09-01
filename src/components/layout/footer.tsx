@@ -1,17 +1,18 @@
 import Link from "next/link";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
 import { InstagramIcon } from "@/components/ui/instagram-icon";
 import { ContactLink } from "@/components/ui/contact-link";
 import { Container } from "@/components/ui/container";
 import { Logo } from "./logo";
 import { navigation, legalNavigation } from "@/lib/navigation";
 import { site } from "@/lib/site";
+import { whatsappCta } from "@/lib/whatsapp";
 
 export function Footer() {
   return (
     <footer className="bg-navy text-white">
       <Container>
-        <div className="grid gap-12 py-16 md:py-20 lg:grid-cols-[1.1fr_2fr]">
+        <div className="grid gap-12 py-16 md:py-20 lg:grid-cols-[1.1fr_1.7fr_1fr]">
           <div>
             <Logo tone="light" />
             <p className="measure mt-6 text-[0.9375rem] text-blue-light">
@@ -110,6 +111,24 @@ export function Footer() {
               </ul>
             </div>
           </nav>
+
+          <div className="self-start border border-white/15 bg-navy-700 p-7">
+            <h3 className="font-serif text-[1.25rem] leading-snug text-white">
+              Hâlâ kararsız mısınız?
+            </h3>
+            <p className="mt-3 text-[0.875rem] leading-relaxed text-blue-light">
+              Sorularınızı doğrudan sorun; sertifikalı ekibimiz WhatsApp&apos;tan
+              yanıtlasın.
+            </p>
+            <ContactLink
+              href={whatsappCta.footer}
+              external
+              className="mt-6 inline-flex items-center gap-2.5 bg-[#1f7a4d] px-5 py-3 text-[0.8125rem] uppercase tracking-[0.1em] text-white transition-colors duration-200 hover:bg-[#186139]"
+            >
+              <MessageCircle className="size-4 shrink-0" strokeWidth={1.5} aria-hidden />
+              WhatsApp&apos;tan Yazın
+            </ContactLink>
+          </div>
         </div>
 
         {/* Zorunlu künye: ticari ünvan, tıbbi sorumluluk notu, içerik sorumlusu, son güncelleme */}

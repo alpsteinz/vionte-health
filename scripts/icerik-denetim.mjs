@@ -141,21 +141,6 @@ console.log("\n4) KONUMLANDIRMA DİLİ");
   if (n > 0) hata++;
 }
 
-console.log("\n5) SONUÇ İÇERİĞİ YAYIN KAPILARI");
-{
-  const src = readFileSync(join(KOK, "src/content/results.ts"), "utf8");
-  const say = (re) => (src.match(re) || []).length;
-  const tip1 = say(/tip: "anlasmali-merkez",/g);
-  const tip2 = say(/tip: "danisan-hikayesi",/g);
-  const tip3 = say(/tip: "fotografsiz-vaka",/g);
-  const izinsiz = say(/yaziliIzin: false/g);
-  const kaynaksiz = say(/kaynak: ""/g);
-  console.log(`   Tip 1 (anlaşmalı merkez): ${tip1} kayıt${kaynaksiz ? ` — ${kaynaksiz} tanesi kaynaksız, render edilmeyecek` : ""}`);
-  console.log(`   Tip 2 (danışan hikayesi): ${tip2} kayıt${izinsiz ? ` — ${izinsiz} tanesi yazılı izinsiz, render edilmeyecek` : ""}`);
-  console.log(`   Tip 3 (fotoğrafsız vaka): ${tip3} kayıt — yayına hazır tip`);
-  if (kaynaksiz || izinsiz) hata++;
-}
-
 console.log(
   hata === 0
     ? "\nSONUÇ: yayına hazır.\n"

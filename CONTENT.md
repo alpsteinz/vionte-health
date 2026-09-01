@@ -195,19 +195,21 @@ sürecine göre değişir; hiçbir görsel bireysel sonuç taahhüdü içermez.
 
 ## Sonuç içeriği
 
-Üç ayrı tip. Her tipin kendi yayın kapısı var; kapı sağlanmazsa kart yayına
-çıkmaz. Ayrıntı ve kod karşılıkları AGENTS.md'de.
+Üç ayrı tip. Teknik (build-time) zorunluluk yok — tüm alanlar opsiyonel,
+dolu olan gösterilir, boş olan hiç render edilmez. Editöryel kural (koddan
+denetlenmez): kaynağı belirtilmeyen sonuç görseli yayınlanmaz — kaynak
+ister kart etiketinde ister görselin kendi içinde olsun. Ayrıntı ve kod
+karşılıkları AGENTS.md'de.
 
 ### Tip 1 — Anlaşmalı merkez sonucu (görselli)
 
-**Kaynak etiketi (kart üzerinde zorunlu):** Uygulama: [merkez adı]
-**Veri satırı:** [0.000] greft · [00] yaş · [Tip III] · [Safir FUE/DHI] · [00]. ay
-
-Kaynak boşsa kart yayınlanmaz.
+**Kaynak etiketi (doluysa kart üzerinde görünür):** Uygulama: [merkez adı]
+**Veri satırı:** [0.000] greft · [00] yaş · [Tip III] · [Safir FUE/DHI] · [00]. ay · [Şehir]
 
 ### Tip 2 — Danışan hikayesi
 
-Yalnızca yazılı izin varsa yayınlanır. Görsel varsa kaynak etiketi de zorunlu.
+`yaziliIzin` artık yayın kapısı değil, bilgi alanı. Görselli hikayede
+kaynağın belirtilmesi editöryel kural gereğidir.
 
 **Bölüm başlıkları:**
 - Başlangıç durumu
@@ -221,7 +223,7 @@ Metinler danışanın kendi anlatımından, izinli olarak alınır; uydurulmaz.
 
 Görsel yok, onam gerekmez. Şu an yayına girebilecek tek tip.
 
-**Alan etiketleri:** Yaş · Norwood · Donör durumu · Greft · Teknik · Sonuç ayı
+**Alan etiketleri:** Yaş · Norwood · Donör durumu · Greft · Teknik · Sonuç ayı · Şehir
 **Anlatı alanı:** Yönlendirme gerekçesi — neden bu teknik, neden bu merkez
 
 **Bölüm başlığı (ana sayfa):** Ölçümle anlatılan vakalar

@@ -9,9 +9,12 @@ import { ContentInfo } from "@/components/ui/content-info";
 import { AiSummary } from "@/components/ui/ai-summary";
 import { JsonLd } from "@/components/ui/json-ld";
 import { Copy } from "@/components/ui/copy";
-import { ButtonLink } from "@/components/ui/button";
+import { ContactLink } from "@/components/ui/contact-link";
+import { buttonVariants } from "@/components/ui/button";
 import { articleSchema, breadcrumbSchema, faqSchema } from "@/lib/schema";
 import { site } from "@/lib/site";
+import { whatsappCta } from "@/lib/whatsapp";
+import { cn } from "@/lib/utils";
 import type { Guide } from "@/content/guides";
 
 /**
@@ -74,7 +77,9 @@ export function ArticlePage({ guide, trail }: { guide: Guide; trail: Crumb[] }) 
                 {site.disclaimers.form}
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <ButtonLink href="/#form">{site.cta.primary}</ButtonLink>
+                <ContactLink href={whatsappCta.article} external className={cn(buttonVariants())}>
+                  {site.cta.primary}
+                </ContactLink>
                 <Link
                   href="/iletisim"
                   className="inline-flex items-center px-6 py-3.5 text-[0.8125rem] uppercase tracking-[0.1em] text-navy underline underline-offset-4 transition-colors hover:text-blue"

@@ -149,23 +149,28 @@ hedeflenirse ayrı domain/platform gerekir. Genel web tasarım rehberlerinin
 ## Sonuç içeriği — üç tip, üç bileşen
 
 Sonuç gösterimi tek bir kalıpla yapılmaz. Üç ayrı tip vardır, her birinin
-kendi yayın kapısı ve kendi bileşeni bulunur. Kapı sağlanmazsa kart **render
-edilmez** — eksik onam veya eksik kaynakla görsel yayına çıkamaz.
+kendi bileşeni bulunur. **Teknik (build-time) zorunluluk yok**: hiçbir alan
+render'ı engellemez, eksik alan bırakılabilir ve kart yine yayınlanır. Dolu
+olan alanlar kartta gösterilir, boş olanlar hiç render edilmez (boş satır
+veya yer tutucu bırakılmaz).
+
+**EDİTÖRYEL KURAL (koddan denetlenmez, yayın öncesi elle kontrol edilir):**
+kaynağı belirtilmeyen sonuç görseli yayınlanmaz. Kaynak ister kartın
+"Uygulama: [merkez adı]" etiketinde, ister görselin kendi içinde (görsele
+gömülü yazı/filigran olarak) belirtilsin — ikisi de kabul edilir.
 
 **Tip 1 — Anlaşmalı merkez sonucu.** Görselli.
-- Zorunlu alan: `kaynak` (uygulamayı yapan merkezin adı)
-- Kart üzerinde görünür "Uygulama: [merkez adı]" etiketi bulunur
-- `kaynak` boşsa kart render edilmez, build sırasında uyarı verilir
-- Ek alanlar: yaş, Norwood seviyesi, greft, teknik, sonuç ayı
+- `kaynak` (uygulamayı yapan merkezin adı) doluysa kartta "Uygulama: [merkez adı]" etiketi görünür
+- Diğer alanlar: yaş, Norwood seviyesi, greft, teknik, sonuç ayı, şehir
 
 **Tip 2 — Danışan hikayesi.** Görselli veya görselsiz, anlatı formatında.
 - Anlatı sırası: başlangıç durumu → yönlendirme gerekçesi → süreç → sonuç
-- Zorunlu alan: `yaziliIzin` (boolean). `false` ise render edilmez
-- Görsel varsa `kaynak` etiketi de zorunludur
+- `yaziliIzin` (boolean) artık yayın kapısı değil, yalnızca bilgi alanı
+- Görselli hikayede kaynağın belirtilmesi yukarıdaki editöryel kural gereğidir
 
 **Tip 3 — Fotoğrafsız vaka.** Görsel yok, onam gerekmez.
 - Alanlar: yaş, Norwood seviyesi, donör durumu, greft sayısı, teknik,
-  sonuç ayı, yönlendirme gerekçesi (neden bu teknik, neden bu merkez)
+  sonuç ayı, şehir, yönlendirme gerekçesi (neden bu teknik, neden bu merkez)
 - **Sitenin şu an yayına girebilecek tek sonuç tipi budur.** Ana sayfa ve
   `/vakalar` bu tiple başlar.
 
@@ -211,8 +216,9 @@ vaka geçişi (`KarsilastirmaGalerisi`).
   galeriyi değil. Vaka geçişi ok düğmeleriyle yapılır; iki davranış aynı
   jeste bağlanırsa slider mobilde kullanılamaz hale gelir
 - Klavye erişilebilir: ok tuşları, Home/End
-- Yalnızca `kaynak` dolu VE iki görseli de olan kayıtlar gösterilir;
-  koşul sağlanmazsa bileşen hiçbir şey render etmez
+- Yalnızca iki görseli de olan kayıtlar gösterilir; koşul sağlanmazsa
+  bileşen hiçbir şey render etmez. `kaynak` zorunlu değildir, doluysa
+  slider içinde etiket olarak görünür
 
 ## Google yorumları
 
@@ -324,3 +330,13 @@ uygulama yapmaz, uygulamanın nasıl yapıldığını anlatmaz.
 5. Tekniğe özel SSS
 6. Form
 7. Sayfa künyesi (`ContentInfo`)
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

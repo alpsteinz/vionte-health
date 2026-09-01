@@ -11,17 +11,12 @@ import { AnlasmaliMerkezKarti } from "@/components/sonuclar/anlasmali-merkez-kar
 import { KarsilastirmaGalerisi } from "@/components/sonuclar/karsilastirma-galerisi";
 import { DanisanHikayesiKarti } from "@/components/sonuclar/danisan-hikayesi-karti";
 import { breadcrumbSchema } from "@/lib/schema";
-import {
-  anlasmaliMerkezSonuclari,
-  anlasmaliYayinlanabilir,
-  danisanHikayeleri,
-  hikayeYayinlanabilir,
-} from "@/content/results";
+import { anlasmaliMerkezSonuclari, danisanHikayeleri } from "@/content/results";
 import { site } from "@/lib/site";
 
 const title = "Sonuçlarımız";
 const description =
-  "Görselli sonuçlar ve danışan hikayeleri. Her görselin yanında uygulamayı yapan merkez belirtilir; hikayeler yalnızca yazılı izinle yayınlanır.";
+  "Görselli sonuçlar ve danışan hikayeleri. Uygulamayı yapan merkez, belirtildiği kayıtlarda kart üzerinde görünür.";
 
 export const metadata: Metadata = {
   title,
@@ -36,8 +31,8 @@ const trail = [
 ];
 
 export default function Page() {
-  const merkezSonuclari = anlasmaliMerkezSonuclari.filter(anlasmaliYayinlanabilir);
-  const hikayeler = danisanHikayeleri.filter(hikayeYayinlanabilir);
+  const merkezSonuclari = anlasmaliMerkezSonuclari;
+  const hikayeler = danisanHikayeleri;
   const bosDurum = merkezSonuclari.length === 0 && hikayeler.length === 0;
 
   return (
@@ -46,7 +41,7 @@ export default function Page() {
       <PageHero
         eyebrow="Sonuçlar"
         title="Görselli Sonuçlar ve Danışan Hikayeleri"
-        lead="Bir uygulama görseli, kimin yaptığı bilinmeden bir şey anlatmaz. Bu sayfadaki her görselin yanında uygulamayı yapan merkezin adı yer alır; danışan hikayeleri ise yalnızca yazılı izin alınmış kayıtlardan oluşur."
+        lead="Bir uygulama görseli, kimin yaptığı bilinmeden bir şey anlatmaz. Uygulamayı yapan merkezin adı, belirtildiği kayıtlarda kart üzerinde ya da görselin kendi içinde yer alır."
       />
 
       {bosDurum ? (
@@ -55,9 +50,9 @@ export default function Page() {
             <ShieldCheck className="size-6 text-blue" strokeWidth={1.5} aria-hidden />
             <h2 className="h3 mt-5">Henüz yayınlanmış görsel yok</h2>
             <p className="mt-4 text-[0.9375rem] leading-relaxed text-muted">
-              Görselli sonuçlar iki koşul sağlanmadan yayınlanmıyor: uygulamayı
-              yapan merkezin adı ve danışandan alınmış imzalı yazılı izin. Bu
-              koşullar tamamlanana kadar sayfa boş kalır.
+              Görselli sonuçlar henüz eklenmedi. Eklendiklerinde uygulamayı
+              yapan merkezin adı ve — hikaye formatındaki kayıtlarda —
+              danışandan alınmış imzalı yazılı izin burada belirtilir.
             </p>
             <p className="mt-4 text-[0.9375rem] leading-relaxed text-muted">
               Bu arada vakaları ölçüm verisiyle inceleyebilirsiniz: donör
@@ -79,7 +74,7 @@ export default function Page() {
           <SectionHead
             eyebrow="Anlaşmalı merkez sonuçları"
             title="Öncesi ve sonrası"
-            intro="Çizgiyi sürükleyerek karşılaştırabilirsiniz. Her kayıtta uygulamayı yapan merkezin adı belirtilir."
+            intro="Çizgiyi sürükleyerek karşılaştırabilirsiniz. Uygulamayı yapan merkezin adı, belirtildiği kayıtlarda kart üzerinde görünür."
           />
 
           {/* Sürüklemeli karşılaştırma — yalnızca iki görseli de olan kayıtlar */}
@@ -103,7 +98,7 @@ export default function Page() {
           <SectionHead
             eyebrow="Danışan hikayeleri"
             title="Başlangıçtan sonuca"
-            intro="Yalnızca yazılı izin alınmış kayıtlar yayınlanır."
+            intro="Danışanların kendi anlatımıyla, başlangıçtan sonuca süreç."
           />
           <div className="rule-grid reveal mt-12 md:grid-cols-2">
             {hikayeler.map((kayit) => (

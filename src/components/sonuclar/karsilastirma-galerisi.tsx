@@ -4,18 +4,16 @@ import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { KarsilastirmaSlideri } from "./karsilastirma-slideri";
 import { Copy } from "@/components/ui/copy";
-import {
-  anlasmaliYayinlanabilir,
-  type AnlasmaliMerkezSonucu,
-} from "@/content/results";
+import type { AnlasmaliMerkezSonucu } from "@/content/results";
 import { cn } from "@/lib/utils";
 
 /**
  * Çoklu vaka geçişi — karşılaştırma slider'ının dış katmanı.
  *
- * Yayın kapısı: yalnızca `kaynak` dolu VE her iki görseli de bulunan
- * kayıtlar gösterilir. Görseller gelene kadar bu bileşen hiçbir şey
- * render etmez (`null` döner) — yapı hazır, ekranda görünmez.
+ * Koşul: yalnızca her iki görseli de bulunan kayıtlar gösterilir. Görseller
+ * gelene kadar bu bileşen hiçbir şey render etmez (`null` döner) — yapı
+ * hazır, ekranda görünmez. `kaynak` artık zorunlu değil; doluysa slider
+ * içinde etiket olarak görünür.
  *
  * Vaka geçişi ok düğmeleriyle yapılır; kaydırma jesti bilinçli olarak
  * galeriye bağlanmadı, çünkü aynı jest slider'ın karşılaştırma çizgisini
@@ -27,9 +25,7 @@ export function KarsilastirmaGalerisi({
 }: {
   kayitlar: AnlasmaliMerkezSonucu[];
 }) {
-  const gosterilebilir = kayitlar.filter(
-    (k) => anlasmaliYayinlanabilir(k) && k.oncesiGorsel && k.sonrasiGorsel,
-  );
+  const gosterilebilir = kayitlar.filter((k) => k.oncesiGorsel && k.sonrasiGorsel);
   const [aktif, setAktif] = useState(0);
 
   if (gosterilebilir.length === 0) return null;
@@ -41,6 +37,7 @@ export function KarsilastirmaGalerisi({
     kayit.norwood,
     kayit.teknik,
     kayit.sonucAyi && `${kayit.sonucAyi}. ay`,
+    kayit.sehir,
   ].filter(Boolean) as string[];
 
   return (
