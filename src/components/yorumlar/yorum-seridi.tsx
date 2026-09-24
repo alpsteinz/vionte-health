@@ -28,6 +28,8 @@ export function YorumSeridi({ children, etiket }: { children: React.ReactNode; e
   const serit = useRef<HTMLDivElement>(null);
   const [aktif, setAktif] = useState(0);
   const [tasiyor, setTasiyor] = useState(false);
+  /** Aynı anda görünen kart sayısı — durak sayısı = slayt − görünen + 1 */
+  const [gorunen, setGorunen] = useState(1);
   const [uzerinde, setUzerinde] = useState(false); // fare üstte veya odak içeride
   const [ekranda, setEkranda] = useState(false);
   /** Kullanıcının açık seçimi; null ise hareket azaltma tercihine göre */
@@ -40,6 +42,8 @@ export function YorumSeridi({ children, etiket }: { children: React.ReactNode; e
   const oynuyor = secim ?? !hareketAzalt;
   const setOynuyor = setSecim;
 
+  const durak = Math.max(1, slaytlar.length - gorunen + 1);
+
   const olc = useCallback(() => {
     const el = serit.current;
     if (!el) return;
@@ -47,6 +51,7 @@ export function YorumSeridi({ children, etiket }: { children: React.ReactNode; e
     const ilk = el.children[0] as HTMLElement | undefined;
     if (!ilk) return;
     const adim = ilk.getBoundingClientRect().width;
+    setGorunen(Math.max(1, Math.round(el.clientWidth / Math.max(adim, 1))));
     setAktif(Math.min(slaytlar.length - 1, Math.round(el.scrollLeft / Math.max(adim, 1))));
   }, [slaytlar.length]);
 
@@ -124,8 +129,12 @@ export function YorumSeridi({ children, etiket }: { children: React.ReactNode; e
 
       {tasiyor ? (
         <div className="mt-5 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-1.5" role="tablist" aria-label="Yorum seç">
-            {slaytlar.map((_, i) => (
+          {/* Dar ekranda 12 nokta + 3 düğme tek satıra sığmıyor — sayaç gösterilir */}
+          <p className="text-[0.8125rem] tabular-nums text-muted sm:hidden" aria-hidden>
+            {aktif + 1} / {durak}
+          </p>
+          <div className="hidden items-center gap-1.5 sm:flex" role="tablist" aria-label="Yorum seç">
+            {Array.from({ length: durak }, (_, i) => (
               <button
                 key={i}
                 type="button"

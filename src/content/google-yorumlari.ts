@@ -21,6 +21,9 @@
  *          söylüyorsa — AGENTS.md konumlandırma kuralı 1
  *       c) Yorumcu ile işletme arasında görünür bir yakınlık varsa
  *          (ör. aynı soyadı) — tarafsız danışan yorumu sayılmaz
+ *       d) Sitenin kendi metninde yasak olan bir iddia içeriyorsa
+ *          (ağrısızlık, üstünlük vb. — AGENTS.md "Yasaklar / İçerik");
+ *          yorumu yayınlamak iddiayı sitenin ağzından söylemek olur
  *   - Google önizlemesinde "Daha fazla" ile kesilmiş bir metin eklenecekse
  *     kesildiği yerde bırakılır ve `kesik: true` yazılır; kart "…" ve
  *     "Devamını Google'da okuyun" bağlantısıyla gösterilir. Metnin devamı
@@ -54,6 +57,13 @@ export const elleGoogleOzet: {
 
 /** Google'daki en yeni yorumlar, yeniden eskiye. Tarihler 24.09.2026'ya göre. */
 export const elleGoogleYorumlari: ElleGoogleYorum[] = [
+  {
+    ad: "Hamza Cetinkaya",
+    puan: 5,
+    metin:
+      "Hizmet ve yaklaşımları en üst düzeyde Kesinlikle tavsiye ediyorum çok memnun kaldım . Murat Beye özellikle Çok teşekkür ederim işlem yaptırmaya çok çekiniyordum sağolsun kendisi Beni ikna etti , çok kolay ve çok güzel bir işlem oldu kendisine Tekrar çok teşekkür ederim",
+    tarih: "Eylül 2026",
+  },
   {
     ad: "Neşe S.",
     puan: 5,
@@ -104,6 +114,32 @@ export const elleGoogleYorumlari: ElleGoogleYorum[] = [
       "Saç ekimi konusunda aklınıza takılan her şeyi kendilerine danışabilirsiniz gerçekten çok iyiler şimdiden teşekkür ediyorum",
     tarih: "Eylül 2026",
   },
+  {
+    ad: "Erdogan Binici",
+    puan: 5,
+    metin: "Mehtap hanım ve ekibine çok teşekkür ederim her şey için. Gayet memnun kaldım herkese tavsiye ederim.",
+    tarih: "Eylül 2026",
+  },
+  {
+    ad: "Gökhan Çaylı",
+    puan: 5,
+    metin:
+      "Arkadaşım tavsiyesiyle gittim yapılan ekim işleminden ve süreçten çok memnunum 6 ay sonra resimlerimi yükleyeceğim mehtap hanım ve ekibine çok teşekkür ederim ve herkese tavsiye ederim mutlaka bu ekiple tanışın.",
+    tarih: "Eylül 2026",
+  },
+  {
+    ad: "Hamza Karaç",
+    puan: 5,
+    metin:
+      "3 ay önce prp tedavime başladık ve saç dökülmem çok azaldı iyi ki yaptırmışım diyorum mehtap hanıma teşekkür ederim",
+    tarih: "Eylül 2026",
+  },
+  {
+    ad: "cengiz aydemir",
+    puan: 5,
+    metin: "Samimi bir karşılama, detaylı bilgilendirme, profesyonel danışmanlık.Çok teşekkür ederim",
+    tarih: "Ağustos 2026",
+  },
 ];
 
 /**
@@ -115,4 +151,9 @@ export const elleGoogleYorumlari: ElleGoogleYorum[] = [
  *                                     yaptırdım" — uygulamayı Vionte'ye atfediyor
  *   Damla Su Dizge (5★, Eylül 2026) c) içerik sorumlusuyla aynı soyadı; ayrıca
  *                                     "Klinik çalışanları" ifadesi (b)
+ *   Merve Dizge (5★, Ağustos 2026)  c) içerik sorumlusuyla aynı soyadı
+ *   Sardunya Yilmaz (5★, Eylül 2026) b) Vionte'yi "klinik" olarak anıyor;
+ *                                     d) üstünlük iddiası içeriyor
+ *   Şeydanur (5★, Eylül 2026)       d) ağrısızlık iddiası ve "Türkiye'deki tek
+ *                                     adres" ifadesi
  */
