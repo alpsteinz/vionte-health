@@ -3,24 +3,29 @@ import { site } from "./site";
 /**
  * GOOGLE BUSINESS PROFILE YORUMLARI
  *
- * Yorumlar Google Places API (New) üzerinden çekilir ve build sırasında
- * sayfaya gömülür. İstemci tarafında istek yapılmaz — API anahtarı
- * tarayıcıya sızmaz ve LCP etkilenmez.
+ * Yorumlar Google Places API (New) üzerinden sunucuda çekilir ve sayfaya
+ * gömülür. İstemci tarafında istek yapılmaz — API anahtarı tarayıcıya
+ * sızmaz ve LCP etkilenmez. Sonuç 24 saat önbelleklenir (ISR).
  *
- * KURULUM (iki ortam değişkeni):
+ * KURULUM — tek zorunlu ortam değişkeni:
  *
  *   GOOGLE_PLACES_API_KEY   Google Cloud Console'da "Places API (New)"
- *                           etkinleştirilip oluşturulan sunucu anahtarı.
- *   GOOGLE_PLACE_ID         İşletmenin Place ID'si.
- *                           https://developers.google.com/maps/documentation/places/web-service/place-id
+ *                           etkinleştirilip oluşturulan anahtar.
+ *
+ * İsteğe bağlı:
+ *
+ *   GOOGLE_PLACE_ID         İşletmenin Place ID'si (ChIJ... ile başlar).
+ *                           Verilirse doğrudan bu kayıt kullanılır.
+ *   GOOGLE_PLACE_QUERY      Place ID yoksa işletme bu metinle aranır.
+ *                           Varsayılan: VARSAYILAN_SORGU.
  *
  * Vercel → Project Settings → Environment Variables altına eklenir.
- * Değişkenler tanımlı değilse site yorumsuz çalışır; sayfa bozulmaz.
+ * Anahtar tanımlı değilse site yorumsuz çalışır; sayfa bozulmaz,
+ * uydurma yorum veya puan gösterilmez.
  *
  * SINIR: Places API en fazla 5 yorum döndürür ve hangilerinin geleceğini
- * Google seçer. Daha fazlası için Business Profile API'sinin OAuth akışı
- * gerekir; o kurulum yapılırsa `getirGoogleYorumlari` bu dosyada
- * değiştirilir, çağıran bileşenler aynı kalır.
+ * Google seçer. Yorumlar filtrelenmez (yalnızca metinsiz, sadece yıldız
+ * verilmiş değerlendirmeler atlanır).
  */
 
 export type GoogleYorum = {
@@ -30,27 +35,34 @@ export type GoogleYorum = {
   metin: string;
   tarih: string;
   profilFoto?: string;
-  yorumUrl?: string;
+  profilUrl?: string;
 };
 
 export type GoogleOzet = {
   puan: number | null;
   adet: number | null;
-  url: string | null;
+  /** İşletmenin Google Haritalar sayfası — veri yoksa arama bağlantısı */
+  url: string;
   yorumlar: GoogleYorum[];
-  /** Yapılandırma eksikse neden — geliştirici için */
-  durum: "hazir" | "yapilandirilmadi" | "hata";
+  durum: "hazir" | "yapilandirilmadi" | "bulunamadi" | "hata";
 };
 
-const BOS: GoogleOzet = {
+const VARSAYILAN_SORGU = `${site.name} ${site.contact.district} ${site.contact.city}`;
+
+/** Anahtar yokken de çalışan, işletmeyi Google Haritalar'da arayan bağlantı */
+const ARAMA_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  `${site.name} ${site.contact.addressLine}`,
+)}`;
+
+const bos = (durum: GoogleOzet["durum"]): GoogleOzet => ({
   puan: null,
   adet: null,
-  url: null,
+  url: ARAMA_URL,
   yorumlar: [],
-  durum: "yapilandirilmadi",
-};
+  durum,
+});
 
-type PlacesYanit = {
+type PlacesYer = {
   rating?: number;
   userRatingCount?: number;
   googleMapsUri?: string;
@@ -60,53 +72,80 @@ type PlacesYanit = {
     text?: { text?: string };
     originalText?: { text?: string };
     relativePublishTimeDescription?: string;
-    publishTime?: string;
     authorAttribution?: { displayName?: string; photoUri?: string; uri?: string };
   }[];
 };
 
-/**
- * Build sırasında çağrılır. Sonuç Next.js tarafından 24 saat önbelleklenir;
- * yorumlar günde bir tazelenir.
- */
-export async function getirGoogleYorumlari(): Promise<GoogleOzet> {
-  const key = process.env.GOOGLE_PLACES_API_KEY;
-  const placeId = process.env.GOOGLE_PLACE_ID;
-  if (!key || !placeId) return BOS;
+const ALANLAR = ["rating", "userRatingCount", "googleMapsUri", "reviews"];
 
-  try {
+async function yerGetir(key: string): Promise<PlacesYer | null> {
+  const placeId = process.env.GOOGLE_PLACE_ID;
+  const ortak = {
+    "X-Goog-Api-Key": key,
+    "Accept-Language": "tr",
+  };
+
+  if (placeId) {
     const res = await fetch(
       `https://places.googleapis.com/v1/places/${encodeURIComponent(placeId)}?languageCode=tr`,
       {
-        headers: {
-          "X-Goog-Api-Key": key,
-          "X-Goog-FieldMask":
-            "rating,userRatingCount,googleMapsUri,reviews",
-        },
+        headers: { ...ortak, "X-Goog-FieldMask": ALANLAR.join(",") },
         next: { revalidate: 86400 },
       },
     );
-    if (!res.ok) return { ...BOS, durum: "hata" };
+    if (!res.ok) throw new Error(`Places ${res.status}`);
+    return (await res.json()) as PlacesYer;
+  }
 
-    const data = (await res.json()) as PlacesYanit;
+  // Place ID verilmediyse işletme adı + adresle aranır; ilk sonuç alınır.
+  const res = await fetch("https://places.googleapis.com/v1/places:searchText", {
+    method: "POST",
+    headers: {
+      ...ortak,
+      "Content-Type": "application/json",
+      "X-Goog-FieldMask": ALANLAR.map((a) => `places.${a}`).join(","),
+    },
+    body: JSON.stringify({
+      textQuery: process.env.GOOGLE_PLACE_QUERY || VARSAYILAN_SORGU,
+      languageCode: "tr",
+      regionCode: "TR",
+      pageSize: 1,
+    }),
+    next: { revalidate: 86400 },
+  });
+  if (!res.ok) throw new Error(`Places ${res.status}`);
+  const data = (await res.json()) as { places?: PlacesYer[] };
+  return data.places?.[0] ?? null;
+}
+
+export async function getirGoogleYorumlari(): Promise<GoogleOzet> {
+  const key = process.env.GOOGLE_PLACES_API_KEY;
+  if (!key) return bos("yapilandirilmadi");
+
+  try {
+    const yer = await yerGetir(key);
+    if (!yer) return bos("bulunamadi");
 
     return {
-      puan: data.rating ?? null,
-      adet: data.userRatingCount ?? null,
-      url: data.googleMapsUri ?? null,
+      puan: yer.rating ?? null,
+      adet: yer.userRatingCount ?? null,
+      url: yer.googleMapsUri ?? ARAMA_URL,
       durum: "hazir",
-      yorumlar: (data.reviews ?? []).map((r, i) => ({
-        id: r.name ?? `google-yorum-${i}`,
-        ad: r.authorAttribution?.displayName ?? "Google kullanıcısı",
-        puan: r.rating ?? 0,
-        metin: r.originalText?.text ?? r.text?.text ?? "",
-        tarih: r.relativePublishTimeDescription ?? r.publishTime ?? "",
-        profilFoto: r.authorAttribution?.photoUri,
-        yorumUrl: r.authorAttribution?.uri,
-      })),
+      yorumlar: (yer.reviews ?? [])
+        .map((r, i) => ({
+          id: r.name ?? `google-yorum-${i}`,
+          ad: r.authorAttribution?.displayName ?? "Google kullanıcısı",
+          puan: r.rating ?? 0,
+          metin: (r.originalText?.text ?? r.text?.text ?? "").trim(),
+          tarih: r.relativePublishTimeDescription ?? "",
+          profilFoto: r.authorAttribution?.photoUri,
+          profilUrl: r.authorAttribution?.uri,
+        }))
+        .filter((y) => y.metin.length > 0),
     };
-  } catch {
-    return { ...BOS, durum: "hata" };
+  } catch (e) {
+    console.warn("[google-yorumlari] Places API isteği başarısız:", e);
+    return bos("hata");
   }
 }
 

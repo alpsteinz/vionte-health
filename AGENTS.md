@@ -133,7 +133,7 @@ hedeflenirse ayrı domain/platform gerekir. Genel web tasarım rehberlerinin
 
 - KVKK aydınlatma metni, gizlilik politikası, çerez onayı
 - Formda açık KVKK onay kutusu
-- İçeriğin son güncelleme tarihi + içerik sorumlusuna ulaşılabilecek iletişim
+- İçeriğin son güncelleme tarihi + içerik sorumlusuna ulaşılabilecek iletişim (tarih tek kaynak: `SON_GUNCELLEME`, `src/lib/site.ts`)
 - Site adı/ünvanı, Bakanlıkça verilmiş ruhsattaki ünvanla uyumlu
 - Sonuç içeriği üç tiptedir; her tipin yayın kapısı sağlanmadan render edilmez
 - Stok görsel yalnızca "Temsili görsel" ibaresiyle yayınlanır (`StokGorsel`)
@@ -171,8 +171,8 @@ gömülü yazı/filigran olarak) belirtilsin — ikisi de kabul edilir.
 **Tip 3 — Fotoğrafsız vaka.** Görsel yok, onam gerekmez.
 - Alanlar: yaş, Norwood seviyesi, donör durumu, greft sayısı, teknik,
   sonuç ayı, şehir, yönlendirme gerekçesi (neden bu teknik, neden bu merkez)
-- **Sitenin şu an yayına girebilecek tek sonuç tipi budur.** Ana sayfa ve
-  `/vakalar` bu tiple başlar.
+- **Şu an yayında değil.** Ana sayfadaki vaka bölümü ve `/vakalar` gerçek
+  vaka verisi (Norwood, greft, yaş) gelene kadar beklemede.
 
 Kod karşılıkları: `src/content/results.ts`, `src/components/sonuclar/`.
 
@@ -222,15 +222,18 @@ vaka geçişi (`KarsilastirmaGalerisi`).
 
 ## Google yorumları
 
-Yorumlar Google Places API (New) üzerinden **build sırasında sunucuda**
-çekilir; API anahtarı tarayıcıya gitmez. İki ortam değişkeni:
+Yorumlar Google Places API (New) üzerinden **sunucuda** çekilir (24 saat
+önbellek); API anahtarı tarayıcıya gitmez. Ortam değişkenleri:
 
 ```
-GOOGLE_PLACES_API_KEY
-GOOGLE_PLACE_ID
+GOOGLE_PLACES_API_KEY   zorunlu
+GOOGLE_PLACE_ID         isteğe bağlı — yoksa işletme adı + adresle aranır
+GOOGLE_PLACE_QUERY      isteğe bağlı — aramada kullanılacak metin
 ```
 
-Tanımlı değilse site yorumsuz çalışır, sayfa bozulmaz. Uydurma yorum veya
+Anahtar tanımlı değilse yorum kartları yerine Google Haritalar'daki kayda
+yönlendiren bir kutu gösterilir, sayfa bozulmaz. Her yorumda yazar adı
+Google profiline bağlanır (Places kullanım koşulu). Uydurma yorum veya
 puan yayınlanmaz; `AggregateRating` şeması yalnızca gerçek veri varsa
 üretilir.
 
@@ -290,7 +293,8 @@ Danışmanlık (ayrışma stratejisinin merkezi):
   ├ /sac-ekimi-oncesi-sorulacak-sorular/
   └ /ekibimiz/
 /hasta-rehberi/  (6 alt sayfa)
-/vakalar/  /sonuclarimiz/  /yorumlar/  /sss/  /dogru-bilinen-yanlislar/
+/yorumlar/  /sss/  /dogru-bilinen-yanlislar/
+(/vakalar/ ve /sonuclarimiz/ beklemede — src/app/_beklemede/README.md)
 /blog/[slug]/  /iletisim/
 /kvkk-aydinlatma-metni/  /gizlilik-politikasi/  /cerez-politikasi/
 ```

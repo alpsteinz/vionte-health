@@ -11,6 +11,13 @@
  * Vionte Health'nin yaptığı izlenimi verilmez.
  */
 
+/**
+ * İçeriğin son güncelleme tarihi (YYYY-AA-GG). Tek kaynak: sayfa künyesi,
+ * footer, yasal metinler, schema.org dateModified, sitemap ve llms.txt
+ * buradan beslenir. İçerik güncellendiğinde yalnızca bu satır değişir.
+ */
+const SON_GUNCELLEME = "2026-09-24";
+
 export const site = {
   name: "Vionte Health",
   shortName: "Vionte Health",
@@ -55,7 +62,10 @@ export const site = {
   },
 
   editorial: {
-    lastUpdated: "[GG.AA.YYYY]",
+    /** Son güncelleme — ISO 8601. schema.org ve sitemap bu değeri kullanır. */
+    lastUpdatedIso: SON_GUNCELLEME,
+    /** Sayfada görünen biçim: GG.AA.YYYY */
+    lastUpdated: SON_GUNCELLEME.split("-").reverse().join("."),
     /** İçerik sorumlusu — hekim değil, sorumlu teknisyen */
     contentOwner: "Mehtap Dizge · info@viontehealth.com",
   },

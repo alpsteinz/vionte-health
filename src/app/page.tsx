@@ -4,7 +4,6 @@ import { Process } from "@/components/sections/process";
 import { Referral } from "@/components/sections/referral";
 import { Team } from "@/components/sections/team";
 import { WhatsappBand } from "@/components/sections/whatsapp-band";
-import { Results } from "@/components/sections/results";
 import { Reviews } from "@/components/sections/reviews";
 import { Myths } from "@/components/sections/myths";
 import { Faq } from "@/components/sections/faq";
@@ -26,8 +25,6 @@ export default function Home() {
       <Referral />
       <Team />
       <WhatsappBand />
-      <Results />
-      <WhatsappSectionCta href={whatsappCta.vakalar} label="Sizin İçin Ne Mümkün? Öğrenin" tone="light" />
       <Reviews />
       <Myths limit={3} />
       <Faq />
