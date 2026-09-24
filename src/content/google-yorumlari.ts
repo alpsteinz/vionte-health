@@ -41,7 +41,8 @@ export const elleGoogleOzet: {
   // Google işletme kartı, 24.09.2026
   puan: 5.0,
   adet: 37,
-  url: "",
+  // share.google/keO9tItW583dusBjy → işletmenin Google kaydı (kgmid)
+  url: "https://www.google.com/search?kgmid=/g/11nvh8l1h8&q=Vionte+%7C+Sa%C3%A7+Ekimi+-+Di%C5%9F+Esteti%C4%9Fi+-+Medikal+Estetik+Dan%C4%B1%C5%9Fmanl%C4%B1%C4%9F%C4%B1",
 };
 
 /** Google'daki en yeni yorumlar, yeniden eskiye */
