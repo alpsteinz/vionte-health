@@ -132,10 +132,12 @@ export function GoogleYorumYok({ ozet }: { ozet: GoogleOzet }) {
 }
 
 /** Kaynak notu — verinin Google'dan geldiğini belirtir */
-export function GoogleKaynakNotu({ className }: { className?: string }) {
+export function GoogleKaynakNotu({ ozet, className }: { ozet: GoogleOzet; className?: string }) {
   return (
     <p className={cn("text-[0.75rem] text-muted", className)}>
-      Yorumlar ve puan Google Business Profile&apos;dan otomatik alınır, günde bir güncellenir.
+      {ozet.durum === "hazir"
+        ? "Yorumlar ve puan Google Business Profile'dan otomatik alınır, günde bir güncellenir."
+        : "Yorumlar Google Business Profile'dan birebir aktarılmıştır; düzenlenmemiştir."}
     </p>
   );
 }

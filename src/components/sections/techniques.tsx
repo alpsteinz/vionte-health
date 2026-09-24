@@ -10,6 +10,7 @@ export function Techniques() {
         eyebrow={techniques.eyebrow}
         title={techniques.title}
         intro={techniques.intro}
+        align="center"
       />
 
       <div className="rule-grid reveal mt-12 md:grid-cols-3">

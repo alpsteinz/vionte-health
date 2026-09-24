@@ -47,7 +47,14 @@ export function Header() {
     pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur-sm">
+    <header className="sticky top-0 z-40 border-b border-line">
+      {/*
+       * Yarı saydam zemin + blur ayrı katmanda. `backdrop-filter` header'ın
+       * kendisine verilirse header, içindeki `position: fixed` mobil menünün
+       * kapsayıcı bloğu olur; menü 68px'lik header'a sıkışıp 0 yükseklikte
+       * açılıyordu (mobil menü butonu "çalışmıyor" görünüyordu).
+       */}
+      <div aria-hidden className="absolute inset-0 -z-10 bg-white/95 backdrop-blur-sm" />
       <Container>
         <div className="flex h-[68px] items-center justify-between gap-6 md:h-[76px]">
           <Logo priority />

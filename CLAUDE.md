@@ -231,11 +231,14 @@ GOOGLE_PLACE_ID         isteğe bağlı — yoksa işletme adı + adresle aranı
 GOOGLE_PLACE_QUERY      isteğe bağlı — aramada kullanılacak metin
 ```
 
-Anahtar tanımlı değilse yorum kartları yerine Google Haritalar'daki kayda
-yönlendiren bir kutu gösterilir, sayfa bozulmaz. Her yorumda yazar adı
+Anahtar tanımlı değilse `src/content/google-yorumlari.ts` içindeki elle
+girilmiş liste gösterilir (Google'dan birebir kopya, düzenlenmeden); o da
+boşsa Google Haritalar'daki kayda yönlendiren bir kutu çıkar. Google
+Haritalar'dan otomatik kazıma (scraping) yapılmaz — kullanım koşullarına
+aykırı ve kırılgan. Her yorumda yazar adı
 Google profiline bağlanır (Places kullanım koşulu). Uydurma yorum veya
-puan yayınlanmaz; `AggregateRating` şeması yalnızca gerçek veri varsa
-üretilir.
+puan yayınlanmaz; `AggregateRating` şeması yalnızca API'den canlı
+veri geldiğinde üretilir.
 
 ## Görseller
 

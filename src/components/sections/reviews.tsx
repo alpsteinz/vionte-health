@@ -48,7 +48,7 @@ export async function Reviews() {
           Tüm yorumlar
           <ArrowRight className="size-4" strokeWidth={1.5} aria-hidden />
         </Link>
-        {yorumlar.length > 0 ? <GoogleKaynakNotu /> : null}
+        {yorumlar.length > 0 ? <GoogleKaynakNotu ozet={ozet} /> : null}
       </div>
     </Section>
   );

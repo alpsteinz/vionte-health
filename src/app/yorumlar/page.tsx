@@ -53,7 +53,7 @@ export default async function Page() {
                 <GoogleYorumKarti key={y.id} yorum={y} />
               ))}
             </div>
-            <GoogleKaynakNotu className="mt-6" />
+            <GoogleKaynakNotu ozet={ozet} className="mt-6" />
           </>
         ) : (
           <GoogleYorumYok ozet={ozet} />

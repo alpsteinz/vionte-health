@@ -1,4 +1,5 @@
 import { site } from "./site";
+import { elleGoogleOzet, elleGoogleYorumlari } from "@/content/google-yorumlari";
 
 /**
  * GOOGLE BUSINESS PROFILE YORUMLARI
@@ -20,8 +21,9 @@ import { site } from "./site";
  *                           Varsayılan: VARSAYILAN_SORGU.
  *
  * Vercel → Project Settings → Environment Variables altına eklenir.
- * Anahtar tanımlı değilse site yorumsuz çalışır; sayfa bozulmaz,
- * uydurma yorum veya puan gösterilmez.
+ * Anahtar tanımlı değilse (veya istek başarısızsa) `content/google-yorumlari.ts`
+ * içindeki elle girilmiş liste kullanılır; o da boşsa Google Haritalar'a
+ * yönlendiren kutu gösterilir. Uydurma yorum veya puan gösterilmez.
  *
  * SINIR: Places API en fazla 5 yorum döndürür ve hangilerinin geleceğini
  * Google seçer. Yorumlar filtrelenmez (yalnızca metinsiz, sadece yıldız
@@ -44,7 +46,11 @@ export type GoogleOzet = {
   /** İşletmenin Google Haritalar sayfası — veri yoksa arama bağlantısı */
   url: string;
   yorumlar: GoogleYorum[];
-  durum: "hazir" | "yapilandirilmadi" | "bulunamadi" | "hata";
+  /**
+   * hazir: API'den canlı veri · elle: content/google-yorumlari.ts'ten
+   * yapilandirilmadi / bulunamadi / hata: veri yok, Google'a yönlendirilir
+   */
+  durum: "hazir" | "elle" | "yapilandirilmadi" | "bulunamadi" | "hata";
 };
 
 const VARSAYILAN_SORGU = `${site.name} ${site.contact.district} ${site.contact.city}`;
@@ -61,6 +67,25 @@ const bos = (durum: GoogleOzet["durum"]): GoogleOzet => ({
   yorumlar: [],
   durum,
 });
+
+/** API kullanılamadığında elle girilmiş liste; o da boşsa `bos` */
+function yedek(durum: GoogleOzet["durum"]): GoogleOzet {
+  if (elleGoogleYorumlari.length === 0 && elleGoogleOzet.puan === null) return bos(durum);
+  return {
+    puan: elleGoogleOzet.puan,
+    adet: elleGoogleOzet.adet,
+    url: elleGoogleOzet.url || ARAMA_URL,
+    durum: "elle",
+    yorumlar: elleGoogleYorumlari.map((y, i) => ({
+      id: `elle-${i}`,
+      ad: y.ad,
+      puan: y.puan,
+      metin: y.metin,
+      tarih: y.tarih ?? "",
+      profilUrl: y.profilUrl,
+    })),
+  };
+}
 
 type PlacesYer = {
   rating?: number;
@@ -120,11 +145,11 @@ async function yerGetir(key: string): Promise<PlacesYer | null> {
 
 export async function getirGoogleYorumlari(): Promise<GoogleOzet> {
   const key = process.env.GOOGLE_PLACES_API_KEY;
-  if (!key) return bos("yapilandirilmadi");
+  if (!key) return yedek("yapilandirilmadi");
 
   try {
     const yer = await yerGetir(key);
-    if (!yer) return bos("bulunamadi");
+    if (!yer) return yedek("bulunamadi");
 
     return {
       puan: yer.rating ?? null,
@@ -145,7 +170,7 @@ export async function getirGoogleYorumlari(): Promise<GoogleOzet> {
     };
   } catch (e) {
     console.warn("[google-yorumlari] Places API isteği başarısız:", e);
-    return bos("hata");
+    return yedek("hata");
   }
 }
 
@@ -154,7 +179,8 @@ export async function getirGoogleYorumlari(): Promise<GoogleOzet> {
  * eklenebilir. Veri yoksa şema üretilmez — uydurma puan yayınlanmaz.
  */
 export function aggregateRatingSchema(ozet: GoogleOzet) {
-  if (!ozet.puan || !ozet.adet) return null;
+  // Yalnızca API'den gelen canlı veri — elle girilen puan eskiyebilir.
+  if (ozet.durum !== "hazir" || !ozet.puan || !ozet.adet) return null;
   return {
     "@context": "https://schema.org",
     "@type": "AggregateRating",
