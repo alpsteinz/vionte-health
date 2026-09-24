@@ -38,6 +38,8 @@ export type GoogleYorum = {
   tarih: string;
   profilFoto?: string;
   profilUrl?: string;
+  /** Metin Google'daki önizlemeden alındı, devamı Google'da */
+  kesik?: boolean;
 };
 
 export type GoogleOzet = {
@@ -53,11 +55,11 @@ export type GoogleOzet = {
   durum: "hazir" | "elle" | "yapilandirilmadi" | "bulunamadi" | "hata";
 };
 
-const VARSAYILAN_SORGU = `${site.name} ${site.contact.district} ${site.contact.city}`;
+const VARSAYILAN_SORGU = `${site.googleIsletmeAdi} ${site.contact.city}`;
 
 /** Anahtar yokken de çalışan, işletmeyi Google Haritalar'da arayan bağlantı */
 const ARAMA_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-  `${site.name} ${site.contact.addressLine}`,
+  VARSAYILAN_SORGU,
 )}`;
 
 const bos = (durum: GoogleOzet["durum"]): GoogleOzet => ({
@@ -83,6 +85,7 @@ function yedek(durum: GoogleOzet["durum"]): GoogleOzet {
       metin: y.metin,
       tarih: y.tarih ?? "",
       profilUrl: y.profilUrl,
+      kesik: y.kesik,
     })),
   };
 }

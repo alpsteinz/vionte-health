@@ -49,6 +49,12 @@ export const site = {
     mapEmbed: "",
   },
 
+  /**
+   * Google Business Profile'daki işletme adı — sitedeki marka adından farklı.
+   * Places API araması ve Google Haritalar bağlantısı bu adla yapılır.
+   */
+  googleIsletmeAdi: "Vionte | Saç Ekimi - Diş Estetiği - Medikal Estetik Danışmanlığı",
+
   social: {
     instagram: "https://www.instagram.com/viontehealth/",
     instagramHandle: "@viontehealth",

@@ -58,7 +58,16 @@ export function GooglePuanKutusu({ ozet, className }: { ozet: GoogleOzet; classN
   );
 }
 
-export function GoogleYorumKarti({ yorum, kisalt }: { yorum: GoogleYorum; kisalt?: boolean }) {
+export function GoogleYorumKarti({
+  yorum,
+  googleUrl,
+  kisalt,
+}: {
+  yorum: GoogleYorum;
+  /** Kesik yorumlarda "devamı" bağlantısının gideceği işletme sayfası */
+  googleUrl: string;
+  kisalt?: boolean;
+}) {
   const yazar = (
     <>
       {yorum.profilFoto ? (
@@ -90,7 +99,19 @@ export function GoogleYorumKarti({ yorum, kisalt }: { yorum: GoogleYorum; kisalt
       <blockquote className="mt-5 flex-1">
         <p className={cn("text-[0.9375rem] leading-relaxed text-ink", kisalt && "line-clamp-6")}>
           {yorum.metin}
+          {yorum.kesik ? "…" : null}
         </p>
+        {yorum.kesik ? (
+          <a
+            href={googleUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 inline-flex items-center gap-1 text-[0.8125rem] text-blue underline-offset-4 hover:underline"
+          >
+            Devamını Google&apos;da okuyun
+            <ArrowUpRight className="size-3.5" strokeWidth={1.5} aria-hidden />
+          </a>
+        ) : null}
       </blockquote>
       <figcaption className="mt-6 border-t border-line pt-4">
         {yorum.profilUrl ? (

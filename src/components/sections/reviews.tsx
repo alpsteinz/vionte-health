@@ -9,6 +9,7 @@ import {
 } from "@/components/yorumlar/google-yorumlar";
 import { getirGoogleYorumlari } from "@/lib/google-reviews";
 import { reviews } from "@/content/home";
+import { cn } from "@/lib/utils";
 
 /**
  * Danışan yorumları — Google Business Profile'dan.
@@ -30,9 +31,9 @@ export async function Reviews() {
 
       <div className="reveal mt-12">
         {yorumlar.length > 0 ? (
-          <div className="rule-grid md:grid-cols-3">
+          <div className={cn("rule-grid", yorumlar.length >= 3 ? "md:grid-cols-3" : "md:grid-cols-2")}>
             {yorumlar.map((y) => (
-              <GoogleYorumKarti key={y.id} yorum={y} kisalt />
+              <GoogleYorumKarti key={y.id} yorum={y} googleUrl={ozet.url} kisalt />
             ))}
           </div>
         ) : (

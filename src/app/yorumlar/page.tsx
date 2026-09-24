@@ -14,6 +14,7 @@ import {
 } from "@/components/yorumlar/google-yorumlar";
 import { getirGoogleYorumlari, aggregateRatingSchema } from "@/lib/google-reviews";
 import { reviews } from "@/content/home";
+import { cn } from "@/lib/utils";
 
 const title = "Hasta Yorumları";
 const description =
@@ -48,9 +49,9 @@ export default async function Page() {
 
         {ozet.yorumlar.length > 0 ? (
           <>
-            <div className="rule-grid sm:grid-cols-2 lg:grid-cols-3">
+            <div className={cn("rule-grid sm:grid-cols-2", ozet.yorumlar.length >= 3 && "lg:grid-cols-3")}>
               {ozet.yorumlar.map((y) => (
-                <GoogleYorumKarti key={y.id} yorum={y} />
+                <GoogleYorumKarti key={y.id} yorum={y} googleUrl={ozet.url} />
               ))}
             </div>
             <GoogleKaynakNotu ozet={ozet} className="mt-6" />
