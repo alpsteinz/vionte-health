@@ -97,7 +97,7 @@ export function GoogleYorumKarti({
     <figure className="flex flex-col bg-white p-7">
       <Yildizlar puan={yorum.puan} />
       <blockquote className="mt-5 flex-1">
-        <p className={cn("text-[0.9375rem] leading-relaxed text-ink", kisalt && "line-clamp-6")}>
+        <p className={cn("whitespace-pre-line text-[0.9375rem] leading-relaxed text-ink", kisalt && "line-clamp-6")}>
           {yorum.metin}
           {yorum.kesik ? "…" : null}
         </p>

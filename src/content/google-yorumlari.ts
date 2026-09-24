@@ -13,7 +13,14 @@
  *     tıklayınca açılan adres). Boş bırakılabilir.
  *   - `tarih`: Google'daki haliyle ("2 ay önce") ya da ay/yıl ("Eylül 2026").
  *   - Seçici davranılmaz: yalnızca 5 yıldızlılar değil, en güncel yorumlar
- *     sırasıyla eklenir.
+ *     sırasıyla eklenir. Puanı düşük diye yorum çıkarılmaz.
+ *   - Yalnızca şu durumlarda yorum siteye alınmaz (Google'da durmaya devam
+ *     eder) ve aşağıdaki HARİÇ listesine gerekçesiyle yazılır:
+ *       a) Vionte'nin sunmadığı bir hizmeti anlatıyorsa (ör. diş implantı)
+ *       b) Uygulamayı Vionte'nin yaptığını / Vionte'nin klinik olduğunu
+ *          söylüyorsa — AGENTS.md konumlandırma kuralı 1
+ *       c) Yorumcu ile işletme arasında görünür bir yakınlık varsa
+ *          (ör. aynı soyadı) — tarafsız danışan yorumu sayılmaz
  *   - Google önizlemesinde "Daha fazla" ile kesilmiş bir metin eklenecekse
  *     kesildiği yerde bırakılır ve `kesik: true` yazılır; kart "…" ve
  *     "Devamını Google'da okuyun" bağlantısıyla gösterilir. Metnin devamı
@@ -45,8 +52,22 @@ export const elleGoogleOzet: {
   url: "https://www.google.com/search?kgmid=/g/11nvh8l1h8&q=Vionte+%7C+Sa%C3%A7+Ekimi+-+Di%C5%9F+Esteti%C4%9Fi+-+Medikal+Estetik+Dan%C4%B1%C5%9Fmanl%C4%B1%C4%9F%C4%B1",
 };
 
-/** Google'daki en yeni yorumlar, yeniden eskiye */
+/** Google'daki en yeni yorumlar, yeniden eskiye. Tarihler 24.09.2026'ya göre. */
 export const elleGoogleYorumlari: ElleGoogleYorum[] = [
+  {
+    ad: "Neşe S.",
+    puan: 5,
+    metin:
+      "Murat bey ve Mehtap hanım a öncelikle çoook teşekkür ederim, Sizinle bu süreci yönetmek hem keyifli hem de çok güvenliydi. Tecrübeleriniz ve samimiyetiniz için minnettarım. Tanıdığım herkese tavsiye ediyorum ve gidenler de en az benim kadar mutlu ayrılıyor 🙏🙏 iyi ki siz",
+    tarih: "Eylül 2026",
+  },
+  {
+    ad: "Kadir Demir",
+    puan: 5,
+    metin:
+      "Bir sağlık çalışanı olarak büyük firmaların sürekli ucuzuna kaçan değişen ekibine değil, işinin eğli insanlara kendinizi emanet ederseniz sonuç ortada .\nErkeğin kozmetiği saçıdır bence çok fazla düşünmeylede yol alınmıyor ,kararlı olmak gerekiyor .Murat Bey ve Mehtap hanım süreç boyunca rahat nefes aldırmıyor zaten. Emeklerin karşılığını almak istiyorlar mesele sadece para değil tedavilerine kulak vermek gerekiyor dediğim gibi sonuç ortada\nTeşekkür ediyorum ekibinize .",
+    tarih: "Eylül 2026",
+  },
   {
     ad: "İsmail Hüşan",
     puan: 5,
@@ -63,4 +84,35 @@ export const elleGoogleYorumlari: ElleGoogleYorum[] = [
     tarih: "Eylül 2026",
     kesik: true,
   },
+  {
+    ad: "Cengiz Gökçe",
+    puan: 5,
+    metin: "Mehtap hocam ve Murat hocama çok teşekkür ederim gerçekten mükemmel bir sonuç",
+    tarih: "Eylül 2026",
+  },
+  {
+    ad: "ipek öztürk",
+    puan: 5,
+    metin:
+      "İşinin ehli, profesyonel ve titiz bir ekip. İlgi ve alakaları, güler yüzleri ve işlerine verdikleri önem gerçekten takdire değer. Gönül rahatlığıyla tavsiye ediyorum",
+    tarih: "Eylül 2026",
+  },
+  {
+    ad: "MERT Can",
+    puan: 5,
+    metin:
+      "Saç ekimi konusunda aklınıza takılan her şeyi kendilerine danışabilirsiniz gerçekten çok iyiler şimdiden teşekkür ediyorum",
+    tarih: "Eylül 2026",
+  },
 ];
+
+/**
+ * HARİÇ — Google'da yayında olan ama siteye alınmayan yorumlar (yukarıdaki
+ * kurala göre). Yalnızca kayıt amaçlı; hiçbir yerde gösterilmez.
+ *
+ *   Ulaş (5★, Eylül 2026)          a) diş implantı — sitede diş hizmeti yok
+ *   Yasin ARSLAN (5★, Eylül 2026)  b) "Vionte Saç Ekimi Kliniği'nde saç ekimi
+ *                                     yaptırdım" — uygulamayı Vionte'ye atfediyor
+ *   Damla Su Dizge (5★, Eylül 2026) c) içerik sorumlusuyla aynı soyadı; ayrıca
+ *                                     "Klinik çalışanları" ifadesi (b)
+ */
