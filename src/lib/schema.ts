@@ -98,8 +98,8 @@ export function articleSchema({
     description,
     url: `${site.url}${path}`,
     inLanguage: "tr-TR",
-    datePublished: clean(published ?? ""),
-    dateModified: clean(site.editorial.lastUpdated),
+    datePublished: published ?? site.editorial.lastUpdatedIso,
+    dateModified: site.editorial.lastUpdatedIso,
     publisher: { "@id": `${site.url}/#kurum` },
     // reviewedBy kullanılmaz — içerik hekim incelemesinden geçmez;
     // sorumlusu içerik sorumlusudur.

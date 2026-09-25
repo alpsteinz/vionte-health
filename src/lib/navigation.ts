@@ -62,7 +62,6 @@ export const navigation: NavItem[] = [
         href: "/hasta-rehberi/fiyatlandirma-nasil-belirlenir",
       },
       { title: "Doğru Bilinen Yanlışlar", href: "/dogru-bilinen-yanlislar" },
-      { title: "Vakalar", href: "/vakalar" },
       { title: "Yorumlar", href: "/yorumlar" },
       { title: "S.S.S.", href: "/sss" },
       { title: "Blog", href: "/blog" },

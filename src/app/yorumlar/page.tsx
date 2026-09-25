@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Star, MessageSquareQuote } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { PageHero } from "@/components/ui/page-hero";
 import { Section } from "@/components/ui/section";
@@ -7,9 +7,15 @@ import { Container } from "@/components/ui/container";
 import { ContentInfo } from "@/components/ui/content-info";
 import { JsonLd } from "@/components/ui/json-ld";
 import { breadcrumbSchema } from "@/lib/schema";
-import { Copy } from "@/components/ui/copy";
+import {
+  GoogleKaynakNotu,
+  GooglePuanKutusu,
+  GoogleYorumKarti,
+  GoogleYorumYok,
+} from "@/components/yorumlar/google-yorumlar";
 import { getirGoogleYorumlari, aggregateRatingSchema } from "@/lib/google-reviews";
 import { reviews } from "@/content/home";
+import { cn } from "@/lib/utils";
 
 const title = "Hasta Yorumları";
 const description =
@@ -22,6 +28,10 @@ export const metadata: Metadata = {
   openGraph: { title, description, url: "/yorumlar" },
 };
 
+/** Tamamlayıcı kartın kaç sütun kaplayacağı: kalan hücre sayısı kadar */
+const SM_SPAN = ["sm:col-span-2", "sm:col-span-1"];
+const LG_SPAN = ["lg:col-span-3", "lg:col-span-2", "lg:col-span-1"];
+
 const trail = [
   { name: "Ana sayfa", href: "/" },
   { name: "Yorumlar", href: "/yorumlar" },
@@ -29,7 +39,6 @@ const trail = [
 
 export default async function Page() {
   const ozet = await getirGoogleYorumlari();
-  const hazir = ozet.durum === "hazir" && ozet.yorumlar.length > 0;
   const rating = aggregateRatingSchema(ozet);
   return (
     <>
@@ -41,65 +50,39 @@ export default async function Page() {
       />
 
       <Section tone="paper">
-        <div className="mb-12 flex flex-wrap items-center gap-6 border border-line bg-white px-7 py-6">
-          <div className="flex items-center gap-2">
-            <Star className="size-4 fill-blue text-blue" strokeWidth={1.5} aria-hidden />
-            <span className="font-serif text-[1.8rem] leading-none text-navy">
-              {ozet.puan !== null ? ozet.puan.toFixed(1).replace(".", ",") : <Copy text="[0,0]" />}
-            </span>
-            <span className="text-[0.875rem] text-muted">/ 5</span>
-          </div>
-          <p className="text-[0.9375rem] text-muted">
-            Google&apos;da{" "}
-            {ozet.adet !== null ? ozet.adet : <Copy text="[000]" />} değerlendirme
-            {ozet.url ? (
-              <>
-                {" · "}
-                <a href={ozet.url} target="_blank" rel="noopener noreferrer" className="text-blue underline underline-offset-4">
-                  Google&apos;da görün
-                </a>
-              </>
-            ) : null}
-          </p>
-        </div>
+        <GooglePuanKutusu ozet={ozet} className="mb-12 inline-block" />
 
-        <div className="rule-grid sm:grid-cols-2 lg:grid-cols-3">
-          {hazir
-            ? ozet.yorumlar.map((y) => (
-                <figure key={y.id} className="flex flex-col bg-white p-7">
-                  <div className="flex items-center gap-1" aria-label={`${y.puan} / 5`}>
-                    {Array.from({ length: 5 }, (_, i) => (
-                      <Star
-                        key={i}
-                        className={i < y.puan ? "size-3.5 fill-blue text-blue" : "size-3.5 text-line"}
-                        strokeWidth={1.5}
-                        aria-hidden
-                      />
-                    ))}
-                  </div>
-                  <blockquote className="mt-5 flex-1">
-                    <p className="text-[0.9375rem] leading-relaxed text-ink">&ldquo;{y.metin}&rdquo;</p>
-                  </blockquote>
-                  <figcaption className="mt-6 border-t border-line pt-4 text-[0.8125rem] text-muted">
-                    <span className="text-ink">{y.ad}</span>
-                    {y.tarih ? ` · ${y.tarih}` : null}
-                  </figcaption>
-                </figure>
-              ))
-            : reviews.items.map((item) => (
-                <figure key={item.id} className="flex flex-col bg-white p-7">
-                  <MessageSquareQuote className="size-5 text-muted" strokeWidth={1.5} aria-hidden />
-                  <blockquote className="mt-5 flex-1">
-                    <p className="text-[0.9375rem] leading-relaxed text-ink">
-                      &ldquo;<Copy text={item.quote} />&rdquo;
-                    </p>
-                  </blockquote>
-                  <figcaption className="mt-6 border-t border-line pt-4 text-[0.8125rem] text-muted">
-                    <Copy text={`${item.name} · ${item.meta}`} />
-                  </figcaption>
-                </figure>
+        {ozet.yorumlar.length > 0 ? (
+          <>
+            <div className="rule-grid sm:grid-cols-2 lg:grid-cols-3">
+              {ozet.yorumlar.map((y) => (
+                <GoogleYorumKarti key={y.id} yorum={y} googleUrl={ozet.url} />
               ))}
-        </div>
+              {/* Son satırı tamamlayan kart — ızgarada boş (gri) hücre kalmaz */}
+              <a
+                href={ozet.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  "group flex flex-col justify-center bg-white p-7 transition-colors hover:bg-paper",
+                  SM_SPAN[ozet.yorumlar.length % 2],
+                  LG_SPAN[ozet.yorumlar.length % 3],
+                )}
+              >
+                <p className="font-serif text-[1.25rem] leading-snug text-navy">
+                  {ozet.adet ? `${ozet.adet} değerlendirmenin tamamı Google'da` : "Tüm değerlendirmeler Google'da"}
+                </p>
+                <p className="mt-3 inline-flex items-center gap-1 text-[0.75rem] uppercase tracking-[0.1em] text-blue group-hover:text-navy">
+                  Google&apos;da okuyun
+                  <ArrowUpRight className="size-3.5" strokeWidth={1.5} aria-hidden />
+                </p>
+              </a>
+            </div>
+            <GoogleKaynakNotu ozet={ozet} className="mt-6" />
+          </>
+        ) : (
+          <GoogleYorumYok ozet={ozet} />
+        )}
       </Section>
 
       <Container className="pb-20">

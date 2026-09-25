@@ -5,6 +5,7 @@ import { site } from "@/lib/site";
 export default function sitemap(): MetadataRoute.Sitemap {
   return allRoutes().map((route) => ({
     url: `${site.url}${route.path}`,
+    lastModified: site.editorial.lastUpdatedIso,
     changeFrequency: route.priority >= 0.8 ? "monthly" : "yearly",
     priority: route.priority,
   }));

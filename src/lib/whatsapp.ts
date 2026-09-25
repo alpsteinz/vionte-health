@@ -2,7 +2,7 @@ import { site } from "./site";
 
 /**
  * Bölüm bazlı WhatsApp CTA bağlantıları. Tümü aynı numaraya
- * (0532 015 79 85) gider; hazır mesaj bölüme göre değişir. WhatsApp
+ * (0546 157 65 74) gider; hazır mesaj bölüme göre değişir. WhatsApp
  * deep-link'i özel bir izleme parametresi (UTM) taşımaz — kaynak ayrımı,
  * gelen mesajın metninden okunur. Yeni bir CTA eklenecekse buraya bir
  * satır eklemek yeterlidir; numara veya link biçimi tek yerden yönetilir.

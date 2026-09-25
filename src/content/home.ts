@@ -157,14 +157,4 @@ export const team = {
 export const reviews = {
   eyebrow: "Danışan yorumları",
   title: "Anlatanlar danışanlar",
-  google: {
-    rating: "[0,0]",
-    count: "[000]",
-    href: "[Google Business Profile bağlantısı]",
-  },
-  items: [
-    { id: "yorum-1", name: "[Ad S.]", meta: "[Safir FUE · 00. ay]", quote: "[Danışan yorumu — Google Business Profile entegrasyonu ile gelecek]" },
-    { id: "yorum-2", name: "[Ad S.]", meta: "[DHI · 00. ay]", quote: "[Danışan yorumu — Google Business Profile entegrasyonu ile gelecek]" },
-    { id: "yorum-3", name: "[Ad S.]", meta: "[Safir FUE · 00. ay]", quote: "[Danışan yorumu — Google Business Profile entegrasyonu ile gelecek]" },
-  ],
 };

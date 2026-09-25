@@ -11,6 +11,13 @@
  * Vionte Health'nin yaptığı izlenimi verilmez.
  */
 
+/**
+ * İçeriğin son güncelleme tarihi (YYYY-AA-GG). Tek kaynak: sayfa künyesi,
+ * footer, yasal metinler, schema.org dateModified, sitemap ve llms.txt
+ * buradan beslenir. İçerik güncellendiğinde yalnızca bu satır değişir.
+ */
+const SON_GUNCELLEME = "2026-09-24";
+
 export const site = {
   name: "Vionte Health",
   shortName: "Vionte Health",
@@ -33,14 +40,20 @@ export const site = {
     city: "İstanbul",
     postalCode: "34903",
     country: "TR",
-    phoneLabel: "0532 015 79 85",
-    phoneHref: "tel:+905320157985",
-    whatsappLabel: "0532 015 79 85",
-    whatsappHref: "https://wa.me/905320157985",
+    phoneLabel: "0546 157 65 74",
+    phoneHref: "tel:+905461576574",
+    whatsappLabel: "0546 157 65 74",
+    whatsappHref: "https://wa.me/905461576574",
     email: "info@viontehealth.com",
     hours: "Her gün · 09:00–17:00",
     mapEmbed: "",
   },
+
+  /**
+   * Google Business Profile'daki işletme adı — sitedeki marka adından farklı.
+   * Places API araması ve Google Haritalar bağlantısı bu adla yapılır.
+   */
+  googleIsletmeAdi: "Vionte | Saç Ekimi - Diş Estetiği - Medikal Estetik Danışmanlığı",
 
   social: {
     instagram: "https://www.instagram.com/viontehealth/",
@@ -55,7 +68,10 @@ export const site = {
   },
 
   editorial: {
-    lastUpdated: "[GG.AA.YYYY]",
+    /** Son güncelleme — ISO 8601. schema.org ve sitemap bu değeri kullanır. */
+    lastUpdatedIso: SON_GUNCELLEME,
+    /** Sayfada görünen biçim: GG.AA.YYYY */
+    lastUpdated: SON_GUNCELLEME.split("-").reverse().join("."),
     /** İçerik sorumlusu — hekim değil, sorumlu teknisyen */
     contentOwner: "Mehtap Dizge · info@viontehealth.com",
   },

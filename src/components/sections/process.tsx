@@ -8,6 +8,7 @@ export function Process() {
         eyebrow={process.eyebrow}
         title={process.title}
         tone="dark"
+        align="center"
       />
 
       <ol className="rule-grid rule-grid-dark reveal mt-12 sm:grid-cols-2 2xl:grid-cols-4">

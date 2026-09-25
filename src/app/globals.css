@@ -211,3 +211,11 @@
     }
   }
 }
+
+/* Yatay kaydırmalı şeritlerde kaydırma çubuğunu gizler (kaydırma çalışmaya devam eder) */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
