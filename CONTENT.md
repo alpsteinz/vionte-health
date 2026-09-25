@@ -326,7 +326,7 @@ greftlerin hangi açıyla, hangi yönde ve hangi yoğunlukta yerleştirildiğidi
 **Başlık:** Bize ulaşın
 
 - Adres: Esenyalı Mah. Yanyol Cad. Varyap Plaza No:61 D:247 Pendik/İstanbul
-- Tel/WhatsApp: 0532 015 79 85
+- Tel/WhatsApp: 0546 157 65 74
 - E-posta: info@viontehealth.com
 - Çalışma saatleri: Her gün · 09:00–17:00
 - Instagram: @viontehealth

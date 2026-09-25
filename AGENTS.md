@@ -79,7 +79,7 @@ herkeste Bakanlık tescilli yardımcı uygulayıcı sertifikası mevcut.
 ## İletişim
 
 - Esenyalı Mah. Yanyol Cad. Varyap Plaza No:61 D:247 Pendik/İstanbul
-- Tel/WhatsApp: 0532 015 79 85
+- Tel/WhatsApp: 0546 157 65 74
 - info@viontehealth.com
 - Çalışma saatleri: 09:00–17:00
 - Instagram: @viontehealth
