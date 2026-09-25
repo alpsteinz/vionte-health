@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
+import { Harita } from "@/components/ui/harita";
 import { MapPin, Phone, MessageCircle, Mail, Clock } from "lucide-react";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { PageHero } from "@/components/ui/page-hero";
 import { Section } from "@/components/ui/section";
 import { Container } from "@/components/ui/container";
-import { PhotoPlaceholder } from "@/components/ui/photo-placeholder";
 import { LeadForm } from "@/components/sections/lead-form";
 import { ContentInfo } from "@/components/ui/content-info";
 import { JsonLd } from "@/components/ui/json-ld";
@@ -81,7 +81,7 @@ export default function Page() {
             </dl>
 
             <div className="mt-10 border border-line">
-              <PhotoPlaceholder label="Harita — Varyap Plaza, Pendik" ratio="16/9" />
+              <Harita oran="16/9" ton="acik" />
             </div>
 
             <div className="mt-10 border border-line bg-white p-6 text-[0.875rem] leading-relaxed text-muted">

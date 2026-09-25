@@ -21,6 +21,14 @@ function hasDecided() {
   return document.cookie.split("; ").some((c) => c.startsWith(`${COOKIE_NAME}=`));
 }
 
+/** Üçüncü taraf içerik (ör. Google Haritalar) için: tercih değişince haber verir */
+export const cerezOnayiAbone = subscribe;
+
+/** Ziyaretçi "Kabul et" dediyse true; "Yalnızca zorunlu" veya karar yoksa false */
+export function cerezKabulEdildi() {
+  return document.cookie.split("; ").includes(`${COOKIE_NAME}=kabul`);
+}
+
 /**
  * Zorunlu: çerez onayı.
  * Tercih çerezde saklanır — localStorage/sessionStorage kullanılmaz (AGENTS.md yasak).

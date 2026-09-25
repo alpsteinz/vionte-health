@@ -1,6 +1,6 @@
 import { MapPin, Phone, MessageCircle, Mail, Clock } from "lucide-react";
 import { Section } from "@/components/ui/section";
-import { PhotoPlaceholder } from "@/components/ui/photo-placeholder";
+import { Harita } from "@/components/ui/harita";
 import { ContactLink } from "@/components/ui/contact-link";
 import { site } from "@/lib/site";
 
@@ -57,7 +57,8 @@ export function Contact() {
         </div>
 
         <div className="reveal border border-line-dark">
-          <PhotoPlaceholder label="Harita — Varyap Plaza, Pendik" ratio="4/3" tone="dark" />
+          {/* Masaüstünde sol sütunun yüksekliğini doldurur — altta boş şerit kalmaz */}
+          <Harita oran="4/3" ton="koyu" className="lg:aspect-auto lg:h-full" />
         </div>
       </div>
     </Section>

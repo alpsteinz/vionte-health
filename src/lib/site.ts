@@ -18,6 +18,14 @@
  */
 const SON_GUNCELLEME = "2026-09-24";
 
+/**
+ * Google Business Profile'daki işletme adı — sitedeki marka adından farklı.
+ * Places API araması ve Google Haritalar (bağlantı + gömülü harita) bu adla
+ * yapılır; bu adla arama doğrudan işletme kaydını açar.
+ */
+const GOOGLE_ISLETME_ADI = "Vionte | Saç Ekimi - Diş Estetiği - Medikal Estetik Danışmanlığı";
+const HARITA_SORGU = encodeURIComponent(`${GOOGLE_ISLETME_ADI}, Pendik, İstanbul`);
+
 export const site = {
   name: "Vionte Health",
   shortName: "Vionte Health",
@@ -46,14 +54,13 @@ export const site = {
     whatsappHref: "https://wa.me/905461576574",
     email: "info@viontehealth.com",
     hours: "Her gün · 09:00–17:00",
-    mapEmbed: "",
+    /** Gömülü harita — API anahtarı gerektirmez */
+    mapEmbed: `https://www.google.com/maps?q=${HARITA_SORGU}&z=16&hl=tr&output=embed`,
+    /** "Google Haritalar'da aç" / yol tarifi bağlantısı */
+    mapUrl: `https://www.google.com/maps/search/?api=1&query=${HARITA_SORGU}`,
   },
 
-  /**
-   * Google Business Profile'daki işletme adı — sitedeki marka adından farklı.
-   * Places API araması ve Google Haritalar bağlantısı bu adla yapılır.
-   */
-  googleIsletmeAdi: "Vionte | Saç Ekimi - Diş Estetiği - Medikal Estetik Danışmanlığı",
+  googleIsletmeAdi: GOOGLE_ISLETME_ADI,
 
   social: {
     instagram: "https://www.instagram.com/viontehealth/",
